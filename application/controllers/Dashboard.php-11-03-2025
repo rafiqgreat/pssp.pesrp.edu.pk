@@ -1,0 +1,33 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Dashboard extends MY_Controller {
+	public $table = 'tracking';
+	public function __construct()
+	{
+		parent::__construct();
+	}
+
+	public function index()
+	{
+		 $this->page_data['statics'] = $this->dashboard_model->get_statics();
+		 $result = $this->dashboard_model->getDistrictTehsils();
+
+        // Organize data by district
+        $districts = [];
+        foreach ($result as $row) {
+            $districts[$row['cdistrictname']][] = [
+                'tehsil' => $row['ctehsilname'],
+                'barcode' => $row['cbarcode'],
+                'status' => $row['status']
+            ];
+        }
+
+       $this->page_data['districts'] = $districts;
+		 $this->load->view('dashboard', $this->page_data);
+	}
+
+}
+
+/* End of file Dashboard.php */
+/* Location: ./application/controllers/Dashboard.php */
