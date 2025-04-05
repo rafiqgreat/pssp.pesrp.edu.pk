@@ -133,18 +133,19 @@ $autoload['language'] = array( 'basic' );
 |	$autoload['model'] = array('first_model' => 'first');
 */
 $autoload['model'] = array(
-	'users_model',
-	'settings_model',
-	'role_permissions_model',
-	'permissions_model',
-	'roles_model',
-	'activity_model',
-	'templates_model',
-	'tracking_model',
-	'dashboard_model',
-	'school_model',
-	'location_model',
-	'schoolchain_model',
+	'user/users_model' => 'user_users_model',
+	'admin/users_model',
+	'admin/settings_model',
+	'admin/role_permissions_model',
+	'admin/permissions_model',
+	'admin/roles_model',
+	'admin/activity_model',
+	'admin/templates_model',
+	'admin/tracking_model',
+	'admin/dashboard_model',
+	'admin/school_model',
+	'admin/location_model',
+	'admin/schoolchain_model',
 );
 
 
