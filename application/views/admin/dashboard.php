@@ -44,8 +44,8 @@ defined('BASEPATH') or exit('No direct script access allowed'); ?>
       <div class="col-lg-4 col-6 pl-3 pr-3 small-box:hover">
         <!-- small box -->
         <div class="small-box bg-white bdr">
-          <div class="inner" style="padding: 30px; font-weight: bold;">
-            <h4>Total Application</h4>
+          <div class="inner" style="padding: 20px; font-weight: bold;">
+            <h5>Total Applications</h5>
             <h4>120</h4>
           </div>
         </div>
@@ -54,9 +54,9 @@ defined('BASEPATH') or exit('No direct script access allowed'); ?>
       <div class="col-lg-4 col-6 pl-3 pr-3">
         <!-- small box -->
         <div class="small-box bg-white bdr">
-          <div class="inner" style="padding: 30px">
-            <h4>Total Application</h4>
-            <h4>120</h4>
+          <div class="inner" style="padding: 20px">
+            <h5>Application Payment Received</h5>
+            <h4>10000</h4>
           </div>
         </div>
       </div>
@@ -64,9 +64,9 @@ defined('BASEPATH') or exit('No direct script access allowed'); ?>
       <div class="col-lg-4 col-6 pl-3 pr-3">
         <!-- small box -->
         <div class="small-box bg-white bdr">
-          <div class="inner" style="padding: 30px">
-            <h4>Total Application</h4>
-            <h4>120</h4>
+          <div class="inner" style="padding: 20px">
+            <h5>Total Schools Applied To</h5>
+            <h4>1200</h4>
           </div>
         </div>
       </div>
@@ -76,9 +76,9 @@ defined('BASEPATH') or exit('No direct script access allowed'); ?>
       <div class="col-lg-4 col-6 pl-3 pr-3">
         <!-- small box -->
         <div class="small-box bg-white bdr">
-          <div class="inner" style="padding: 30px; font-weight: bold;">
-            <h4>Total Application</h4>
-            <h4>120</h4>
+          <div class="inner" style="padding: 20px; font-weight: bold;">
+            <h5>Pending Applications</h5>
+            <h4>60</h4>
           </div>
         </div>
       </div>
@@ -86,9 +86,9 @@ defined('BASEPATH') or exit('No direct script access allowed'); ?>
       <div class="col-lg-4 col-6 pl-3 pr-3">
         <!-- small box -->
         <div class="small-box bg-white bdr">
-          <div class="inner" style="padding: 30px">
-            <h4>Total Application</h4>
-            <h4>120</h4>
+          <div class="inner" style="padding: 20px">
+            <h5>Rejected</h5>
+            <h4>10</h4>
           </div>
         </div>
       </div>
@@ -96,9 +96,9 @@ defined('BASEPATH') or exit('No direct script access allowed'); ?>
       <div class="col-lg-4 col-6 pl-3 pr-3">
         <!-- small box -->
         <div class="small-box bg-white bdr">
-          <div class="inner" style="padding: 30px">
-            <h4>Total Application</h4>
-            <h4>120</h4>
+          <div class="inner" style="padding: 20px">
+            <h5>Approved Applications</h5>
+            <h4>15</h4>
           </div>
         </div>
       </div>

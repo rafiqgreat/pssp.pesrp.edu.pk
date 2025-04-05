@@ -63,9 +63,9 @@ defined('BASEPATH') or exit('No direct script access allowed');
   <div class="wrapper">
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-      <div class="row col-11">
+      <div class="row col-10">
         <div class="col-1"><img src="<?= base_url('assets/images/Logo_1.png'); ?>" alt="Logo 1" style="height:80px" /></div>
-        <div class="col-10 mt-2">
+        <div class="col-9 mt-2 ml-5">
           <h4><span style="font-weight:bold">Punjab Education Initiatives Management Authority</span></h4>
           <h5><span>Public Schools Reorganization Program Spell-11</span></h5>
         </div>
@@ -80,12 +80,12 @@ defined('BASEPATH') or exit('No direct script access allowed');
         <li class="nav-item dropdown user-menu">
           <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">			
 			  <?php
-$img_url  = userProfile(logged('id')); // URL to image
-$img_path = str_replace(base_url(), FCPATH, $img_url); // Convert URL to full server path
-
-$final_img = (file_exists($img_path) && !is_dir($img_path))
-    ? $img_url
-    : $url->assets . 'img/avatar5.png';
+				$img_url  = userProfile(logged('id')); // URL to image
+				$img_path = str_replace(base_url(), FCPATH, $img_url); // Convert URL to full server path
+				
+				$final_img = (file_exists($img_path) && !is_dir($img_path))
+					? $img_url
+					: $url->assets . 'img/avatar5.png';
 			  ?>
             <img src="<?php echo $final_img; ?>" class="user-image img-circle elevation-2" alt="User Image">
 

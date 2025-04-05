@@ -22,8 +22,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
   }
 </style>
 <ul class="nav nav-pills nav-sidebar flex-column nav-legacy" data-widget="treeview" role="menu" data-accordion="false">
-
-
   <li class="nav-item">
     <a href="<?php echo url('user/dashboard') ?>" class="nav-link <?php echo ($page->menu == 'dashboard') ? 'active' : '' ?>">
       <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -32,8 +30,47 @@ defined('BASEPATH') or exit('No direct script access allowed');
       </p>
     </a>
   </li>
-
-  <?php if (hasPermissions('activity_log_list')): ?>
+  <?php //if (hasPermissions('school_management')): ?>
+    <li class="nav-item">
+      <a href="<?php echo url('/user/applicationform') ?>" class="nav-link <?php echo ($page->menu == 'schoolchain') ? 'active' : '' ?>">
+        <i class="nav-icon fas fa-user"></i>
+        <p>
+          <?php echo 'Application Form' ?>
+        </p>
+      </a>
+    </li>
+  <?php //endif ?>
+  <?php //if (hasPermissions('school_management')): ?>
+    <li class="nav-item">
+      <a href="<?php echo '' ?>" class="nav-link <?php echo ($page->menu == 'schoolchain') ? 'active' : '' ?>">
+        <i class="nav-icon fas fa-user"></i>
+        <p>
+          <?php echo 'Select Schools' ?>
+        </p>
+      </a>
+    </li>
+  <?php //endif ?>
+  <?php //if (hasPermissions('school_management')): ?>
+    <li class="nav-item">
+      <a href="<?php echo '' ?>" class="nav-link <?php echo ($page->menu == 'schoolchain') ? 'active' : '' ?>">
+        <i class="nav-icon fas fa-user"></i>
+        <p>
+          <?php echo 'Set Priority School' ?>
+        </p>
+      </a>
+    </li>
+  <?php //endif ?>
+  <?php //if (hasPermissions('school_management')): ?>
+    <li class="nav-item">
+      <a href="<?php echo '' ?>" class="nav-link <?php echo ($page->menu == 'schoolchain') ? 'active' : '' ?>">
+        <i class="nav-icon fas fa-user"></i>
+        <p>
+          <?php echo 'Change Password' ?>
+        </p>
+      </a>
+    </li>
+  <?php //endif ?>
+  <?php /*if (hasPermissions('activity_log_list')): ?>
     <li class="nav-item">
       <a href="<?php echo url('user/activity_logs') ?>" class="nav-link <?php echo ($page->menu == 'activity_logs') ? 'active' : '' ?>">
         <i class="nav-icon fas fa-history"></i>
@@ -42,19 +79,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
         </p>
       </a>
     </li>
-  <?php endif ?>
-
-  <?php if (hasPermissions('school_management')): ?>
-    <li class="nav-item">
-      <a href="<?php echo url('user/schoolchain') ?>" class="nav-link <?php echo ($page->menu == 'schoolchain') ? 'active' : '' ?>">
-        <i class="nav-icon fas fa-user"></i>
-        <p>
-          <?php echo lang('school_chain') ?>
-        </p>
-      </a>
-    </li>
-  <?php endif ?>
-
+  <?php endif */?>
   <li class="nav-item">
     <a href="<?php echo url('/user/logout') ?>" class="nav-link <?php echo ($page->menu == 'logout') ? 'active' : '' ?>">
       <i class="nav-icon fas fa-user"></i>

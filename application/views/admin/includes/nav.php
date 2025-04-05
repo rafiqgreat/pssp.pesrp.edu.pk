@@ -32,93 +32,39 @@ defined('BASEPATH') or exit('No direct script access allowed');
       </p>
     </a>
   </li>
+  
+   <?php if (hasPermissions('profile_view')): ?>
+    <li class="nav-item">
+      <a href="<?php echo url('admin/profile') ?>" class="nav-link <?php echo ($page->menu == 'profile') ? 'active' : '' ?>">
+        <i class="nav-icon fas fa-user"></i>
+        <p>
+          <?php echo lang('profile') ?>
+        </p>
+      </a>
+    </li>
+  <?php endif ?>
 
   <?php if (hasPermissions('users_list')): ?>
     <li class="nav-item">
       <a href="<?php echo url('admin/users') ?>" class="nav-link <?php echo ($page->menu == 'users') ? 'active' : '' ?>">
         <i class="nav-icon fas fa-user"></i>
         <p>
-          <?php echo lang('users') ?>
+          <?php echo 'User Management' ?>
         </p>
       </a>
     </li>
   <?php endif ?>
-
-  <?php if (hasPermissions('activity_log_list')): ?>
+  
+  <?php //if (hasPermissions('users_list')): ?>
     <li class="nav-item">
-      <a href="<?php echo url('admin/activity_logs') ?>" class="nav-link <?php echo ($page->menu == 'activity_logs') ? 'active' : '' ?>">
-        <i class="nav-icon fas fa-history"></i>
-        <p>
-          <?php echo lang('activity_logs') ?>
-        </p>
-      </a>
-    </li>
-  <?php endif ?>
-
-  <?php if (hasPermissions('roles_list')): ?>
-    <li class="nav-item">
-      <a href="<?php echo url('admin/roles') ?>" class="nav-link <?php echo ($page->menu == 'roles') ? 'active' : '' ?>">
-        <i class="nav-icon fas fa-lock"></i>
-        <p>
-          <?php echo lang('manage_roles') ?>
-        </p>
-      </a>
-    </li>
-  <?php endif ?>
-
-  <?php if (hasPermissions('permissions_list')): ?>
-    <li class="nav-item">
-      <a href="<?php echo url('admin/permissions') ?>" class="nav-link <?php echo ($page->menu == 'permissions') ? 'active' : '' ?>">
+      <a href="<?php echo '' ?>" class="nav-link <?php echo ($page->menu == 'application_management') ? 'active' : '' ?>">
         <i class="nav-icon fas fa-user"></i>
         <p>
-          <?php echo lang('manage_permissions') ?>
+          <?php echo 'Application Management' ?>
         </p>
       </a>
     </li>
-  <?php endif ?>
-  <?php if (hasPermissions('school_management')): ?>
-    <li class="nav-item">
-      <a href="<?php echo url('admin/schoolchain') ?>" class="nav-link <?php echo ($page->menu == 'schoolchain') ? 'active' : '' ?>">
-        <i class="nav-icon fas fa-user"></i>
-        <p>
-          <?php echo lang('school_chain') ?>
-        </p>
-      </a>
-    </li>
-  <?php endif ?>
-  <?php if (hasPermissions('school_management')): ?>
-    <li class="nav-item has-treeview <?php echo ($page->menu == 'school') ? 'menu-open' : '' ?>">
-      <a href="#" class="nav-link  <?php echo ($page->menu == 'school') ? 'active' : '' ?>">
-        <i class="nav-icon fas fa-cog"></i>
-        <p>
-          <?php echo lang('school_management') ?>
-          <i class="right fas fa-angle-left"></i>
-        </p>
-      </a>
-      <ul class="nav nav-treeview">
-        <li class="nav-item">
-          <a href="<?php echo url('admin/school') ?>" class="nav-link <?php echo ($page->submenu == '') ? 'active' : '' ?>">
-            <i class="far fa-circle nav-icon"></i>
-            <p> <?php echo lang('school_list') ?> </p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="<?php echo url('admin/school/import') ?>" class="nav-link <?php echo ($page->submenu == 'import') ? 'active' : '' ?>">
-            <i class="far fa-circle nav-icon"></i>
-            <p> <?php echo lang('school_import') ?></p>
-          </a>
-        </li>
-        <?php /*?><li class="nav-item">
-        <a href="<?php echo url('admin/schoolchain') ?>" class="nav-link <?php echo ($page->submenu=='schoolchain')?'active':'' ?>">
-          <i class="far fa-circle nav-icon"></i> <p> <?php echo lang('school_chain') ?> </p>
-        </a>
-      </li><?php */ ?>
-      </ul>
-    </li>
-  <?php endif ?>
-
-
-
+  <?php //endif ?>
   <?php if (hasPermissions('location_management')): ?>
     <li class="nav-item has-treeview <?php echo ($page->menu == 'location') ? 'menu-open' : '' ?>">
       <a href="#" class="nav-link  <?php echo ($page->menu == 'location') ? 'active' : '' ?>">
@@ -150,24 +96,121 @@ defined('BASEPATH') or exit('No direct script access allowed');
       </ul>
     </li>
   <?php endif ?>
-
-  <?php if (hasPermissions('backup_db')): ?>
+  <?php //if (hasPermissions('users_list')): ?>
     <li class="nav-item">
-      <a href="<?php echo url('admin/backup') ?>" class="nav-link <?php echo ($page->menu == 'backup') ? 'active' : '' ?>">
+      <a href="<?php echo '' ?>" class="nav-link <?php echo ($page->menu == 'user_rights') ? 'active' : '' ?>">
         <i class="nav-icon fas fa-user"></i>
         <p>
-          <?php echo lang('backup') ?>
+          <?php echo 'User Rights' ?>
+        </p>
+      </a>
+    </li>
+  <?php //endif ?>
+  
+  <?php //if (hasPermissions('users_list')): ?>
+    <li class="nav-item">
+      <a href="<?php echo '' ?>" class="nav-link <?php echo ($page->menu == 'messaging') ? 'active' : '' ?>">
+        <i class="nav-icon fas fa-user"></i>
+        <p>
+          <?php echo 'Messaging' ?>
+        </p>
+      </a>
+    </li>
+  <?php //endif ?>
+  
+  <?php //if (hasPermissions('users_list')): ?>
+    <li class="nav-item">
+      <a href="<?php echo '' ?>" class="nav-link <?php echo ($page->menu == 'reporting') ? 'active' : '' ?>">
+        <i class="nav-icon fas fa-user"></i>
+        <p>
+          <?php echo 'Reporting' ?>
+        </p>
+      </a>
+    </li>
+  <?php //endif ?>
+  
+  <?php //if (hasPermissions('users_list')): ?>
+    <li class="nav-item">
+      <a href="<?php echo '' ?>" class="nav-link <?php echo ($page->menu == 'download') ? 'active' : '' ?>">
+        <i class="nav-icon fas fa-user"></i>
+        <p>
+          <?php echo 'Download' ?>
+        </p>
+      </a>
+    </li>
+  <?php //endif ?>
+  <?php //if (hasPermissions('users_list')): ?>
+    <li class="nav-item">
+      <a href="<?php echo '' ?>" class="nav-link <?php echo ($page->menu == 'merit_calculation') ? 'active' : '' ?>">
+        <i class="nav-icon fas fa-user"></i>
+        <p>
+          <?php echo 'Merit Calculation' ?>
+        </p>
+      </a>
+    </li>
+  <?php //endif ?>
+  <?php if (hasPermissions('roles_list')): ?>
+    <li class="nav-item">
+      <a href="<?php echo url('admin/roles') ?>" class="nav-link <?php echo ($page->menu == 'roles') ? 'active' : '' ?>">
+        <i class="nav-icon fas fa-lock"></i>
+        <p>
+          <?php echo lang('manage_roles') ?>
         </p>
       </a>
     </li>
   <?php endif ?>
 
+  <?php if (hasPermissions('permissions_list')): ?>
+    <li class="nav-item">
+      <a href="<?php echo url('admin/permissions') ?>" class="nav-link <?php echo ($page->menu == 'permissions') ? 'active' : '' ?>">
+        <i class="nav-icon fas fa-user"></i>
+        <p>
+          <?php echo lang('manage_permissions') ?>
+        </p>
+      </a>
+    </li>
+  <?php endif ?>
+  
+  
+  
+  
+  
+  <?php if (hasPermissions('school_management')): ?>
+    <li class="nav-item has-treeview <?php echo ($page->menu == 'school') ? 'menu-open' : '' ?>">
+      <a href="#" class="nav-link  <?php echo ($page->menu == 'school') ? 'active' : '' ?>">
+        <i class="nav-icon fas fa-cog"></i>
+        <p>
+          <?php echo lang('school_management') ?>
+          <i class="right fas fa-angle-left"></i>
+        </p>
+      </a>
+      <ul class="nav nav-treeview">
+        <li class="nav-item">
+          <a href="<?php echo url('admin/school') ?>" class="nav-link <?php echo ($page->submenu == '') ? 'active' : '' ?>">
+            <i class="far fa-circle nav-icon"></i>
+            <p> <?php echo lang('school_list') ?> </p>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="<?php echo url('admin/school/import') ?>" class="nav-link <?php echo ($page->submenu == 'import') ? 'active' : '' ?>">
+            <i class="far fa-circle nav-icon"></i>
+            <p> <?php echo lang('school_import') ?></p>
+          </a>
+        </li>
+        <?php /*?><li class="nav-item">
+        <a href="<?php echo url('admin/schoolchain') ?>" class="nav-link <?php echo ($page->submenu=='schoolchain')?'active':'' ?>">
+          <i class="far fa-circle nav-icon"></i> <p> <?php echo lang('school_chain') ?> </p>
+        </a>
+      </li><?php */ ?>
+      </ul>
+    </li>
+  <?php endif ?>
   <?php if (hasPermissions('company_settings')): ?>
     <li class="nav-item has-treeview <?php echo ($page->menu == 'settings') ? 'menu-open' : '' ?>">
       <a href="#" class="nav-link  <?php echo ($page->menu == 'settings') ? 'active' : '' ?>">
         <i class="nav-icon fas fa-cog"></i>
         <p>
-          <?php echo lang('settings') ?>
+          <?php echo 'Site Configuration' ?>
           <i class="right fas fa-angle-left"></i>
         </p>
       </a>
@@ -195,7 +238,16 @@ defined('BASEPATH') or exit('No direct script access allowed');
       </ul>
     </li>
   <?php endif ?>
-
+	<?php if (hasPermissions('backup_db')): ?>
+    <li class="nav-item">
+      <a href="<?php echo url('admin/backup') ?>" class="nav-link <?php echo ($page->menu == 'backup') ? 'active' : '' ?>">
+        <i class="nav-icon fas fa-user"></i>
+        <p>
+          <?php echo lang('backup') ?>
+        </p>
+      </a>
+    </li>
+  <?php endif ?>
 
 
   <li class="nav-item">
@@ -207,6 +259,30 @@ defined('BASEPATH') or exit('No direct script access allowed');
     </a>
   </li>
 
+
+
+
+
+<?php /*?><?php if (hasPermissions('activity_log_list')): ?>
+    <li class="nav-item">
+      <a href="<?php echo url('admin/activity_logs') ?>" class="nav-link <?php echo ($page->menu == 'activity_logs') ? 'active' : '' ?>">
+        <i class="nav-icon fas fa-history"></i>
+        <p>
+          <?php echo lang('activity_logs') ?>
+        </p>
+      </a>
+    </li>
+  <?php endif ?>
+  <?php if (hasPermissions('school_management')): ?>
+    <li class="nav-item">
+      <a href="<?php echo url('admin/schoolchain') ?>" class="nav-link <?php echo ($page->menu == 'schoolchain') ? 'active' : '' ?>">
+        <i class="nav-icon fas fa-user"></i>
+        <p>
+          <?php echo lang('school_chain') ?>
+        </p>
+      </a>
+    </li>
+  <?php endif ?><?php */?>
 
   <?php /*?><li class="nav-header"><strong>  <?php echo lang('ci_examples') ?>  </strong> &nbsp;
   <span class="right badge badge-primary">New</span>
