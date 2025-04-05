@@ -98,7 +98,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
   <?php endif ?>
   <?php //if (hasPermissions('users_list')): ?>
     <li class="nav-item">
-      <a href="<?php echo '' ?>" class="nav-link <?php echo ($page->menu == 'user_rights') ? 'active' : '' ?>">
+      <a href="#" class="nav-link <?php echo ($page->menu == 'user_rights') ? 'active' : '' ?>">
         <i class="nav-icon fas fa-user"></i>
         <p>
           <?php echo 'User Rights' ?>
@@ -109,7 +109,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
   
   <?php //if (hasPermissions('users_list')): ?>
     <li class="nav-item">
-      <a href="<?php echo '' ?>" class="nav-link <?php echo ($page->menu == 'messaging') ? 'active' : '' ?>">
+      <a href="#" class="nav-link <?php echo ($page->menu == 'messaging') ? 'active' : '' ?>">
         <i class="nav-icon fas fa-user"></i>
         <p>
           <?php echo 'Messaging' ?>
@@ -120,7 +120,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
   
   <?php //if (hasPermissions('users_list')): ?>
     <li class="nav-item">
-      <a href="<?php echo '' ?>" class="nav-link <?php echo ($page->menu == 'reporting') ? 'active' : '' ?>">
+      <a href="#" class="nav-link <?php echo ($page->menu == 'reporting') ? 'active' : '' ?>">
         <i class="nav-icon fas fa-user"></i>
         <p>
           <?php echo 'Reporting' ?>
@@ -131,7 +131,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
   
   <?php //if (hasPermissions('users_list')): ?>
     <li class="nav-item">
-      <a href="<?php echo '' ?>" class="nav-link <?php echo ($page->menu == 'download') ? 'active' : '' ?>">
+      <a href="#" class="nav-link <?php echo ($page->menu == 'download') ? 'active' : '' ?>">
         <i class="nav-icon fas fa-user"></i>
         <p>
           <?php echo 'Download' ?>
@@ -141,7 +141,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
   <?php //endif ?>
   <?php //if (hasPermissions('users_list')): ?>
     <li class="nav-item">
-      <a href="<?php echo '' ?>" class="nav-link <?php echo ($page->menu == 'merit_calculation') ? 'active' : '' ?>">
+      <a href="#" class="nav-link <?php echo ($page->menu == 'merit_calculation') ? 'active' : '' ?>">
         <i class="nav-icon fas fa-user"></i>
         <p>
           <?php echo 'Merit Calculation' ?>
@@ -170,11 +170,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
       </a>
     </li>
   <?php endif ?>
-  
-  
-  
-  
-  
   <?php if (hasPermissions('school_management')): ?>
     <li class="nav-item has-treeview <?php echo ($page->menu == 'school') ? 'menu-open' : '' ?>">
       <a href="#" class="nav-link  <?php echo ($page->menu == 'school') ? 'active' : '' ?>">
@@ -251,7 +246,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 
   <li class="nav-item">
-    <a href="<?php echo url('admin//logout') ?>" class="nav-link <?php echo ($page->menu == 'logout') ? 'active' : '' ?>">
+    <a href="<?php echo url('admin/logout') ?>" class="nav-link <?php echo ($page->menu == 'logout') ? 'active' : '' ?>">
       <i class="nav-icon fas fa-user"></i>
       <p>
         <?php echo 'Logout'; ?>
