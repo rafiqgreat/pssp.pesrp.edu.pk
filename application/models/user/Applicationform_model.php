@@ -37,6 +37,19 @@ class Applicationform_model extends MY_Model {
 		return $this->db->update('tbl_user_young_ent', $data);
 	}
 	
+	public function update_school_save($ye_userid, $data)
+	{
+		$this->db->where('ye_userid', $ye_userid);
+		return $this->db->update('tbl_user_young_ent', $data);
+	}
+	
+	public function save_declaration($ye_userid, $data)
+	{
+		$this->db->where('ye_userid', $ye_userid);
+		return $this->db->update('tbl_user_young_ent', $data);
+		//die($this->db->last_query());
+	}
+	
 	public function save_qualification($data)
     {
         $this->db->insert('tbl_qualification', $data);

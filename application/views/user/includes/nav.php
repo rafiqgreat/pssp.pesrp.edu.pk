@@ -42,7 +42,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
   <?php //endif ?>
   <?php //if (hasPermissions('school_management')): ?>
     <li class="nav-item">
-      <a href="<?php echo '' ?>" class="nav-link <?php echo ($page->menu == 'schoolchain') ? 'active' : '' ?>">
+      <a href="<?php echo url('/user/applicationform/select_school') ?>" class="nav-link <?php echo ($page->menu == 'schoolchain') ? 'active' : '' ?>">
         <i class="nav-icon fas fa-user"></i>
         <p>
           <?php echo 'Select Schools' ?>
@@ -52,7 +52,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
   <?php //endif ?>
   <?php //if (hasPermissions('school_management')): ?>
     <li class="nav-item">
-      <a href="<?php echo '' ?>" class="nav-link <?php echo ($page->menu == 'schoolchain') ? 'active' : '' ?>">
+      <a href="#" class="nav-link <?php echo ($page->menu == 'schoolchain') ? 'active' : '' ?>">
         <i class="nav-icon fas fa-user"></i>
         <p>
           <?php echo 'Set Priority School' ?>
@@ -62,7 +62,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
   <?php //endif ?>
   <?php //if (hasPermissions('school_management')): ?>
     <li class="nav-item">
-      <a href="<?php echo '' ?>" class="nav-link <?php echo ($page->menu == 'schoolchain') ? 'active' : '' ?>">
+      <a href="#" class="nav-link <?php echo ($page->menu == 'schoolchain') ? 'active' : '' ?>">
         <i class="nav-icon fas fa-user"></i>
         <p>
           <?php echo 'Change Password' ?>

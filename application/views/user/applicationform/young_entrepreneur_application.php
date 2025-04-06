@@ -430,7 +430,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
                 <tbody>
                   <tr id="inputRowExperience">
                     <td>
-                      <select id="qual_user_type" class="form-select form-control" name="qual_user_type">
+                      <select id="exp_type" class="form-select form-control" name="exp_type">
                         <option value="lead">Lead</option>
                         <option value="s1">SA1</option>
                         <option value="s2">SA2</option>
@@ -458,8 +458,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
                 </tbody>
               </table>
             </div>
-        
-            <button onclick="saveExperience()" class="btn btn-primary mt-3">Save</button>
+       		<button onclick="saveExperience()" class="btn btn-primary mt-3">Save and Continue</button>
           </div>
         </div>
 
@@ -489,14 +488,8 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
               </div>
         
               <div id="caseAttachment" class="mt-3 d-none">
-                <label for="caseFile" class="form-label">
-                  If "No", attach a photocopy of the case/detail with this application
-                </label>
-                <input
-                  type="file"
-                  id="caseFile"
-                  class="form-control"
-                />
+                <label for="caseFile" class="form-label">If "Yes", attach a photocopy of the case/detail with this application</label>
+                <input type="file" id="ye_declaration_img" class="form-control" name="ye_declaration_img" />
               </div>
             </div>
         
@@ -508,17 +501,18 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
                 2. I accept this declaration.
               </p>
             </div>
+            <button onclick="saveDeclaration()" class="btn btn-primary mt-3">Save and Go to Select School</button>
           </div>
         </div>
     </div>
     <!-- /.card-body -->
 
-    <div class="card-footer">
+    <?php /*?><div class="card-footer">
       <div class="row">
         <div class="col"><a href="<?php echo url('/admin/school') ?>" onclick="return confirm('Are you sure you want to leave?')" class="btn btn-flat btn-danger"> <?php echo lang('cancel') ?></a></div>
         <div class="col text-right"><button type="submit" class="btn btn-flat btn-primary"> <?php echo lang('submit') ?></button></div>
       </div>
-    </div>
+    </div><?php */?>
     <?php echo form_close(); ?>
   </div>
 </section>
@@ -878,13 +872,12 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 		  });
 		}
 
-
 //============================codeing for experience tan====================================  
   let currentlyEditingExperience = null;
 
 	function addExperience() {
 		// Get values from the input fields
-		const qual_user_type = document.getElementById("qual_user_type").value;
+		const exp_type = document.getElementById("exp_type").value;
 		const exp_employer = document.getElementById("exp_employer").value;
 		const exp_designation = document.getElementById("exp_designation").value;
 		const exp_from = document.getElementById("exp_from").value;
@@ -896,7 +889,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 		let newRow = document.createElement("tr");
 	
 		const rowHTML = `
-			<td>${qual_user_type}</td>
+			<td>${exp_type}</td>
 			<td>${exp_employer}</td>
 			<td>${exp_designation}</td>
 			<td>${exp_from}</td>
@@ -925,7 +918,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 	
 	function resetExperienceForm() {
 		// Clear the input fields and reset to default state
-		document.getElementById("qual_user_type").value = "Lead"; // Reset to default value
+		document.getElementById("exp_type").value = "Lead"; // Reset to default value
 		document.getElementById("exp_employer").value = "Employer";
 		document.getElementById("exp_designation").value = "Designation";
 		document.getElementById("exp_from").value = "From";
@@ -955,8 +948,6 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 	
 	  document.querySelector("[onclick='addExperience()']").textContent = "Update";
 	}
-	
-	
 	
 	function saveExperience() {
 	  // Collect the experience data (you can also add validation here if needed)
@@ -1021,7 +1012,58 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 	}
 
 //===========================================================================	
+	function saveDeclaration() {
+		const litigationYes = document.getElementById("litigationYes").checked;
+		const litigationNo = document.getElementById("litigationNo").checked;
+		let litigation = "";
 	
+		if (litigationYes) {
+			litigation = "yes";
+		} else if (litigationNo) {
+			litigation = "no";
+		} else {
+			alert("Please select if there is any litigation case.");
+			return;
+		}
+	
+		// Create FormData to support file upload
+		const formData = new FormData();
+		formData.append("litigation", litigation);
+	
+		// If "Yes" is selected, check and append file
+		if (litigation === "yes") {
+			const fileInput = document.getElementById("ye_declaration_img");
+			if (fileInput.files.length === 0) {
+				alert("Please upload a case file/document.");
+				return;
+			}
+			formData.append("ye_declaration_img", fileInput.files[0]);
+		}
+	
+		// Use fetch to post the form
+		fetch("<?= base_url('user/applicationform/save_declaration'); ?>", {
+			method: "POST",
+			headers: {
+				"X-Requested-With": "XMLHttpRequest"
+			},
+			body: formData
+		})
+		.then(res => res.json())
+		.then(data => {
+			if (data.status === "success") {
+				alert("Declaration saved successfully!");
+				window.location.href = "<?= base_url('user/applicationform/select_school'); ?>";
+			} else {
+				alert("Error saving declaration.");
+			}
+		})
+		.catch(err => {
+			console.error(err);
+			alert("Something went wrong.");
+		});
+	}
+	
+
 
 	
 	

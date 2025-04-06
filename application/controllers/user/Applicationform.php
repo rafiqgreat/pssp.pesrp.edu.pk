@@ -5,6 +5,7 @@ class Applicationform extends MY_Controller {
 	public function __construct()
 	{
 		parent::__construct();
+		$this->load->library('functions');
 		if(!is_logged()){
 			redirect('user/login','refresh');
 		}
@@ -209,6 +210,110 @@ class Applicationform extends MY_Controller {
 		} else {
 			echo json_encode(['status' => 'error']);
 		}
+	}
+
+	public function save_declaration() {
+		$this->load->library('session');
+	
+		$ye_userid = $this->session->userdata['logged']['id'];
+		$litigation = $this->input->post('litigation');
+	
+		$case_file_path = '';
+	
+		// Handle file upload only if litigation is 'yes'
+		if ($litigation === 'yes' && isset($_FILES['ye_declaration_img']['name']) && !empty($_FILES['ye_declaration_img']['name'])) {
+	
+			// Use your preferred path
+			$path = 'uploads/case_files/';
+			$filename = $_FILES['ye_declaration_img']['name'];
+			$ext = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+			
+			if (in_array($ext, ['jpg', 'jpeg', 'png', 'gif'])) {
+				$upload_type = 'image';
+			} elseif ($ext == 'pdf') {
+				$upload_type = 'pdf';
+			} elseif (in_array($ext, ['xls', 'xlsx'])) {
+				$upload_type = 'excel';
+			} elseif (in_array($ext, ['doc', 'docx', 'txt', 'rtf'])) {
+				$upload_type = 'doc';
+			} else {
+				echo json_encode(['status' => 'error', 'message' => 'Unsupported file type.']);
+				return;
+			}
+
+	
+			// Call your custom file insert helper (limit: 2MB = 2097152 bytes)
+			//$result = $this->functions->file_insert($path, 'ye_declaration_img', 'file', '2097152');
+			$result = $this->functions->file_insert($path, 'ye_declaration_img', $upload_type, '2097152');
+
+	
+			if ($result['status'] == 1) {
+				$case_file_path = $path . $result['msg']; // full relative path
+			} else {
+				echo json_encode(['status' => 'error', 'message' => $result['msg']]);
+				return;
+			}
+		}
+	
+		$data = [
+			'ye_declaration'        => $litigation,
+			'ye_declaration_img'    => $case_file_path,
+			'ye_updated_at'         => date('Y-m-d H:i:s')
+		];
+	
+		$result = $this->user_applicationform_model->save_declaration($ye_userid, $data);
+	
+		if ($result) {
+			echo json_encode(['status' => 'success']);
+		} else {
+			echo json_encode(['status' => 'error']);
+		}
+	}
+
+	public function select_school()
+	{		
+		 $this->page_data['districts'] = $this->user_applicationform_model->get_districts();
+		 $this->load->view('user/applicationform/select_school_yep', $this->page_data);
+	}
+	
+	public function teh_by_district(){
+		echo json_encode($this->location_model->get_tehsil_by_district($this->input->post('district_id')));
+	}
+	
+	public function school_by_tehsil() {
+		$tehsil_id = $this->input->post('tehsil_id');
+		$schools = $this->db->get_where('schools', ['school_tehsil_id' => $tehsil_id])->result();
+		echo json_encode($schools);
+	}
+	
+	public function save_school() {
+		// Get the posted data
+		$selected_schools = json_decode($this->input->post('selected_schools', true), true);
+		
+		// Check if selected_schools is an array and contains no more than 3 schools
+		if (is_array($selected_schools) && count($selected_schools) > 3) {
+			// If more than 3 schools are selected, show an error
+			$this->session->set_flashdata('error', 'You can only select up to 3 schools.');
+			redirect('user/applicationform');
+		}
+	
+		// Data to insert into the tbl_user_young_ent table
+		$data = [
+			'ye_school_1' => isset($selected_schools[0]) ? $selected_schools[0] : null,
+			'ye_school_2' => isset($selected_schools[1]) ? $selected_schools[1] : null,
+			'ye_school_3' => isset($selected_schools[2]) ? $selected_schools[2] : null,
+			// Add other form data here...
+		];
+	
+		// Update the database with the selected schools data
+		$ye_userid = $this->session->logged['id'];
+		$update = $this->user_applicationform_model->update_school_save($ye_userid, $data);
+		echo '<pre>';
+		print_r($this->session->logged['id']);  // Check if the data is correct before saving
+		die($this->db->last_query());
+		// Set success message
+		$this->session->set_flashdata('success', 'Schools nominated successfully!');
+		redirect('user/applicationform');
 	}
 
 
