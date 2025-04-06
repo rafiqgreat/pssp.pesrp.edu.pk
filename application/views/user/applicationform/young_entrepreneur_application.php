@@ -41,75 +41,70 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
     <?php echo form_open_multipart('user/applicationform/save', [ 'class' => 'form-validate' ], ); ?>
     <div class="card-body">
     	<div class="bg-white p-3 mb-4 rounded shadow">
-          <button
-            class="btn btn-primary w-100 d-flex justify-content-between align-items-center"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#leadApplicantDetails"
-            aria-expanded="false"
-            aria-controls="leadApplicantDetails"
-          >
-            <span>Lead Applicant Detail</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              fill="currentColor"
-              class="bi bi-chevron-down"
-              viewBox="0 0 16 16"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
-              />
-            </svg>
+          <button class="btn btn-primary w-100 d-flex justify-content-between align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#leadApplicantDetails" aria-expanded="false" aria-controls="leadApplicantDetails" > 
+              <span>Lead Applicant Detail</span> 
+              <svg   xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16" >   
+			  	<path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/> 
+              </svg>
           </button>
         
           <div class="collapse mt-3 border rounded p-3 bg-light" id="leadApplicantDetails">
             <div class="row mb-3">
               <div class="col-md-6">
-                <label for="applicant1_fullname" class="form-label">Full Name (as per CNIC)</label>
-                <input type="text" class="form-control" name="applicant1_fullname" id="applicant1_fullname" required placeholder="Enter Applicant Full Name" />
+                <label for="ye_lead_fname" class="form-label">Full Name (as per CNIC)</label>
+                <input type="text" class="form-control" name="ye_lead_fname" id="ye_lead_fname" required placeholder="Enter Applicant Full Name" />
               </div>
               <div class="col-md-6">
-                <label for="applicant1_fathername" class="form-label">Father / Husband Name</label>
-                <input type="text" class="form-control" name="applicant1_fathername" id="applicant1_fathername" required placeholder="Enter Applicant Father / Husband Name" />
+                <label for="ye_lead_fhusband" class="form-label">Father / Husband Name</label>
+                <input type="text" class="form-control" name="ye_lead_fhusband" id="ye_lead_fhusband" required placeholder="Enter Applicant Father / Husband Name" />
               </div>
             </div>
         
             <div class="row mb-3">
               <div class="col-md-4">
-                <label for="applicant1_district_id" class="form-label">District</label>
-                <select class="form-select form-control" name="applicant1_district_id" id="applicant1_district_id" required>
+                <label for="ye_lead_districtid" class="form-label">District</label>
+                <select class="form-select form-control" name="ye_lead_districtid" id="ye_lead_districtid" required>
                   <option value="">Select District</option>
+                    <?php
+					   foreach($districts as $district)
+					  {
+						echo '<option value="'.$district->district_id.'">'.$district->district_name_en.'</option>';
+					  }
+                  	?>
                 </select>
               </div>
               <div class="col-md-4">
-                <label for="applicant1_tehsil_id" class="form-label">Tehsil</label>
-                <select class="form-select form-control" name="applicant1_tehsil_id" id="applicant1_tehsil_id" required>
+                <label for="ye_lead_tehsilid" class="form-label">Tehsil</label>
+                <select class="form-select form-control" name="ye_lead_tehsilid" id="ye_lead_tehsilid" required>
                   <option value="">Select Tehsil</option>
                 </select>
               </div>
               <div class="col-md-4">
-                <label for="applicant1_domicile_id" class="form-label">District of Domicile</label>
-                <select class="form-select form-control" name="applicant1_domicile_id" id="applicant1_domicile_id" required>
+                <label for="ye_lead_dom_disid" class="form-label">District of Domicile</label>
+                <select class="form-select form-control" name="ye_lead_dom_disid" id="ye_lead_dom_disid" required>
                   <option value="">Select District of Domicile</option>
+                   <?php
+					   foreach($districts as $district)
+					  {
+						echo '<option value="'.$district->district_id.'">'.$district->district_name_en.'</option>';
+					  }
+                  	?>
                 </select>
               </div>
             </div>
         
             <div class="row mb-3">
               <div class="col-md-4">
-                <label for="applicant1_cnic" class="form-label">CNIC</label>
-                <input type="number" class="form-control" name="applicant1_cnic" id="applicant1_cnic" required placeholder="Enter CNIC" />
+                <label for="ye_lead_cnic" class="form-label">CNIC</label>
+                <input type="number" class="form-control" name="ye_lead_cnic" id="ye_lead_cnic" required placeholder="Enter CNIC" />
               </div>
               <div class="col-md-4">
-                <label for="applicant1_dob" class="form-label">Date of Birth</label>
-                <input type="date" class="form-control" name="applicant1_dob" id="applicant1_dob" required />
+                <label for="ye_lead_dob" class="form-label">Date of Birth</label>
+                <input type="date" class="form-control" name="ye_lead_dob" id="ye_lead_dob" required />
               </div>
               <div class="col-md-4">
-                <label for="applicant1_gender" class="form-label">Gender</label>
-                <select class="form-select form-control" name="applicant1_gender" id="applicant1_gender" required>
+                <label for="ye_lead_gender" class="form-label">Gender</label>
+                <select class="form-select form-control" name="ye_lead_gender" id="ye_lead_gender" required>
                   <option value="">Select Gender</option>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
@@ -119,94 +114,90 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
         
             <div class="row mb-3">
               <div class="col-md-4">
-                <label for="applicant1_marital_status" class="form-label">Applicant Marital Status</label>
-                <select class="form-select form-control" name="applicant1_marital_status" id="applicant1_marital_status" required>
+                <label for="ye_lead_maritalstatus" class="form-label">Applicant Marital Status</label>
+                <select class="form-select form-control" name="ye_lead_maritalstatus" id="ye_lead_maritalstatus" required>
                   <option value="Single">Single</option>
                   <option value="Married">Married</option>
                 </select>
               </div>
               <div class="col-md-4">
-                <label for="applicant1_whatsapp_no" class="form-label">Mobile (WhatsApp)</label>
-                <input type="number" class="form-control" name="applicant1_whatsapp_no" id="applicant1_whatsapp_no" required />
+                <label for="ye_lead_wmobile" class="form-label">Mobile (WhatsApp)</label>
+                <input type="number" class="form-control" name="ye_lead_wmobile" id="ye_lead_wmobile" required />
               </div>
               <div class="col-md-4">
-                <label for="applicant1_telephone" class="form-label">Telephone (Mobile)</label>
-                <input type="number" class="form-control" name="applicant1_telephone" id="applicant1_telephone" required />
+                <label for="ye_lead_mobile" class="form-label">Telephone (Mobile)</label>
+                <input type="number" class="form-control" name="ye_lead_mobile" id="ye_lead_mobile" required />
               </div>
             </div>
+            <button id="submitLeadApplicantBtn" class="btn btn-primary">Save and Continue</button>
           </div>
         </div>
 
     	<div class="bg-white p-3 mb-4 rounded shadow">
-          <button
-            class="btn btn-primary w-100 d-flex justify-content-between align-items-center"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#applicant2Details"
-            aria-expanded="false"
-            aria-controls="applicant2Details"
-          >
-            <span>Applicant 2 Detail</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              fill="currentColor"
-              class="bi bi-chevron-down"
-              viewBox="0 0 16 16"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
-              />
+          <button  class="btn btn-primary w-100 d-flex justify-content-between align-items-center"  type="button"  data-bs-toggle="collapse"  data-bs-target="#s1Applicant"  aria-expanded="false"  aria-controls="s1Applicant" >
+            	<span>Support Applicant 1 Detail</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16" >
+              <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
             </svg>
           </button>
         
-          <div class="collapse mt-3 border rounded p-3 bg-light" id="applicant2Details">
+          <div class="collapse mt-3 border rounded p-3 bg-light" id="s1Applicant">
             <div class="row mb-3">
               <div class="col-md-6">
-                <label for="applicant2_fullname" class="form-label">Full Name (as per CNIC)</label>
-                <input type="text" class="form-control" name="applicant2_fullname" id="applicant2_fullname" required placeholder="Enter Applicant Full Name" />
+                <label for="ye_s1_fname" class="form-label">Full Name (as per CNIC)</label>
+                <input type="text" class="form-control" name="ye_s1_fname" id="ye_s1_fname" required placeholder="Enter Applicant Full Name" />
               </div>
               <div class="col-md-6">
-                <label for="applicant2_fathername" class="form-label">Father / Husband Name</label>
-                <input type="text" class="form-control" name="applicant2_fathername" id="applicant2_fathername" required placeholder="Enter Applicant Father / Husband Name" />
+                <label for="ye_s1_fhusband" class="form-label">Father / Husband Name</label>
+                <input type="text" class="form-control" name="ye_s1_fhusband" id="ye_s1_fhusband" required placeholder="Enter Applicant Father / Husband Name" />
               </div>
             </div>
         
             <div class="row mb-3">
               <div class="col-md-4">
-                <label for="applicant2_district_id" class="form-label">District</label>
-                <select class="form-select form-control" name="applicant2_district_id" id="applicant2_district_id" required>
+                <label for="ye_s1_districtid" class="form-label">District</label>
+                <select class="form-select form-control" name="ye_s1_districtid" id="ye_s1_districtid" required>
                   <option value="">Select District</option>
+                  <?php
+					   foreach($districts as $district)
+					  {
+						echo '<option value="'.$district->district_id.'">'.$district->district_name_en.'</option>';
+					  }
+                  	?>
                 </select>
               </div>
               <div class="col-md-4">
-                <label for="applicant2_tehsil_id" class="form-label">Tehsil</label>
-                <select class="form-select form-control" name="applicant2_tehsil_id" id="applicant2_tehsil_id" required>
+                <label for="ye_s1_tehsilid" class="form-label">Tehsil</label>
+                <select class="form-select form-control" name="ye_s1_tehsilid" id="ye_s1_tehsilid" required>
                   <option value="">Select Tehsil</option>
                 </select>
               </div>
               <div class="col-md-4">
-                <label for="applicant2_domicile_id" class="form-label">District of Domicile</label>
-                <select class="form-select form-control" name="applicant2_domicile_id" id="applicant2_domicile_id" required>
-                  <option value="">Select District of Domicile</option>
+                <label for="ye_s1_dom_disid" class="form-label">District of Domicile</label>
+                <select class="form-select form-control" name="ye_s1_dom_disid" id="ye_s1_dom_disid" required>
+                <option value="">Select District of Domicile</option>
+                   <?php
+					   foreach($districts as $district)
+					  {
+						echo '<option value="'.$district->district_id.'">'.$district->district_name_en.'</option>';
+					  }
+                  	?>
                 </select>
               </div>
             </div>
         
             <div class="row mb-3">
               <div class="col-md-4">
-                <label for="applicant2_cnic" class="form-label">CNIC</label>
-                <input type="number" class="form-control" name="applicant2_cnic" id="applicant2_cnic" required placeholder="Enter CNIC" />
+                <label for="ye_s1_cnic" class="form-label">CNIC</label>
+                <input type="number" class="form-control" name="ye_s1_cnic" id="ye_s1_cnic" required placeholder="Enter CNIC" />
               </div>
               <div class="col-md-4">
-                <label for="applicant2_dob" class="form-label">Date of Birth</label>
-                <input type="date" class="form-control" name="applicant2_dob" id="applicant2_dob" required />
+                <label for="ye_s1_dob" class="form-label">Date of Birth</label>
+                <input type="date" class="form-control" name="ye_s1_dob" id="ye_s1_dob" required />
               </div>
               <div class="col-md-4">
-                <label for="applicant2_gender" class="form-label">Gender</label>
-                <select class="form-select form-control" name="applicant2_gender" id="applicant2_gender" required>
+                <label for="ye_s1_gender" class="form-label">Gender</label>
+                <select class="form-select form-control" name="ye_s1_gender" id="ye_s1_gender" required>
                   <option value="">Select Gender</option>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
@@ -216,94 +207,90 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
         
             <div class="row mb-3">
               <div class="col-md-4">
-                <label for="applicant2_marital_status" class="form-label">Applicant Marital Status</label>
-                <select class="form-select form-control" name="applicant2_marital_status" id="applicant2_marital_status" required>
+                <label for="ye_s1_maritalstatus" class="form-label">Applicant Marital Status</label>
+                <select class="form-select form-control" name="ye_s1_maritalstatus" id="ye_s1_maritalstatus" required>
                   <option value="Single">Single</option>
                   <option value="Married">Married</option>
                 </select>
               </div>
               <div class="col-md-4">
-                <label for="applicant2_whatsapp_no" class="form-label">Mobile (WhatsApp)</label>
-                <input type="number" class="form-control" name="applicant2_whatsapp_no" id="applicant2_whatsapp_no" required />
+                <label for="ye_s1_wmobile" class="form-label">Mobile (WhatsApp)</label>
+                <input type="number" class="form-control" name="ye_s1_wmobile" id="ye_s1_wmobile" required />
               </div>
               <div class="col-md-4">
-                <label for="applicant2_telephone" class="form-label">Telephone (Mobile)</label>
-                <input type="number" class="form-control" name="applicant2_telephone" id="applicant2_telephone" required />
+                <label for="ye_s1_mobile" class="form-label">Telephone (Mobile)</label>
+                <input type="number" class="form-control" name="ye_s1_mobile" id="ye_s1_mobile" required />
               </div>
             </div>
+            <button id="submits1ApplicantBtn" class="btn btn-primary">Save and Continue</button>
           </div>
         </div>
 
     	<div class="bg-white p-3 mb-4 rounded shadow">
-          <button
-            class="btn btn-primary w-100 d-flex justify-content-between align-items-center"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#applicant3Details"
-            aria-expanded="false"
-            aria-controls="applicant3Details"
-          >
-            <span>Applicant 3 Detail</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              fill="currentColor"
-              class="bi bi-chevron-down"
-              viewBox="0 0 16 16"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
-              />
+          <button class="btn btn-primary w-100 d-flex justify-content-between align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#s2Applicant" aria-expanded="false" aria-controls="s2Applicant" >
+            <span>Support Applicant 2 Detail</span>
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16" >
+              <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
             </svg>
           </button>
         
-          <div class="collapse mt-3 border rounded p-3 bg-light" id="applicant3Details">
+          <div class="collapse mt-3 border rounded p-3 bg-light" id="s2Applicant">
             <div class="row mb-3">
               <div class="col-md-6">
-                <label for="applicant3_fullname" class="form-label">Full Name (as per CNIC)</label>
-                <input type="text" class="form-control" name="applicant3_fullname" id="applicant3_fullname" required placeholder="Enter Applicant Full Name" />
+                <label for="ye_s2_fname" class="form-label">Full Name (as per CNIC)</label>
+                <input type="text" class="form-control" name="ye_s2_fname" id="ye_s2_fname" required placeholder="Enter Applicant Full Name" />
               </div>
               <div class="col-md-6">
-                <label for="applicant3_fathername" class="form-label">Father / Husband Name</label>
-                <input type="text" class="form-control" name="applicant3_fathername" id="applicant3_fathername" required placeholder="Enter Applicant Father / Husband Name" />
+                <label for="ye_s2_fhusband" class="form-label">Father / Husband Name</label>
+                <input type="text" class="form-control" name="ye_s2_fhusband" id="ye_s2_fhusband" required placeholder="Enter Applicant Father / Husband Name" />
               </div>
             </div>
         
             <div class="row mb-3">
               <div class="col-md-4">
-                <label for="applicant3_district_id" class="form-label">District</label>
-                <select class="form-select form-control" name="applicant3_district_id" id="applicant3_district_id" required>
+                <label for="ye_s2_districtid" class="form-label">District</label>
+                <select class="form-select form-control" name="ye_s2_districtid" id="ye_s2_districtid" required>
                   <option value="">Select District</option>
+                  <?php
+					   foreach($districts as $district)
+					  {
+						echo '<option value="'.$district->district_id.'">'.$district->district_name_en.'</option>';
+					  }
+                  	?>
                 </select>
               </div>
               <div class="col-md-4">
-                <label for="applicant3_tehsil_id" class="form-label">Tehsil</label>
-                <select class="form-select form-control" name="applicant3_tehsil_id" id="applicant3_tehsil_id" required>
+                <label for="ye_s2_tehsilid" class="form-label">Tehsil</label>
+                <select class="form-select form-control" name="ye_s2_tehsilid" id="ye_s2_tehsilid" required>
                   <option value="">Select Tehsil</option>
                 </select>
               </div>
               <div class="col-md-4">
-                <label for="applicant3_domicile_id" class="form-label">District of Domicile</label>
-                <select class="form-select form-control" name="applicant3_domicile_id" id="applicant3_domicile_id" required>
+                <label for="ye_s2_dom_disid" class="form-label">District of Domicile</label>
+                <select class="form-select form-control" name="ye_s2_dom_disid" id="ye_s2_dom_disid" required>
                   <option value="">Select District of Domicile</option>
+                   <?php
+					   foreach($districts as $district)
+					  {
+						echo '<option value="'.$district->district_id.'">'.$district->district_name_en.'</option>';
+					  }
+                  	?>
                 </select>
               </div>
             </div>
         
             <div class="row mb-3">
               <div class="col-md-4">
-                <label for="applicant3_cnic" class="form-label">CNIC</label>
-                <input type="number" class="form-control" name="applicant3_cnic" id="applicant3_cnic" required placeholder="Enter CNIC" />
+                <label for="ye_s2_cnic" class="form-label">CNIC</label>
+                <input type="number" class="form-control" name="ye_s2_cnic" id="ye_s2_cnic" required placeholder="Enter CNIC" />
               </div>
               <div class="col-md-4">
-                <label for="applicant3_dob" class="form-label">Date of Birth</label>
-                <input type="date" class="form-control" name="applicant3_dob" id="applicant3_dob" required />
+                <label for="ye_s2_dob" class="form-label">Date of Birth</label>
+                <input type="date" class="form-control" name="ye_s2_dob" id="ye_s2_dob" required />
               </div>
               <div class="col-md-4">
-                <label for="applicant3_gender" class="form-label">Gender</label>
-                <select class="form-select form-control" name="applicant3_gender" id="applicant3_gender" required>
+                <label for="ye_s2_gender" class="form-label">Gender</label>
+                <select class="form-select form-control" name="ye_s2_gender" id="ye_s2_gender" required>
                   <option value="">Select Gender</option>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
@@ -313,37 +300,29 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
         
             <div class="row mb-3">
               <div class="col-md-4">
-                <label for="applicant3_marital_status" class="form-label">Applicant Marital Status</label>
-                <select class="form-select form-control" name="applicant3_marital_status" id="applicant3_marital_status" required>
+                <label for="ye_s2_maritalstatus" class="form-label">Applicant Marital Status</label>
+                <select class="form-select form-control" name="ye_s2_maritalstatus" id="ye_s2_maritalstatus" required>
                   <option value="Single">Single</option>
                   <option value="Married">Married</option>
                 </select>
               </div>
               <div class="col-md-4">
-                <label for="applicant3_whatsapp_no" class="form-label">Mobile (WhatsApp)</label>
-                <input type="number" class="form-control" name="applicant3_whatsapp_no" id="applicant3_whatsapp_no" required />
+                <label for="ye_s2_wmobile" class="form-label">Mobile (WhatsApp)</label>
+                <input type="number" class="form-control" name="ye_s2_wmobile" id="ye_s2_wmobile" required />
               </div>
               <div class="col-md-4">
-                <label for="applicant3_telephone" class="form-label">Telephone (Mobile)</label>
-                <input type="number" class="form-control" name="applicant3_telephone" id="applicant3_telephone" required />
+                <label for="ye_s2_mobile" class="form-label">Telephone (Mobile)</label>
+                <input type="number" class="form-control" name="ye_s2_mobile" id="ye_s2_mobile" required />
               </div>
             </div>
+            <button id="submitS2ApplicantBtn" class="btn btn-primary">Save and Continue</button>
           </div>
         </div>
     
     	<div class="bg-white p-3 mb-4 rounded shadow">
-          <button class="btn btn-primary w-100 d-flex justify-content-between align-items-center"
-                  type="button"
-                  data-bs-toggle="collapse"
-                  data-bs-target="#qualificationDetails"
-                  aria-expanded="false"
-                  aria-controls="qualificationDetails">
+          <button class="btn btn-primary w-100 d-flex justify-content-between align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#qualificationDetails" aria-expanded="false" aria-controls="qualificationDetails">
             <span>Qualification</span>
-            <svg id="qualificationIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
-                 class="bi bi-chevron-down transition-transform" viewBox="0 0 16 16">
-              <path fill-rule="evenodd"
-                    d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/>
-            </svg>
+            <svg id="qualificationIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-chevron-down transition-transform" viewBox="0 0 16 16"> <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"/> </svg>
           </button>
         
           <div class="collapse mt-3 border rounded p-3 bg-light" id="qualificationDetails">
@@ -364,46 +343,38 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
                 <tbody>
                   <tr id="inputRow">
                     <td>
-                      <select id="applicant" class="form-select">
-                        <option value="Applicant1">Applicant 1</option>
-                        <option value="Applicant2">Applicant 2</option>
+                      <select id="qual_user_type" class="form-select form-control" name="qual_user_type">
+                        <option value="lead">Lead</option>
+                        <option value="s1">SA1</option>
+                        <option value="s2">SA2</option>
                       </select>
                     </td>
                     <td>
-                      <select id="degree" class="form-select">
+                      <select id="qual_deg_name" class="form-select form-control" name="qual_deg_name">
+                        <option value="Matric">Matric</option>
+                        <option value="Intermediate">Intermediate</option>
                         <option value="BSc">Bachelor of Science</option>
                         <option value="MSc">Master of Science</option>
                       </select>
                     </td>
                     <td>
-                      <select id="institution" class="form-select">
-                        <option value="Inst1">Institution 1</option>
-                        <option value="Inst2">Institution 2</option>
-                      </select>
+                      <input type="text" class="form-control" name="qual_institution" id="qual_institution"  />
                     </td>
                     <td>
-                      <select id="type" class="form-select">
+                      <select id="qual_deg_type" class="form-select form-control" name="qual_deg_type">
                         <option value="Regular">Regular</option>
                         <option value="Private">Private</option>
+                        <option value="Distance">Distance</option>
                       </select>
                     </td>
                     <td>
-                      <select id="percentage" class="form-select">
-                        <option value="50">50%</option>
-                        <option value="60">60%</option>
-                      </select>
+                      <input type="number" class="form-control" name="qual_percentage" id="qual_percentage"  />
                     </td>
                     <td>
-                      <select id="from" class="form-select">
-                        <option value="2020-01-01">2020-01-01</option>
-                        <option value="2021-01-01">2021-01-01</option>
-                      </select>
+                      <input type="date" class="form-control" name="qual_from" id="qual_from"  />
                     </td>
                     <td>
-                      <select id="to" class="form-select">
-                        <option value="2022-01-01">2022-01-01</option>
-                        <option value="2023-01-01">2023-01-01</option>
-                      </select>
+                      <input type="date" class="form-control" name="qual_to" id="qual_to"  />
                     </td>
                     <td>
                       <button onclick="addQualification()" class="btn btn-sm btn-success">Add</button>
@@ -412,8 +383,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
                 </tbody>
               </table>
             </div>
-        
-            <button onclick="saveQualifications()" class="btn btn-primary mt-3">Save</button>
+            <button onclick="saveQualifications()" class="btn btn-primary mt-3">Save and Continue</button>
           </div>
         </div>
         
@@ -444,14 +414,6 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
           </button>
         
           <div class="collapse mt-3 border rounded p-3 bg-light" id="experienceDetails">
-            <div class="mb-3">
-              <label class="form-label">Total Experience (Years)</label>
-              <select class="form-select">
-                <option value="1">1 Year</option>
-                <option value="2">2 Years</option>
-              </select>
-            </div>
-        
             <div class="table-responsive">
               <table class="table table-bordered table-hover" id="experienceTable">
                 <thead class="table-light">
@@ -468,40 +430,26 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
                 <tbody>
                   <tr id="inputRowExperience">
                     <td>
-                      <select id="applicantExperience" class="form-select">
-                        <option value="Applicant1">Applicant 1</option>
-                        <option value="Applicant2">Applicant 2</option>
+                      <select id="qual_user_type" class="form-select form-control" name="qual_user_type">
+                        <option value="lead">Lead</option>
+                        <option value="s1">SA1</option>
+                        <option value="s2">SA2</option>
                       </select>
                     </td>
                     <td>
-                      <select id="employer" class="form-select">
-                        <option value="Employer1">Employer 1</option>
-                        <option value="Employer2">Employer 2</option>
-                      </select>
+                      <input type="text" class="form-control" name="exp_employer" id="exp_employer"  />
                     </td>
                     <td>
-                      <select id="designation" class="form-select">
-                        <option value="Manager">Manager</option>
-                        <option value="Engineer">Engineer</option>
-                      </select>
+                      <input type="text" class="form-control" name="exp_designation" id="exp_designation"  />
                     </td>
                     <td>
-                      <select id="fromExperience" class="form-select">
-                        <option value="2020-01-01">2020-01-01</option>
-                        <option value="2021-01-01">2021-01-01</option>
-                      </select>
+                      <input type="date" class="form-control" name="exp_from" id="exp_from"  />
                     </td>
                     <td>
-                      <select id="toExperience" class="form-select">
-                        <option value="2022-01-01">2022-01-01</option>
-                        <option value="2023-01-01">2023-01-01</option>
-                      </select>
+                      <input type="date" class="form-control" name="exp_to" id="exp_to"  />
                     </td>
                     <td>
-                      <select id="expYears" class="form-select">
-                        <option value="1">1 Year</option>
-                        <option value="2">2 Years</option>
-                      </select>
+                      <input type="number" class="form-control" name="exp_year" id="exp_year"  />
                     </td>
                     <td>
                       <button onclick="addExperience()" class="btn btn-sm btn-success">Add</button>
@@ -516,28 +464,10 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
         </div>
 
 		<div class="bg-white p-3 mb-4 rounded shadow">
-          <button
-            class="btn btn-primary w-100 d-flex justify-content-between align-items-center"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#declarationDetails"
-            aria-expanded="false"
-            aria-controls="declarationDetails"
-          >
+          <button class="btn btn-primary w-100 d-flex justify-content-between align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#declarationDetails" aria-expanded="false" aria-controls="declarationDetails">
             <span>Declaration</span>
-            <svg
-              id="declarationIcon"
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              fill="currentColor"
-              class="bi bi-chevron-down transition-transform"
-              viewBox="0 0 16 16"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
-              />
+            <svg id="declarationIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-chevron-down transition-transform" viewBox="0 0 16 16" >
+              <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
             </svg>
           </button>
         
@@ -549,26 +479,12 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
               </p>
         
               <div class="form-check form-check-inline">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="litigation"
-                  id="litigationYes"
-                  value="yes"
-                  required
-                />
+                <input class="form-check-input" type="radio" name="litigation" id="litigationYes" value="yes"  />
                 <label class="form-check-label" for="litigationYes">Yes</label>
               </div>
         
               <div class="form-check form-check-inline">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="litigation"
-                  id="litigationNo"
-                  value="no"
-                  required
-                />
+                <input class="form-check-input" type="radio" name="litigation" id="litigationNo" value="no"  />
                 <label class="form-check-label" for="litigationNo">No</label>
               </div>
         
@@ -610,37 +526,18 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 <?php include viewPath('admin/includes/footer'); ?>
 
 <script type="text/javascript">
-	$('#school_state_id').on('change', function() {
-		  $.post('<?=base_url("school/distirct_by_state")?>',
+	$('#ye_lead_districtid').on('change', function() {
+		$.post('<?=base_url("user/applicationform/tehsil_by_district")?>',
 		{
 		  '<?php echo $this->security->get_csrf_token_name(); ?>' : '<?php echo $this->security->get_csrf_hash(); ?>',
-		  state_id : this.value
+		  ye_lead_districtid : this.value
 		},
 		function(data){
 		  arr = $.parseJSON(data);     
 		  console.log(arr);     
-		  $('#school_district_id option:not(:first)').remove();
+		  $('#ye_lead_tehsilid option:not(:first)').remove();
 		  $.each(arr, function(key, value) {           
-		 $('#school_district_id')
-			 .append($("<option></option>")
-						.attr("value", value.district_id)
-						.text(value.district_name_en)
-					  ); 
-			});   
-		});
-	});
-	$('#school_district_id').on('change', function() {
-		  $.post('<?=base_url("school/tehsil_by_district")?>',
-		{
-		  '<?php echo $this->security->get_csrf_token_name(); ?>' : '<?php echo $this->security->get_csrf_hash(); ?>',
-		  district_id : this.value
-		},
-		function(data){
-		  arr = $.parseJSON(data);     
-		  console.log(arr);     
-		  $('#school_tehsil_id option:not(:first)').remove();
-		  $.each(arr, function(key, value) {           
-		 $('#school_tehsil_id')
+		 $('#ye_lead_tehsilid')
 			 .append($("<option></option>")
 						.attr("value", value.tehsil_id)
 						.text(value.tehsil_name_en)
@@ -648,158 +545,46 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 			});   
 		});
 	});
-
-  let currentlyEditing = null;
-
-  function addQualification() {
-    const applicant = document.getElementById("applicant").value;
-    const degree = document.getElementById("degree").value;
-    const institution = document.getElementById("institution").value;
-    const type = document.getElementById("type").value;
-    const percentage = document.getElementById("percentage").value;
-    const from = document.getElementById("from").value;
-    const to = document.getElementById("to").value;
-
-    const tableBody = document.querySelector("#qualificationTable tbody");
-    let newRow = document.createElement("tr");
-
-    const rowHTML = `
-      <td>${applicant}</td>
-      <td>${degree}</td>
-      <td>${institution}</td>
-      <td>${type}</td>
-      <td>${percentage}</td>
-      <td>${from}</td>
-      <td>${to}</td>
-      <td>
-        <button onclick="editRow(this.closest('tr'))" class="btn btn-sm btn-warning me-1">Edit</button>
-        <button onclick="deleteRow(this)" class="btn btn-sm btn-danger">Delete</button>
-      </td>
-    `;
-
-    if (currentlyEditing) {
-      currentlyEditing.innerHTML = rowHTML;
-      currentlyEditing = null;
-      document.querySelector("[onclick='addQualification()']").textContent = "Add";
-    } else {
-      newRow.innerHTML = rowHTML;
-      tableBody.insertBefore(newRow, document.getElementById("inputRow"));
-    }
-
-    resetForm();
-  }
-
-  function deleteRow(button) {
-    const row = button.closest("tr");
-    if (currentlyEditing === row) {
-      document.querySelector("[onclick='addQualification()']").textContent = "Add";
-      currentlyEditing = null;
-    }
-    row.remove();
-  }
-
-  function editRow(row) {
-    currentlyEditing = row;
-    const cells = row.querySelectorAll("td");
-
-    document.getElementById("applicant").value = cells[0].textContent;
-    document.getElementById("degree").value = cells[1].textContent;
-    document.getElementById("institution").value = cells[2].textContent;
-    document.getElementById("type").value = cells[3].textContent;
-    document.getElementById("percentage").value = cells[4].textContent;
-    document.getElementById("from").value = cells[5].textContent;
-    document.getElementById("to").value = cells[6].textContent;
-
-    document.querySelector("[onclick='addQualification()']").textContent = "Update";
-  }
-
-  function resetForm() {
-    document.getElementById("applicant").value = "Applicant1";
-    document.getElementById("degree").value = "BSc";
-    document.getElementById("institution").value = "Inst1";
-    document.getElementById("type").value = "Regular";
-    document.getElementById("percentage").value = "50";
-    document.getElementById("from").value = "2020-01-01";
-    document.getElementById("to").value = "2022-01-01";
-  }
-
-  function saveQualifications() {
-    alert("Qualifications saved successfully!");
-  }
-  
-  let currentlyEditingExperience = null;
-
-	function addExperience() {
-	  const applicant = document.getElementById("applicantExperience").value;
-	  const employer = document.getElementById("employer").value;
-	  const designation = document.getElementById("designation").value;
-	  const from = document.getElementById("fromExperience").value;
-	  const to = document.getElementById("toExperience").value;
-	  const years = document.getElementById("expYears").value;
 	
-	  const tableBody = document.querySelector("#experienceTable tbody");
-	  let newRow = document.createElement("tr");
+	$('#ye_s1_districtid').on('change', function() {
+		$.post('<?=base_url("user/applicationform/tehsil_by_district")?>',
+		{
+		  '<?php echo $this->security->get_csrf_token_name(); ?>' : '<?php echo $this->security->get_csrf_hash(); ?>',
+		  ye_s1_districtid : this.value
+		},
+		function(data){
+		  arr = $.parseJSON(data);     
+		  console.log(arr);     
+		  $('#ye_s1_tehsilid option:not(:first)').remove();
+		  $.each(arr, function(key, value) {           
+		 $('#ye_s1_tehsilid')
+			 .append($("<option></option>")
+						.attr("value", value.tehsil_id)
+						.text(value.tehsil_name_en)
+					  ); 
+			});   
+		});
+	});
 	
-	  const rowHTML = `
-		<td>${applicant}</td>
-		<td>${employer}</td>
-		<td>${designation}</td>
-		<td>${from}</td>
-		<td>${to}</td>
-		<td>${years}</td>
-		<td>
-		  <button onclick="editExperience(this.closest('tr'))" class="btn btn-sm btn-warning me-1">Edit</button>
-		  <button onclick="deleteExperience(this)" class="btn btn-sm btn-danger">Delete</button>
-		</td>
-	  `;
-	
-	  if (currentlyEditingExperience) {
-		currentlyEditingExperience.innerHTML = rowHTML;
-		currentlyEditingExperience = null;
-		document.querySelector("[onclick='addExperience()']").textContent = "Add";
-	  } else {
-		newRow.innerHTML = rowHTML;
-		tableBody.insertBefore(newRow, document.getElementById("inputRowExperience"));
-	  }
-	
-	  resetExperienceForm();
-	}
-	
-	function deleteExperience(button) {
-	  const row = button.closest("tr");
-	  if (currentlyEditingExperience === row) {
-		document.querySelector("[onclick='addExperience()']").textContent = "Add";
-		currentlyEditingExperience = null;
-	  }
-	  row.remove();
-	}
-	
-	function editExperience(row) {
-	  currentlyEditingExperience = row;
-	  const cells = row.querySelectorAll("td");
-	
-	  document.getElementById("applicantExperience").value = cells[0].textContent;
-	  document.getElementById("employer").value = cells[1].textContent;
-	  document.getElementById("designation").value = cells[2].textContent;
-	  document.getElementById("fromExperience").value = cells[3].textContent;
-	  document.getElementById("toExperience").value = cells[4].textContent;
-	  document.getElementById("expYears").value = cells[5].textContent;
-	
-	  document.querySelector("[onclick='addExperience()']").textContent = "Update";
-	}
-	
-	function resetExperienceForm() {
-	  document.getElementById("applicantExperience").value = "Applicant1";
-	  document.getElementById("employer").value = "Employer1";
-	  document.getElementById("designation").value = "Manager";
-	  document.getElementById("fromExperience").value = "2020-01-01";
-	  document.getElementById("toExperience").value = "2022-01-01";
-	  document.getElementById("expYears").value = "1";
-	}
-	
-	function saveExperience() {
-	  alert("Experience data saved successfully!");
-	}
+	$('#ye_s2_districtid').on('change', function() {
+		$.post('<?=base_url("user/applicationform/tehsil_by_district")?>',
+		{
+		  '<?php echo $this->security->get_csrf_token_name(); ?>' : '<?php echo $this->security->get_csrf_hash(); ?>',
+		  ye_s2_districtid : this.value
+		},
+		function(data){
+		  arr = $.parseJSON(data);     
+		  console.log(arr);     
+		  $('#ye_s2_tehsilid option:not(:first)').remove();
+		  $.each(arr, function(key, value) {           
+		 $('#ye_s2_tehsilid')
+			 .append($("<option></option>")
+						.attr("value", value.tehsil_id)
+						.text(value.tehsil_name_en)
+					  ); 
+			});   
+		});
+	});
 	
 	document.addEventListener("DOMContentLoaded", function () {
 	  const litigationRadios = document.querySelectorAll('input[name="litigation"]');
@@ -815,6 +600,432 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 		});
 	  });
 	});
+	let insertedYeId = null;
+	
+	$('#submitLeadApplicantBtn').on('click', function (e) {
+		e.preventDefault();
+	
+		var formData = {
+			ye_lead_fname: $('#ye_lead_fname').val(),
+			ye_lead_fhusband: $('#ye_lead_fhusband').val(),
+			ye_lead_districtid: $('#ye_lead_districtid').val(),
+			ye_lead_tehsilid: $('#ye_lead_tehsilid').val(),
+			ye_lead_dom_disid: $('#ye_lead_dom_disid').val(),
+			ye_lead_cnic: $('#ye_lead_cnic').val(),
+			ye_lead_dob: $('#ye_lead_dob').val(),
+			ye_lead_gender: $('#ye_lead_gender').val(),
+			ye_lead_maritalstatus: $('#ye_lead_maritalstatus').val(),
+			ye_lead_wmobile: $('#ye_lead_wmobile').val(),
+			ye_lead_mobile: $('#ye_lead_mobile').val()
+		};
+	
+		$.ajax({
+			url: '<?=base_url("user/applicationform/insert_lead_applicant")?>',
+			method: 'POST',
+			data: formData,
+			dataType: 'json',
+			success: function (response) {
+				if (response.status == 'success') {
+					alert('Lead applicant inserted successfully!');
+					insertedYeId = response.insert_id;
+					// 1. Collapse/Hide Lead Applicant tab
+					$('#leadApplicantDetails').collapse('hide');
+			
+					// 2. Disable the button that toggles the first tab
+					$('[data-bs-target="#leadApplicantDetails"]').prop('disabled', true);
+			
+					// 3. Expand/Show Applicant 2 tab
+					$('#s1Applicant').collapse('show');
+				} else {
+					alert('Error: ' + response.message);
+				}
+			},
+			error: function (xhr) {
+				alert('AJAX error');
+			}
+		});
+	});
+	
+	$('#submits1ApplicantBtn').on('click', function (e) {
+		e.preventDefault();
+	
+		if (!insertedYeId) {
+			alert('Please fill Lead Applicant first.');
+			return;
+		}
+	
+		var formData = {
+			ye_id: insertedYeId,
+			ye_s1_fname: $('#ye_s1_fname').val(),
+			ye_s1_fhusband: $('#ye_s1_fhusband').val(),
+			ye_s1_districtid: $('#ye_s1_districtid').val(),
+			ye_s1_tehsilid: $('#ye_s1_tehsilid').val(),
+			ye_s1_dom_disid: $('#ye_s1_dom_disid').val(),
+			ye_s1_cnic: $('#ye_s1_cnic').val(),
+			ye_s1_dob: $('#ye_s1_dob').val(),
+			ye_s1_gender: $('#ye_s1_gender').val(),
+			ye_s1_maritalstatus: $('#ye_s1_maritalstatus').val(),
+			ye_s1_wmobile: $('#ye_s1_wmobile').val(),
+			ye_s1_mobile: $('#ye_s1_mobile').val()
+		};
+	
+		$.ajax({
+			url: '<?=base_url("user/applicationform/update_s1_applicant")?>',
+			method: 'POST',
+			data: formData,
+			dataType: 'json',
+			success: function (response) {
+				if (response.status === 'success') {
+					alert('Support Applicant 1 saved successfully!');
+					$('#s1Applicant').collapse('hide');
+					
+					// 2. Disable the button that toggles the first tab
+					$('[data-bs-target="#s1Applicant"]').prop('disabled', true);
+					
+					// 3. Expand/Show Applicant 2 tab
+					$('#s2Applicant').collapse('show');
+					
+				} else {
+					alert('Error: ' + response.message);
+				}
+			},
+			error: function () {
+				alert('AJAX error while saving Support Applicant 1.');
+			}
+		});
+	});
+
+	$('#submitS2ApplicantBtn').on('click', function (e) {
+		e.preventDefault();
+	
+		if (!insertedYeId) {
+			alert('Please fill Lead Applicant first.');
+			return;
+		}
+	
+		var formData = {
+			ye_id: insertedYeId,
+			ye_s2_fname: $('#ye_s2_fname').val(),
+			ye_s2_fhusband: $('#ye_s2_fhusband').val(),
+			ye_s2_districtid: $('#ye_s2_districtid').val(),
+			ye_s2_tehsilid: $('#ye_s2_tehsilid').val(),
+			ye_s2_dom_disid: $('#ye_s2_dom_disid').val(),
+			ye_s2_cnic: $('#ye_s2_cnic').val(),
+			ye_s2_dob: $('#ye_s2_dob').val(),
+			ye_s2_gender: $('#ye_s2_gender').val(),
+			ye_s2_maritalstatus: $('#ye_s2_maritalstatus').val(),
+			ye_s2_wmobile: $('#ye_s2_wmobile').val(),
+			ye_s2_mobile: $('#ye_s2_mobile').val()
+		};
+	
+		$.ajax({
+			url: '<?= base_url("user/applicationform/update_s2_applicant") ?>',
+			method: 'POST',
+			data: formData,
+			dataType: 'json',
+			success: function (response) {
+				if (response.status === 'success') {
+					alert('Support Applicant 2 saved successfully!');
+					$('#s2Applicant').collapse('hide');
+					$('[data-bs-target="#s2Applicant"]').prop('disabled', true);
+	
+					// Open the qualification tab
+					$('#qualificationDetails').collapse('show');
+				} else {
+					alert('Error: ' + response.message);
+				}
+			},
+			error: function () {
+				alert('AJAX error while saving Support Applicant 2.');
+			}
+		});
+	});
+	
+//============================codeing for qualification tab====================================  	
+  let currentlyEditing = null;
+
+	function addQualification() {
+		const qual_user_type = document.getElementById("qual_user_type").value;
+		const qual_deg_name = document.getElementById("qual_deg_name").value;
+		const qual_institution = document.getElementById("qual_institution").value;
+		const qual_deg_type = document.getElementById("qual_deg_type").value;
+		const qual_percentage = document.getElementById("qual_percentage").value;
+		const qual_from = document.getElementById("qual_from").value;
+		const qual_to = document.getElementById("qual_to").value;
+	
+		const tableBody = document.querySelector("#qualificationTable tbody");
+		let newRow = document.createElement("tr");
+	
+		const rowHTML = `
+		  <td>${qual_user_type}</td>
+		  <td>${qual_deg_name}</td>
+		  <td>${qual_institution}</td>
+		  <td>${qual_deg_type}</td>
+		  <td>${qual_percentage}</td>
+		  <td>${qual_from}</td>
+		  <td>${qual_to}</td>
+		  <td>
+			<button onclick="editRow(this.closest('tr'))" class="btn btn-sm btn-warning me-1">Edit</button>
+			<button onclick="deleteRow(this)" class="btn btn-sm btn-danger">Delete</button>
+		  </td>
+		`;
+	
+		if (currentlyEditing) {
+		  currentlyEditing.innerHTML = rowHTML;
+		  currentlyEditing = null;
+		  document.querySelector("[onclick='addQualification()']").textContent = "Add";
+		} else {
+		  newRow.innerHTML = rowHTML;
+		  tableBody.insertBefore(newRow, document.getElementById("inputRow"));
+		}
+	
+		resetForm();
+	  }
+	
+	function deleteRow(button) {
+		const row = button.closest("tr");
+		if (currentlyEditing === row) {
+		  document.querySelector("[onclick='addQualification()']").textContent = "Add";
+		  currentlyEditing = null;
+		}
+		row.remove();
+	  }
+	
+	function editRow(row) {
+		currentlyEditing = row;
+		const cells = row.querySelectorAll("td");
+	
+		document.getElementById("qual_user_type").value = cells[0].textContent;
+		document.getElementById("qual_deg_name").value = cells[1].textContent;
+		document.getElementById("qual_institution").value = cells[2].textContent;
+		document.getElementById("qual_deg_type").value = cells[3].textContent;
+		document.getElementById("qual_percentage").value = cells[4].textContent;
+		document.getElementById("qual_from").value = cells[5].textContent;
+		document.getElementById("qual_to").value = cells[6].textContent;
+	
+		document.querySelector("[onclick='addQualification()']").textContent = "Update";
+	  }
+	
+	function resetForm() {
+		document.getElementById("qual_user_type").value = "Lead";
+		document.getElementById("qual_deg_name").value = "Matric";
+		document.getElementById("qual_institution").value = "BISE";
+		document.getElementById("qual_deg_type").value = "Regular";
+		document.getElementById("qual_percentage").value = "50";
+		document.getElementById("qual_from").value = "2020-01-01";
+		document.getElementById("qual_to").value = "2022-01-01";
+	  }
+	
+	function saveQualifications() {
+		  const rows = document.querySelectorAll("#qualificationTable tbody tr:not(#inputRow)");
+		  const qualifications = [];
+		
+		  rows.forEach(row => {
+			const cells = row.querySelectorAll("td");
+			qualifications.push({
+			  qual_user_type: cells[0].textContent.trim(),
+			  qual_deg_name: cells[1].textContent.trim(),
+			  qual_institution: cells[2].textContent.trim(),
+			  qual_deg_type: cells[3].textContent.trim(),
+			  qual_percentage: parseFloat(cells[4].textContent.trim()),
+			  qual_from: cells[5].textContent.trim(),
+			  qual_to: cells[6].textContent.trim()
+			});
+		  });
+		
+		  if (qualifications.length === 0) {
+			alert("No qualifications to save!");
+			return;
+		  }
+		
+		  // Optional: Add validation here
+		
+		  // AJAX request to save all qualifications
+		  fetch("<?= base_url('user/applicationform/save_qualification'); ?>", {
+			method: "POST",
+			headers: {
+			  "Content-Type": "application/json",
+			  "X-Requested-With": "XMLHttpRequest"
+			},
+			body: JSON.stringify({ qualifications })
+		  })
+		  .then(res => res.json())
+		  .then(data => {
+			if (data.status === "success") {
+			  alert("Qualifications saved successfully!");
+		
+			  // Optionally, reset form and table after success
+			  document.querySelectorAll("#qualificationTable tbody tr:not(#inputRow)").forEach(row => row.remove());
+			  resetForm(); // Reset the form fields
+		
+			  // Close the Qualification Tab
+			  const qualificationTab = new bootstrap.Collapse(document.getElementById('qualificationDetails'), {
+				toggle: false
+			  });
+			  qualificationTab.hide();
+		
+			  // Open the Experience Tab
+			  const experienceTab = new bootstrap.Collapse(document.getElementById('experienceDetails'), {
+				toggle: true
+			  });
+			} else {
+			  alert("Error saving qualifications.");
+			}
+		  })
+		  .catch(err => {
+			console.error(err);
+			alert("Something went wrong.");
+		  });
+		}
+
+
+//============================codeing for experience tan====================================  
+  let currentlyEditingExperience = null;
+
+	function addExperience() {
+		// Get values from the input fields
+		const qual_user_type = document.getElementById("qual_user_type").value;
+		const exp_employer = document.getElementById("exp_employer").value;
+		const exp_designation = document.getElementById("exp_designation").value;
+		const exp_from = document.getElementById("exp_from").value;
+		const exp_to = document.getElementById("exp_to").value;
+		const exp_year = document.getElementById("exp_year").value;
+	
+		// Get table body for inserting new row
+		const tableBody = document.querySelector("#experienceTable tbody");
+		let newRow = document.createElement("tr");
+	
+		const rowHTML = `
+			<td>${qual_user_type}</td>
+			<td>${exp_employer}</td>
+			<td>${exp_designation}</td>
+			<td>${exp_from}</td>
+			<td>${exp_to}</td>
+			<td>${exp_year}</td>
+			<td>
+			  <button onclick="editExperience(this.closest('tr'))" class="btn btn-sm btn-warning me-1">Edit</button>
+			  <button onclick="deleteExperience(this)" class="btn btn-sm btn-danger">Delete</button>
+			</td>
+		`;
+	
+		// If currently editing, update the row content instead of adding a new one
+		if (currentlyEditingExperience) {
+			currentlyEditingExperience.innerHTML = rowHTML;
+			currentlyEditingExperience = null;
+			document.querySelector("[onclick='addExperience()']").textContent = "Add";
+		} else {
+			// Otherwise, insert the new row before the input row
+			newRow.innerHTML = rowHTML;
+			tableBody.insertBefore(newRow, document.getElementById("inputRowExperience"));
+		}
+	
+		// Reset the form fields after adding or editing
+		resetExperienceForm();
+	}
+	
+	function resetExperienceForm() {
+		// Clear the input fields and reset to default state
+		document.getElementById("qual_user_type").value = "Lead"; // Reset to default value
+		document.getElementById("exp_employer").value = "Employer";
+		document.getElementById("exp_designation").value = "Designation";
+		document.getElementById("exp_from").value = "From";
+		document.getElementById("exp_to").value = "To";
+		document.getElementById("exp_year").value = "Years";
+	}
+	
+	function deleteExperience(button) {
+	  const row = button.closest("tr");
+	  if (currentlyEditingExperience === row) {
+		document.querySelector("[onclick='addExperience()']").textContent = "Add";
+		currentlyEditingExperience = null;
+	  }
+	  row.remove();
+	}
+	
+	function editExperience(row) {
+	  currentlyEditingExperience = row;
+	  const cells = row.querySelectorAll("td");
+	
+	  document.getElementById("qual_user_type").value = cells[0].textContent;
+	  document.getElementById("exp_employer").value = cells[1].textContent;
+	  document.getElementById("exp_designation").value = cells[2].textContent;
+	  document.getElementById("exp_from").value = cells[3].textContent;
+	  document.getElementById("exp_to").value = cells[4].textContent;
+	  document.getElementById("exp_year").value = cells[5].textContent;
+	
+	  document.querySelector("[onclick='addExperience()']").textContent = "Update";
+	}
+	
+	
+	
+	function saveExperience() {
+	  // Collect the experience data (you can also add validation here if needed)
+	  const rows = document.querySelectorAll("#experienceTable tbody tr:not(#inputRowExperience)");
+	  const experiences = [];
+	
+	  rows.forEach(row => {
+		const cells = row.querySelectorAll("td");
+		experiences.push({
+		  exp_user_type: cells[0].textContent.trim(),
+		  exp_employer: cells[1].textContent.trim(),
+		  exp_designation: cells[2].textContent.trim(),
+		  exp_from: cells[3].textContent.trim(),
+		  exp_to: cells[4].textContent.trim(),
+		  exp_year: parseInt(cells[5].textContent.trim())
+		});
+	  });
+	
+	  if (experiences.length === 0) {
+		alert("No experience data to save!");
+		return;
+	  }
+	
+	  // Optional: Add validation here
+	
+	  // AJAX request to save all experience
+	  fetch("<?= base_url('user/applicationform/save_experience'); ?>", {
+		method: "POST",
+		headers: {
+		  "Content-Type": "application/json",
+		  "X-Requested-With": "XMLHttpRequest"
+		},
+		body: JSON.stringify({ experiences })
+	  })
+	  .then(res => res.json())
+	  .then(data => {
+		if (data.status === "success") {
+		  alert("Experience saved successfully!");
+	
+		  // Optionally, reset the form and table after success
+		  document.querySelectorAll("#experienceTable tbody tr:not(#inputRowExperience)").forEach(row => row.remove());
+		  resetExperienceForm(); // Reset the form fields
+	
+		  // Close the Experience Tab
+		  const experienceTab = new bootstrap.Collapse(document.getElementById('experienceDetails'), {
+			toggle: false
+		  });
+		  experienceTab.hide();
+	
+		  // Open the Declaration Tab
+		  const declarationTab = new bootstrap.Collapse(document.getElementById('declarationDetails'), {
+			toggle: true
+		  });
+		} else {
+		  alert("Error saving experience.");
+		}
+	  })
+	  .catch(err => {
+		console.error(err);
+		alert("Something went wrong.");
+	  });
+	}
+
+//===========================================================================	
+	
+
+	
+	
+
 
 
 </script>
