@@ -308,9 +308,7 @@ class Applicationform extends MY_Controller {
 		// Update the database with the selected schools data
 		$ye_userid = $this->session->logged['id'];
 		$update = $this->user_applicationform_model->update_school_save($ye_userid, $data);
-		echo '<pre>';
-		print_r($this->session->logged['id']);  // Check if the data is correct before saving
-		die($this->db->last_query());
+		
 		// Set success message
 		$this->session->set_flashdata('success', 'Schools nominated successfully!');
 		redirect('user/applicationform');
