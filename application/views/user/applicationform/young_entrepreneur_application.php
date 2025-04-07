@@ -7,6 +7,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 	  z-index: 1055 !important;
 	}
 </style>
+<?php print_r($data_young_ent);?>
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <div class="container-fluid">
@@ -52,7 +53,8 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
             <div class="row mb-3">
               <div class="col-md-6">
                 <label for="ye_lead_fname" class="form-label">Full Name (as per CNIC)</label>
-                <input type="text" class="form-control" name="ye_lead_fname" id="ye_lead_fname" required placeholder="Enter Applicant Full Name" />
+                <input type="text" class="form-control" name="ye_lead_fname" id="ye_lead_fname" required placeholder="Enter Applicant Full Name" 
+                />
               </div>
               <div class="col-md-6">
                 <label for="ye_lead_fhusband" class="form-label">Father / Husband Name</label>
@@ -344,6 +346,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
                   <tr id="inputRow">
                     <td>
                       <select id="qual_user_type" class="form-select form-control" name="qual_user_type">
+                        <option value="">Select</option>
                         <option value="lead">Lead</option>
                         <option value="s1">SA1</option>
                         <option value="s2">SA2</option>
@@ -351,6 +354,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
                     </td>
                     <td>
                       <select id="qual_deg_name" class="form-select form-control" name="qual_deg_name">
+                        <option value="">Select</option>
                         <option value="Matric">Matric</option>
                         <option value="Intermediate">Intermediate</option>
                         <option value="BSc">Bachelor of Science</option>
@@ -362,6 +366,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
                     </td>
                     <td>
                       <select id="qual_deg_type" class="form-select form-control" name="qual_deg_type">
+                        <option value="">Select</option>
                         <option value="Regular">Regular</option>
                         <option value="Private">Private</option>
                         <option value="Distance">Distance</option>
@@ -377,7 +382,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
                       <input type="date" class="form-control" name="qual_to" id="qual_to"  />
                     </td>
                     <td>
-                      <button onclick="addQualification()" class="btn btn-sm btn-success">Add</button>
+                      <button type="button" onclick="addQualification()" class="btn btn-sm btn-success">Add</button>
                     </td>
                   </tr>
                 </tbody>
@@ -595,7 +600,73 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 	  });
 	});
 	let insertedYeId = null;
+	let leadApplicantData = <?= isset($data_young_ent) ? json_encode($data_young_ent) : 'null' ?>;
+	insertedYeId = leadApplicantData?.ye_id ?? null;
+	$(document).ready(function () {
+		if (leadApplicantData) {
+			// ---- Lead Applicant Auto-Fill ----
+			$('#ye_lead_fname').val(leadApplicantData.ye_lead_fname).prop('disabled', true);
+			$('#ye_lead_fhusband').val(leadApplicantData.ye_lead_fhusband).prop('disabled', true);
+			$('#ye_lead_districtid').val(leadApplicantData.ye_lead_districtid).prop('disabled', true);
+			$('#ye_lead_tehsilid').val(leadApplicantData.ye_lead_tehsilid).prop('disabled', true);
+			$('#ye_lead_dom_disid').val(leadApplicantData.ye_lead_dom_disid).prop('disabled', true);
+			$('#ye_lead_cnic').val(leadApplicantData.ye_lead_cnic).prop('disabled', true);
+			$('#ye_lead_dob').val(leadApplicantData.ye_lead_dob).prop('disabled', true);
+			$('#ye_lead_gender').val(leadApplicantData.ye_lead_gender).prop('disabled', true);
+			$('#ye_lead_maritalstatus').val(leadApplicantData.ye_lead_maritalstatus).prop('disabled', true);
+			$('#ye_lead_wmobile').val(leadApplicantData.ye_lead_wmobile).prop('disabled', true);
+			$('#ye_lead_mobile').val(leadApplicantData.ye_lead_mobile).prop('disabled', true);
+			$('#submitLeadApplicantBtn').prop('disabled', true);
+			//$('[data-bs-target="#leadApplicantDetails"]').prop('disabled', true);
+			$('#leadApplicantDetails').removeClass('show');
+			//$('#s1Applicant').collapse('show');
 	
+			// ---- S1 Applicant Auto-Fill if Data Exists ----
+			if (leadApplicantData.ye_s1_fname) {
+				$('#ye_s1_fname').val(leadApplicantData.ye_s1_fname).prop('disabled', true);
+				$('#ye_s1_fhusband').val(leadApplicantData.ye_s1_fhusband).prop('disabled', true);
+				$('#ye_s1_districtid').val(leadApplicantData.ye_s1_districtid).prop('disabled', true);
+				$('#ye_s1_tehsilid').val(leadApplicantData.ye_s1_tehsilid).prop('disabled', true);
+				$('#ye_s1_dom_disid').val(leadApplicantData.ye_s1_dom_disid).prop('disabled', true);
+				$('#ye_s1_cnic').val(leadApplicantData.ye_s1_cnic).prop('disabled', true);
+				$('#ye_s1_dob').val(leadApplicantData.ye_s1_dob).prop('disabled', true);
+				$('#ye_s1_gender').val(leadApplicantData.ye_s1_gender).prop('disabled', true);
+				$('#ye_s1_maritalstatus').val(leadApplicantData.ye_s1_maritalstatus).prop('disabled', true);
+				$('#ye_s1_wmobile').val(leadApplicantData.ye_s1_wmobile).prop('disabled', true);
+				$('#ye_s1_mobile').val(leadApplicantData.ye_s1_mobile).prop('disabled', true);
+	
+				$('#submits1ApplicantBtn').prop('disabled', true);
+				//$('[data-bs-target="#s1Applicant"]').prop('disabled', true);
+				$('#s1Applicant').removeClass('show');
+				//$('#s2Applicant').collapse('show');
+			}
+	
+			// ---- S2 Applicant Auto-Fill if Data Exists ----
+			if (leadApplicantData.ye_s2_fname) {
+				$('#ye_s2_fname').val(leadApplicantData.ye_s2_fname).prop('disabled', true);
+				$('#ye_s2_fhusband').val(leadApplicantData.ye_s2_fhusband).prop('disabled', true);
+				$('#ye_s2_districtid').val(leadApplicantData.ye_s2_districtid).prop('disabled', true);
+				$('#ye_s2_tehsilid').val(leadApplicantData.ye_s2_tehsilid).prop('disabled', true);
+				$('#ye_s2_dom_disid').val(leadApplicantData.ye_s2_dom_disid).prop('disabled', true);
+				$('#ye_s2_cnic').val(leadApplicantData.ye_s2_cnic).prop('disabled', true);
+				$('#ye_s2_dob').val(leadApplicantData.ye_s2_dob).prop('disabled', true);
+				$('#ye_s2_gender').val(leadApplicantData.ye_s2_gender).prop('disabled', true);
+				$('#ye_s2_maritalstatus').val(leadApplicantData.ye_s2_maritalstatus).prop('disabled', true);
+				$('#ye_s2_wmobile').val(leadApplicantData.ye_s2_wmobile).prop('disabled', true);
+				$('#ye_s2_mobile').val(leadApplicantData.ye_s2_mobile).prop('disabled', true);
+	
+				$('#submitS2ApplicantBtn').prop('disabled', true);
+				//$('[data-bs-target="#s2Applicant"]').prop('disabled', true);
+				$('#s2Applicant').removeClass('show');
+	
+				// Optional: Move to next tab (s3)
+				//$('#s3Applicant').collapse('show');
+			}
+		}
+	});
+
+
+
 	$('#submitLeadApplicantBtn').on('click', function (e) {
 		e.preventDefault();
 	
@@ -759,7 +830,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 		  <td>${qual_from}</td>
 		  <td>${qual_to}</td>
 		  <td>
-			<button onclick="editRow(this.closest('tr'))" class="btn btn-sm btn-warning me-1">Edit</button>
+			<button type="button" onclick="editRow(this.closest('tr'))" class="btn btn-sm btn-warning me-1">Edit</button>
 			<button onclick="deleteRow(this)" class="btn btn-sm btn-danger">Delete</button>
 		  </td>
 		`;
@@ -801,16 +872,17 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 	  }
 	
 	function resetForm() {
-		document.getElementById("qual_user_type").value = "Lead";
-		document.getElementById("qual_deg_name").value = "Matric";
-		document.getElementById("qual_institution").value = "BISE";
-		document.getElementById("qual_deg_type").value = "Regular";
-		document.getElementById("qual_percentage").value = "50";
-		document.getElementById("qual_from").value = "2020-01-01";
-		document.getElementById("qual_to").value = "2022-01-01";
+		document.getElementById("qual_user_type").value = "";
+		document.getElementById("qual_deg_name").value = "";
+		document.getElementById("qual_institution").value = "";
+		document.getElementById("qual_deg_type").value = "";
+		document.getElementById("qual_percentage").value = "";
+		document.getElementById("qual_from").value = "";
+		document.getElementById("qual_to").value = "";
 	  }
 	
 	function saveQualifications() {
+		event.preventDefault();
 		  const rows = document.querySelectorAll("#qualificationTable tbody tr:not(#inputRow)");
 		  const qualifications = [];
 		
@@ -871,9 +943,9 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 			alert("Something went wrong.");
 		  });
 		}
-
+				
 //============================codeing for experience tan====================================  
-  let currentlyEditingExperience = null;
+    let currentlyEditingExperience = null;
 
 	function addExperience() {
 		// Get values from the input fields
@@ -1063,11 +1135,4 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 		});
 	}
 	
-
-
-	
-	
-
-
-
 </script>

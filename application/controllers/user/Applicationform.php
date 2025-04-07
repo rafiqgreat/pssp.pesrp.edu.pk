@@ -14,6 +14,10 @@ class Applicationform extends MY_Controller {
 	{		
 		 $this->page_data['districts'] = $this->user_applicationform_model->get_districts();
 		 if($this->session->logged['role']==2){
+			$ye_userid = $this->session->logged['id'];
+			$this->page_data['data_young_ent'] = $this->user_applicationform_model->get_by_id(['ye_userid' => $ye_userid], 'tbl_user_young_ent');
+			$this->page_data['data_young_qual'] = $this->user_applicationform_model->get_by_id(['qual_userid' => $qual_userid], 'tbl_qualification');
+			$this->page_data['data_young_exp'] = $this->user_applicationform_model->get_by_id(['exp_userid' => $exp_userid], 'tbl_experience');
 		 	$this->load->view('user/applicationform/young_entrepreneur_application', $this->page_data);
 		 }elseif($this->session->logged['role']==3){
 		 	$this->load->view('user/applicationform/individual', $this->page_data);
@@ -273,7 +277,7 @@ class Applicationform extends MY_Controller {
 	public function select_school()
 	{		
 		 $this->page_data['districts'] = $this->user_applicationform_model->get_districts();
-		 $this->load->view('user/applicationform/select_school_yep', $this->page_data);
+		 $this->load->view('user/applicationform_young/select_school_yep', $this->page_data);
 	}
 	
 	public function teh_by_district(){

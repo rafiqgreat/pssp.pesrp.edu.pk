@@ -38,86 +38,82 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
     </div>
 
-    <?php echo form_open_multipart('user/applicationform/save', [ 'class' => 'form-validate' ], ); ?>
+    <?php echo form_open_multipart('user/applicationformind/save', [ 'class' => 'form-validate' ], ); ?>
     <div class="card-body">
     	<div class="bg-white p-3 mb-4 rounded shadow">
           <button
             class="btn btn-primary w-100 d-flex justify-content-between align-items-center"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#leadApplicantDetails"
-            aria-expanded="false"
-            aria-controls="leadApplicantDetails"
-          >
+            type="button" data-bs-toggle="collapse" data-bs-target="#leadApplicantDetails" aria-expanded="false" aria-controls="leadApplicantDetails" >
             <span>Applicant Detail</span>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              fill="currentColor"
-              class="bi bi-chevron-down"
-              viewBox="0 0 16 16"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
-              />
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16" >
+              <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
             </svg>
           </button>
         
-          <div class="collapse mt-3 border rounded p-3 bg-light" id="leadApplicantDetails">
+          <div class="collapse mt-3 border rounded p-3 bg-light show" id="leadApplicantDetails">
             <div class="row mb-3">
               <div class="col-md-6">
-                <label for="applicant1_fullname" class="form-label">Full Name (as per CNIC)</label>
-                <input type="text" class="form-control" name="applicant1_fullname" id="applicant1_fullname" required placeholder="Enter Applicant Full Name" />
+                <label for="ind_fname" class="form-label">Full Name (as per CNIC) *</label>
+                <input type="text" class="form-control" name="ind_fname" id="ind_fname" required placeholder="Enter Applicant Full Name"/>
               </div>
               <div class="col-md-6">
-                <label for="applicant1_fathername" class="form-label">Father / Husband Name</label>
-                <input type="text" class="form-control" name="applicant1_fathername" id="applicant1_fathername" required placeholder="Enter Applicant Father / Husband Name" />
+                <label for="ind_fhusband" class="form-label">Father / Husband Name *</label>
+                <input type="text" class="form-control" name="ind_fhusband" id="ind_fhusband" required placeholder="Enter Applicant Father / Husband Name" />
               </div>
             </div>
             
             <div class="row mb-3">
               <div class="col-md-12">
-                <label for="applicant1_address" class="form-label">Postal Address</label>
-                <input type="text" class="form-control" name="applicant1_address" id="applicant1_address" required placeholder="Enter Postal Address" />
+                <label for="ind_address" class="form-label">Postal Address *</label>
+                <input type="text" class="form-control" name="ind_address" id="ind_address" required placeholder="Enter Postal Address" />
               </div>
             </div>
         
             <div class="row mb-3">
               <div class="col-md-4">
-                <label for="applicant1_district_id" class="form-label">District</label>
-                <select class="form-select form-control" name="applicant1_district_id" id="applicant1_district_id" required>
+                <label for="ind_districtid" class="form-label">District *</label>
+                <select class="form-select form-control" name="ind_districtid" id="ind_districtid" required>
                   <option value="">Select District</option>
+						<?php
+                  foreach($districts as $district)
+                  {
+                  	echo '<option value="'.$district->district_id.'">'.$district->district_name_en.'</option>';
+                  }
+                  ?>
                 </select>
               </div>
               <div class="col-md-4">
-                <label for="applicant1_tehsil_id" class="form-label">Tehsil</label>
-                <select class="form-select form-control" name="applicant1_tehsil_id" id="applicant1_tehsil_id" required>
+                <label for="ind_tehsilid" class="form-label">Tehsil *</label>
+                <select class="form-select form-control" name="ind_tehsilid" id="ind_tehsilid" required>
                   <option value="">Select Tehsil</option>
                 </select>
               </div>
               <div class="col-md-4">
-                <label for="applicant1_domicile_id" class="form-label">District of Domicile</label>
-                <select class="form-select form-control" name="applicant1_domicile_id" id="applicant1_domicile_id" required>
+                <label for="ind_dom_disid" class="form-label">District of Domicile *</label>
+                <select class="form-select form-control" name="ind_dom_disid" id="ind_dom_disid" required>
                   <option value="">Select District of Domicile</option>
+                  <?php
+                  foreach($districts as $district)
+                  {
+                  	echo '<option value="'.$district->district_id.'">'.$district->district_name_en.'</option>';
+                  }
+                  ?>
                 </select>
               </div>
             </div>
         
             <div class="row mb-3">
               <div class="col-md-4">
-                <label for="applicant1_cnic" class="form-label">CNIC</label>
-                <input type="number" class="form-control" name="applicant1_cnic" id="applicant1_cnic" required placeholder="Enter CNIC" />
+                <label for="ind_cnic" class="form-label">CNIC (Without Dashes) *</label>
+                <input type="number" class="form-control" name="ind_cnic" id="ind_cnic" required placeholder="Enter CNIC"/>
               </div>
               <div class="col-md-4">
-                <label for="applicant1_dob" class="form-label">Date of Birth</label>
-                <input type="date" class="form-control" name="applicant1_dob" id="applicant1_dob" required />
+                <label for="ind_dob" class="form-label">Date of Birth *</label>
+                <input type="date" class="form-control" name="ind_dob" id="ind_dob" required />
               </div>
               <div class="col-md-4">
-                <label for="applicant1_gender" class="form-label">Gender</label>
-                <select class="form-select form-control" name="applicant1_gender" id="applicant1_gender" required>
-                  <option value="">Select Gender</option>
+                <label for="ind_gender" class="form-label">Gender *</label>
+                <select class="form-select form-control" name="ind_gender" id="ind_gender" required>
                   <option value="Male">Male</option>
                   <option value="Female">Female</option>
                 </select>
@@ -126,26 +122,26 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
         
             <div class="row mb-3">
               <div class="col-md-4">
-                <label for="applicant1_marital_status" class="form-label">Applicant Marital Status</label>
-                <select class="form-select form-control" name="applicant1_marital_status" id="applicant1_marital_status" required>
+                <label for="ind_maritalstatus" class="form-label">Applicant Marital Status *</label>
+                <select class="form-select form-control" name="ind_maritalstatus" id="ind_maritalstatus" required>
                   <option value="Single">Single</option>
                   <option value="Married">Married</option>
                 </select>
               </div>
               <div class="col-md-4">
-                <label for="applicant1_whatsapp_no" class="form-label">Mobile (WhatsApp)</label>
-                <input type="number" class="form-control" name="applicant1_whatsapp_no" id="applicant1_whatsapp_no" required />
+                <label for="ind_wmobile" class="form-label">Mobile (WhatsApp)</label>
+                <input type="number" class="form-control" name="ind_wmobile" id="ind_wmobile" required />
               </div>
               <div class="col-md-4">
-                <label for="applicant1_telephone" class="form-label">Telephone (Mobile)</label>
-                <input type="number" class="form-control" name="applicant1_telephone" id="applicant1_telephone" required />
+                <label for="ind_mobile" class="form-label">Telephone (Mobile)</label>
+                <input type="number" class="form-control" name="ind_mobile" id="ind_mobile" required />
               </div>
             </div>
             
             <div class="row mb-3">
               <div class="col-md-4">
-                <label for="applicant1_email" class="form-label">Email</label>
-                <input type="text" class="form-control" name="applicant1_email" id="applicant1_email" required placeholder="Enter Email" />
+                <label for="ind_email" class="form-label">Email</label>
+                <input type="text" class="form-control" name="ind_email" id="ind_email" required placeholder="Enter Email" />
               </div>
             </div>
           </div>
@@ -171,7 +167,6 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
               <table id="qualificationTable" class="table table-bordered table-hover">
                 <thead class="table-light">
                   <tr>
-                    <th>Applicant</th>
                     <th>Degree</th>
                     <th>Institution</th>
                     <th>Type</th>
@@ -182,73 +177,121 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr id="inputRow">
+                  <tr class="qualification-row">
                     <td>
-                      <select id="applicant" class="form-select">
-                        <option value="Applicant1">Applicant 1</option>
-                        <option value="Applicant2">Applicant 2</option>
-                      </select>
-                    </td>
-                    <td>
-                      <select id="degree" class="form-select">
+                      <select class="form-select form-control qi_deg_name" name="qi_deg_name[]">
+                        <option value="Matric">Matric</option>
+                        <option value="Intermediate">Intermediate</option>
                         <option value="BSc">Bachelor of Science</option>
                         <option value="MSc">Master of Science</option>
                       </select>
                     </td>
                     <td>
-                      <select id="institution" class="form-select">
-                        <option value="Inst1">Institution 1</option>
-                        <option value="Inst2">Institution 2</option>
-                      </select>
+                      <input type="text" class="form-control qi_institution" name="qi_institution[]" />
                     </td>
                     <td>
-                      <select id="type" class="form-select">
+                      <select class="form-select form-control qi_deg_type" name="qi_deg_type[]">
                         <option value="Regular">Regular</option>
                         <option value="Private">Private</option>
+                        <option value="Distance">Distance</option>
                       </select>
                     </td>
                     <td>
-                      <select id="percentage" class="form-select">
-                        <option value="50">50%</option>
-                        <option value="60">60%</option>
-                      </select>
+                      <input type="number" class="form-control qi_percentage" name="qi_percentage[]" />
                     </td>
                     <td>
-                      <select id="from" class="form-select">
-                        <option value="2020-01-01">2020-01-01</option>
-                        <option value="2021-01-01">2021-01-01</option>
-                      </select>
+                      <input type="date" class="form-control qi_from" name="qi_from[]" />
                     </td>
                     <td>
-                      <select id="to" class="form-select">
-                        <option value="2022-01-01">2022-01-01</option>
-                        <option value="2023-01-01">2023-01-01</option>
-                      </select>
+                      <input type="date" class="form-control qi_to" name="qi_to[]"/>
                     </td>
-                    <td>
-                      <button onclick="addQualification()" class="btn btn-sm btn-success">Add</button>
-                    </td>
+                    <td><button type="button" class="btn btn-danger remove-row_qualification" disabled="disabled">Remove</button></td>
                   </tr>
                 </tbody>
+                <tfoot>
+                     <tr>
+                         <td colspan="8" style="text-align: right;">
+                             <button type="button" class="btn btn-sm btn-success" id="addrow_qualification">Add Row</button>
+                         </td>
+                     </tr>
+                 </tfoot>
               </table>
             </div>
-        
-            <button onclick="saveQualifications()" class="btn btn-primary mt-3">Save</button>
           </div>
         </div>
         
         <div class="bg-white p-3 mb-4 rounded shadow">
-          <button
+          <button class="btn btn-primary w-100 d-flex justify-content-between align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#experienceDetails" aria-expanded="false" aria-controls="experienceDetails" >
+            <span>Experience</span>
+            <svg id="experienceIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+              fill="currentColor"
+              class="bi bi-chevron-down transition-transform"
+              viewBox="0 0 16 16"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
+              />
+            </svg>
+          </button>
+        
+          <div class="collapse mt-3 border rounded p-3 bg-light" id="experienceDetails">
+            <div class="table-responsive">
+              <table class="table table-bordered table-hover" id="experienceTable">
+                <thead class="table-light">
+                  <tr>
+                    <th>Employer</th>
+                    <th>Designation</th>
+                    <th>From</th>
+                    <th>To</th>
+                    <th>Years</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr class="experience-row">
+                    <td>
+                      <input type="text" class="form-control ei_employer" name="ei_employer[]" />
+                    </td>
+                    <td>
+                      <input type="text" class="form-control ei_designation" name="ei_designation[]" />
+                    </td>
+                    <td>
+                      <input type="date" class="form-control ei_from" name="ei_from[]" />
+                    </td>
+                    <td>
+                      <input type="date" class="form-control ei_to" name="ei_to[]" />
+                    </td>
+                    <td>
+                      <input type="number" class="form-control ei_year" name="ei_year[]" />
+                    </td>
+                    <td><button type="button" class="btn btn-danger remove-row_experience" disabled="disabled">Remove</button></td>
+                  </tr>
+                </tbody>
+                <tfoot>
+                     <tr>
+                         <td colspan="6" style="text-align: right;">
+                             <button type="button" class="btn btn-sm btn-success" id="addrow_experience">Add Row</button>
+                         </td>
+                     </tr>
+                 </tfoot>
+              </table>
+            </div>
+          </div>
+        </div>
+        
+        <?php /*?><div class="bg-white p-3 mb-4 rounded shadow">
+        	<button
             class="btn btn-primary w-100 d-flex justify-content-between align-items-center"
             type="button"
             data-bs-toggle="collapse"
-            data-bs-target="#experienceDetails"
+            data-bs-target="#schoolDetails"
             aria-expanded="false"
-            aria-controls="experienceDetails"
+            aria-controls="schoolDetails"
           >
-            <span>Experience</span>
+            <span>Schools</span>
             <svg
-              id="experienceIcon"
+              id="schoolIcon"
               xmlns="http://www.w3.org/2000/svg"
               width="20"
               height="20"
@@ -262,101 +305,12 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
               />
             </svg>
           </button>
-        
-          <div class="collapse mt-3 border rounded p-3 bg-light" id="experienceDetails">
-            <div class="mb-3">
-              <label class="form-label">Total Experience (Years)</label>
-              <select class="form-select">
-                <option value="1">1 Year</option>
-                <option value="2">2 Years</option>
-              </select>
-            </div>
-        
-            <div class="table-responsive">
-              <table class="table table-bordered table-hover" id="experienceTable">
-                <thead class="table-light">
-                  <tr>
-                    <th>Applicant</th>
-                    <th>Employer</th>
-                    <th>Designation</th>
-                    <th>From</th>
-                    <th>To</th>
-                    <th>Years</th>
-                    <th>Actions</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr id="inputRowExperience">
-                    <td>
-                      <select id="applicantExperience" class="form-select">
-                        <option value="Applicant1">Applicant 1</option>
-                        <option value="Applicant2">Applicant 2</option>
-                      </select>
-                    </td>
-                    <td>
-                      <select id="employer" class="form-select">
-                        <option value="Employer1">Employer 1</option>
-                        <option value="Employer2">Employer 2</option>
-                      </select>
-                    </td>
-                    <td>
-                      <select id="designation" class="form-select">
-                        <option value="Manager">Manager</option>
-                        <option value="Engineer">Engineer</option>
-                      </select>
-                    </td>
-                    <td>
-                      <select id="fromExperience" class="form-select">
-                        <option value="2020-01-01">2020-01-01</option>
-                        <option value="2021-01-01">2021-01-01</option>
-                      </select>
-                    </td>
-                    <td>
-                      <select id="toExperience" class="form-select">
-                        <option value="2022-01-01">2022-01-01</option>
-                        <option value="2023-01-01">2023-01-01</option>
-                      </select>
-                    </td>
-                    <td>
-                      <select id="expYears" class="form-select">
-                        <option value="1">1 Year</option>
-                        <option value="2">2 Years</option>
-                      </select>
-                    </td>
-                    <td>
-                      <button onclick="addExperience()" class="btn btn-sm btn-success">Add</button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-        
-            <button onclick="saveExperience()" class="btn btn-primary mt-3">Save</button>
-          </div>
-        </div>
-        
-        <div class="bg-white p-6 mb-6 rounded-lg shadow-lg">
-            <button
-                onclick="toggleAccordion('schoolDetails', 'schoolIcon')"
-                class="w-100 d-flex justify-content-between align-items-center text-left py-3 px-4 bg-primary text-white rounded-lg hover:bg-primary-dark focus:outline-none"
-            >
-                <span>Schools</span>
-                <svg
-                    id="schoolIcon"
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-5 w-5 transform transition-transform"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                >
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-                </svg>
-            </button>
-            <div id="schoolDetails" class="mt-2 p-4 bg-light rounded-lg d-none shadow-sm dotted-border">
-                <div class="mt-6 table-container">
-                    <table id="schoolTable" class="table table-bordered table-striped">
-                        <thead>
-                            <tr class="bg-secondary text-white">
+            
+            <div id="schoolDetails" class="collapse mt-3 border rounded p-3 bg-light">
+                <div class="table-responsive">
+                    <table id="schoolTable" class="table table-bordered table-hover">
+                        <thead class="table-light">
+                            <tr>
                                 <th>Sr#</th>
                                 <th>EMISCODE</th>
                                 <th>School Name</th>
@@ -440,7 +394,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
                     </table>
                 </div>
             </div>
-        </div>
+        </div><?php */?>
 
 
 		<div class="bg-white p-3 mb-4 rounded shadow">
@@ -477,38 +431,21 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
               </p>
         
               <div class="form-check form-check-inline">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="litigation"
-                  id="litigationYes"
-                  value="yes"
-                  required
-                />
+                <input class="form-check-input" type="radio" name="litigation" id="litigationYes" value="yes" />
                 <label class="form-check-label" for="litigationYes">Yes</label>
               </div>
         
               <div class="form-check form-check-inline">
-                <input
-                  class="form-check-input"
-                  type="radio"
-                  name="litigation"
-                  id="litigationNo"
-                  value="no"
-                  required
-                />
+                <input class="form-check-input" type="radio" name="litigation" id="litigationNo" value="no" />
                 <label class="form-check-label" for="litigationNo">No</label>
               </div>
         
               <div id="caseAttachment" class="mt-3 d-none">
-                <label for="caseFile" class="form-label">
-                  If "No", attach a photocopy of the case/detail with this application
+              
+                <label for="ind_declaration_img" class="form-label">
+                  If "Yes", attach a photocopy of the case/detail with this application
                 </label>
-                <input
-                  type="file"
-                  id="caseFile"
-                  class="form-control"
-                />
+                <input type="file" id="ind_declaration_img" class="form-control" name="ind_declaration_img" />
               </div>
             </div>
         
@@ -527,7 +464,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
     <div class="card-footer">
       <div class="row">
-        <div class="col"><a href="<?php echo url('/admin/school') ?>" onclick="return confirm('Are you sure you want to leave?')" class="btn btn-flat btn-danger"> <?php echo lang('cancel') ?></a></div>
+        <div class="col"><a href="<?php echo url('/user/dashboard') ?>" onclick="return confirm('Are you sure you want to leave?')" class="btn btn-flat btn-danger"> <?php echo lang('cancel') ?></a></div>
         <div class="col text-right"><button type="submit" class="btn btn-flat btn-primary"> <?php echo lang('submit') ?></button></div>
       </div>
     </div>
@@ -536,38 +473,20 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 </section>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 <?php include viewPath('admin/includes/footer'); ?>
+
 <script type="text/javascript">
-	$('#school_state_id').on('change', function() {
-		  $.post('<?=base_url("school/distirct_by_state")?>',
+	$('#ind_districtid').on('change', function() {
+		$.post('<?=base_url("user/applicationformind/tehsil_by_district")?>',
 		{
 		  '<?php echo $this->security->get_csrf_token_name(); ?>' : '<?php echo $this->security->get_csrf_hash(); ?>',
-		  state_id : this.value
+		  ind_districtid : this.value
 		},
 		function(data){
 		  arr = $.parseJSON(data);     
 		  console.log(arr);     
-		  $('#school_district_id option:not(:first)').remove();
+		  $('#ind_tehsilid option:not(:first)').remove();
 		  $.each(arr, function(key, value) {           
-		 $('#school_district_id')
-			 .append($("<option></option>")
-						.attr("value", value.district_id)
-						.text(value.district_name_en)
-					  ); 
-			});   
-		});
-	});
-	$('#school_district_id').on('change', function() {
-		  $.post('<?=base_url("school/tehsil_by_district")?>',
-		{
-		  '<?php echo $this->security->get_csrf_token_name(); ?>' : '<?php echo $this->security->get_csrf_hash(); ?>',
-		  district_id : this.value
-		},
-		function(data){
-		  arr = $.parseJSON(data);     
-		  console.log(arr);     
-		  $('#school_tehsil_id option:not(:first)').remove();
-		  $.each(arr, function(key, value) {           
-		 $('#school_tehsil_id')
+		 $('#ind_tehsilid')
 			 .append($("<option></option>")
 						.attr("value", value.tehsil_id)
 						.text(value.tehsil_name_en)
@@ -579,42 +498,42 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
   let currentlyEditing = null;
 
   function addQualification() {
-    const applicant = document.getElementById("applicant").value;
-    const degree = document.getElementById("degree").value;
-    const institution = document.getElementById("institution").value;
-    const type = document.getElementById("type").value;
-    const percentage = document.getElementById("percentage").value;
-    const from = document.getElementById("from").value;
-    const to = document.getElementById("to").value;
-
-    const tableBody = document.querySelector("#qualificationTable tbody");
-    let newRow = document.createElement("tr");
-
-    const rowHTML = `
-      <td>${applicant}</td>
-      <td>${degree}</td>
-      <td>${institution}</td>
-      <td>${type}</td>
-      <td>${percentage}</td>
-      <td>${from}</td>
-      <td>${to}</td>
-      <td>
-        <button onclick="editRow(this.closest('tr'))" class="btn btn-sm btn-warning me-1">Edit</button>
-        <button onclick="deleteRow(this)" class="btn btn-sm btn-danger">Delete</button>
-      </td>
-    `;
-
-    if (currentlyEditing) {
-      currentlyEditing.innerHTML = rowHTML;
-      currentlyEditing = null;
-      document.querySelector("[onclick='addQualification()']").textContent = "Add";
-    } else {
-      newRow.innerHTML = rowHTML;
-      tableBody.insertBefore(newRow, document.getElementById("inputRow"));
-    }
-
-    resetForm();
-  }
+		const qual_user_type = document.getElementById("qual_user_type").value;
+		const qual_deg_name = document.getElementById("qual_deg_name").value;
+		const qual_institution = document.getElementById("qual_institution").value;
+		const qual_deg_type = document.getElementById("qual_deg_type").value;
+		const qual_percentage = document.getElementById("qual_percentage").value;
+		const qual_from = document.getElementById("qual_from").value;
+		const qual_to = document.getElementById("qual_to").value;
+	
+		const tableBody = document.querySelector("#qualificationTable tbody");
+		let newRow = document.createElement("tr");
+	
+		const rowHTML = `
+		  <td>${qual_user_type}</td>
+		  <td>${qual_deg_name}</td>
+		  <td>${qual_institution}</td>
+		  <td>${qual_deg_type}</td>
+		  <td>${qual_percentage}</td>
+		  <td>${qual_from}</td>
+		  <td>${qual_to}</td>
+		  <td>
+			<button onclick="editRow(this.closest('tr'))" class="btn btn-sm btn-warning me-1">Edit</button>
+			<button onclick="deleteRow(this)" class="btn btn-sm btn-danger">Delete</button>
+		  </td>
+		`;
+	
+		if (currentlyEditing) {
+		  currentlyEditing.innerHTML = rowHTML;
+		  currentlyEditing = null;
+		  document.querySelector("[onclick='addQualification()']").textContent = "Add";
+		} else {
+		  newRow.innerHTML = rowHTML;
+		  tableBody.insertBefore(newRow, document.getElementById("inputRow"));
+		}
+	
+		//resetForm();
+	  }
 
   function deleteRow(button) {
     const row = button.closest("tr");
@@ -800,14 +719,30 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 		content.classList.toggle('d-none');
 		icon.classList.toggle('rotate-180');
 	}
+</script>
+<script>
+$(document).ready(function() {
+    $("#addrow_qualification").click(function() { 
+        var newRow = $(".qualification-row:first").clone();
+		  newRow.find("input").val("");
+		  newRow.find(".remove-row_qualification").removeAttr("disabled");
+		  $("#qualificationTable tbody").append(newRow);
+    });
 
+    $(document).on("click", ".remove-row_qualification", function() {
+        $(this).closest("tr").remove();
+    });
+	 
+	 $("#addrow_experience").click(function() { 
+        var newRow = $(".experience-row:first").clone();
+		  newRow.find("input").val("");
+		  newRow.find(".remove-row_experience").removeAttr("disabled");
+		  $("#experienceTable tbody").append(newRow);
+    });
 
+    $(document).on("click", ".remove-row_qualification", function() {
+        $(this).closest("tr").remove();
+    });
 
-
-
-
-
-
-
-
+});
 </script>

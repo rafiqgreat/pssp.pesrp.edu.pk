@@ -30,7 +30,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
       </p>
     </a>
   </li>
-  <?php //if (hasPermissions('school_management')): ?>
+  <?php if($this->session->logged['role']==2){ ?>
     <li class="nav-item">
       <a href="<?php echo url('/user/applicationform') ?>" class="nav-link <?php echo ($page->menu == 'schoolchain') ? 'active' : '' ?>">
         <i class="nav-icon fas fa-user"></i>
@@ -40,7 +40,17 @@ defined('BASEPATH') or exit('No direct script access allowed');
       </a>
     </li>
   <?php //endif ?>
-  <?php //if (hasPermissions('school_management')): ?>
+  <?php }elseif($this->session->logged['role']==3){?>
+		<li class="nav-item">
+         <a href="<?php echo url('/user/applicationformind') ?>" class="nav-link <?php echo ($page->menu == 'applicationformind') ? 'active' : '' ?>">
+           <i class="nav-icon fas fa-user"></i>
+           <p>
+             <?php echo 'Application Form' ?>
+           </p>
+         </a>
+       </li>
+	<?php }?>
+  <?php if($this->session->logged['role']==2){ ?>
     <li class="nav-item">
       <a href="<?php echo url('/user/applicationform/select_school') ?>" class="nav-link <?php echo ($page->menu == 'schoolchain') ? 'active' : '' ?>">
         <i class="nav-icon fas fa-user"></i>
@@ -49,7 +59,24 @@ defined('BASEPATH') or exit('No direct script access allowed');
         </p>
       </a>
     </li>
-  <?php //endif ?>
+   <?php }elseif($this->session->logged['role']==3){?>
+   <li class="nav-item">
+      <a href="<?php echo url('/user/applicationformind/select_school') ?>" class="nav-link <?php echo ($page->menu == 'select_school') ? 'active' : '' ?>">
+        <i class="nav-icon fas fa-user"></i>
+        <p>
+          <?php echo 'Select Schools' ?>
+        </p>
+      </a>
+    </li>
+   <?php }?>
+   <li class="nav-item">
+      <a href="<?php echo url('/user/applicationformind/generate_challan') ?>" class="nav-link <?php echo ($page->menu == 'generate_challan') ? 'active' : '' ?>">
+        <i class="nav-icon fas fa-user"></i>
+        <p>
+          <?php echo 'Generate Challan' ?>
+        </p>
+      </a>
+    </li>
   <?php //if (hasPermissions('school_management')): ?>
     <li class="nav-item">
       <a href="#" class="nav-link <?php echo ($page->menu == 'schoolchain') ? 'active' : '' ?>">

@@ -61,8 +61,16 @@ class Applicationform_model extends MY_Model {
         $this->db->insert('tbl_experience', $data);
         return $this->db->insert_id(); // returns the inserted record ID
     }
-
-
+	
+	/*public function get_by_id($ye_id) {
+        $query = $this->db->get_where('tbl_user_young_ent', ['ye_userid' => $ye_id]);
+        return $query->row_array(); // use row() if you prefer an object
+		//die($this->db->last_query());
+    }*/
+	public function get_by_id($id, $table_name ) {
+		$query = $this->db->get_where($table_name, $id);
+		return $query->row_array(); // use row() if you prefer an object
+	}
 
 }
 
