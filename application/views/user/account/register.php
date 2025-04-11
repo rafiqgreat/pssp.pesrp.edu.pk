@@ -17,7 +17,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
     <header class="w-full bg-gray-300 text-dark px-3 py-2">
         <div class="container mx-auto flex justify-between items-center">
             <div class="flex items-center space-x-4">
-                <img src="<?= base_url('assets/images/Logo_1.png'); ?>" alt="PEIMA Logo" class="h-20" />
+                <a href="<?= base_url(); ?>"><img src="<?= base_url('assets/images/Logo_1.png'); ?>" alt="PEIMA Logo" class="h-20" /></a>
                 <div class="flex flex-col">
                     <h3 class="text-xl font-bold text-dark">Punjab Education Initiatives Management Authority</h3>
                     <h4 class="text-lg text-dark">Public Schools Support Program Spell-11</h4>
@@ -42,8 +42,8 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
             <?php echo form_open('/user/login/register_user', ['method' => 'POST', 'autocomplete' => 'off', 'class' => 'space-y-4']); ?>
             <div class="bg-white p-6 rounded-lg shadow-md">
             	<div class="row col-12">
-                	<div class="col-6 text-lg font-semibold text-gray-800 mb-4">Registration Instructions (<a href="#" class="text-blue-500 hover:underline">Instruction for Application Portal</a>)</div>
-                    <div class="col-6 text-gray-700 text-center text-red-600 urdufont-right">درخواست جمع کرانے سے پہلے اس کی شرائط و ضوابط کو پڑھنا لازمی ہے۔ (<a href="#" class="text-blue-500 hover:underline urdufont-right">ہدایات برائے درخواست دھندگان</a>)</div>
+                	<div class="col-6 text-lg font-semibold text-gray-800 mb-4">Registration Instructions (<a href="<?= base_url('assets/docs/user_manual_sample_pssp.pdf'); ?>" target="_blank" class="text-blue-500 hover:underline">Instruction for Application Portal</a>)</div>
+                    <div class="col-6 text-gray-700 text-center text-red-600 urdufont-right">درخواست جمع کرانے سے پہلے اس کی شرائط و ضوابط کو پڑھنا لازمی ہے۔ <a href="<?= base_url('assets/docs/TORs_PSRP_SPELL_11.pdf'); ?>" target="_blank" class="text-blue-500 hover:underline urdufont-right">ہدایات برائے درخواست دھندگان</a></div>
                 </div>
                     <h3 class="text-md font-semibold text-gray-700">Select Registration Type</h3>
                     <div class="flex flex-wrap gap-2 mt-2 ml-4">
@@ -66,15 +66,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
                         <label class="flex items-center ml-4">
                             <input type="radio" class="form-radio h-4 w-4 text-indigo-600" name="role" value="6">
                             <span class="ml-2 text-gray-700">NGOs</span>
-                        </label>
-                        <label class="flex items-center ml-4">
-                            <input type="radio" class="form-radio h-4 w-4 text-indigo-600" name="role" value="7">
-                            <span class="ml-2 text-gray-700">PEF/PEIMA Partner</span>
-                        </label>
-                        <label class="flex items-center ml-4">
-                            <input type="radio" class="form-radio h-4 w-4 text-indigo-600" name="role" value="8">
-                            <span class="ml-2 text-gray-700">Private School</span>
-                        </label>
+                        </label>                      
                     </div>
                     <br /><hr />
                     <div class="m-2 section" id="2" style="font-size:14px">
@@ -141,28 +133,8 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
                         10)	Explicit approval of Board of NGO / CSO for submission of application under PSRP Phase-II must be provided alongwith the application;<br />
                         11)	Organizations allocated schools in PSRP Phase-I but refused to take over / functionalize schools as a whole are NOT ELIGIBLE;<br />
                         12)	Approval of Board of NGO / CSO for nomination of focal person for PSRP Phase-II is required alongwith the application;<br />
-                    </div>
-                    <div class="m-2 section" id="7" style="font-size:14px">
-                    1)	PEF Partner/PEIMA Licensee must be in a valid contract with PEF/PEIMA for at least five (5) consecutive years. Length of term of contract shall be determined from the last date for submission of online application;<br />
-                        2)	PEF Partner/PEIMA Licensee School must have passed last three consecutive Quality Assurance Tests (QATs);<br />
-                        3)	PEF Partner/PEIMA Licensee school must have minimum 300 SIS reported enrollment.  Enrollment shall be determined on the last date for submission of online application;<br />
-                        4)	The maximum age limit for school owner is 65 years. The last date for submission of online application shall be taken as the cut-off date for calculation of the age; <br /> 
-                        5)	PEF Partner must have valid registration certificate from DEA;<br />
-                        6)	PEF Partner/PEIMA Licensee having 16 year of education can apply for one school by giving choice of 07 preferred schools from the advertised list of schools;<br />
-                        7)	Submission of fake/forged/fabricated documents by applicant shall render the applicant ineligible for the current as well as any subsequent Program of the Government and may also result in initiation of criminal proceedings;<br />
-                        8)	The applicant is required to submit legible and valid police character certificate along with the application (mere receipt/ application form for issuance of character certificate is not acceptable);<br />
-                        9)	Application of blacklisted / convicted applicant having criminal record shall be rejected.
-                    </div>
-                    <div class="m-2 section" id="8" style="font-size:14px">
-                        1)	Applicant school must be registered with District Education Authority (DEA) for last 5 consecutive years and has valid registration certification till last date for submission of online application;<br />
-                        2)	Applicant having 16 year of education can apply for one school by giving choice of 07 preferred schools from the advertised list of schools;<br />
-                        3)	The applicant private school must have at least 300 enrolled students. The applicant shall provide students details as per given format at Appendix-C;<br />
-                        4)	The maximum age limit for school owner is 65 years. The last date for submission of online application shall be taken as the cut-off date for calculation of the age;<br />
-                        5)	Serving Government Employees (including but not limited to departments, attached departments, autonomous bodies and semi Government entities ARE NOT ELIGIBLE TO APPLY;<br />
-                        6)	Submission of fake/forged/fabricated documents by applicant shall render the applicant ineligible for the current as well as any subsequent Program of the Government and may also result in initiation of criminal proceedings;<br />
-                        7)	The applicant is required to submit legible and valid police character certificate along with the application (mere receipt/ application form for issuance of character certificate is not acceptable);<br />
-                        8)	Application of blacklisted / convicted applicant having criminal record shall be rejected;
-                    </div>
+                    </div>                    
+                    
                 	<hr />
                     <h1 class="text-3xl text-primary font-bold mb-6 mt-4">Registration</h1>
                     <form id="registrationForm" class="space-y-4">

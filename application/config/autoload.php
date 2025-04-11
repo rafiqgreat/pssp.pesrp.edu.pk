@@ -148,6 +148,7 @@ $autoload['model'] = array(
 	'admin/school_model',
 	'admin/location_model',
 	'admin/schoolchain_model',
+	'admin/app_management_model',
 );
 
 

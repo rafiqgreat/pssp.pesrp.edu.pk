@@ -46,6 +46,11 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
             <p style="color:#F00; font-size:18px; font-weight:bold"><?php echo $this->session->userdata['success']; ?><br> Now Generate Challan Form</p>
           </div>
         <?php endif; ?>
+        <?php if (!empty($this->session->flashdata('message'))):?>
+          <div class="alert alert-<?php echo $this->session->flashdata('message_type'); ?>">
+            <p><?php echo $this->session->flashdata('message'); ?></p>
+          </div>
+        <?php endif; ?>
 
     <!-- Accordion Button -->
             <button class="btn btn-primary w-100 d-flex justify-content-between align-items-center"
@@ -127,7 +132,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 		$.post('<?=base_url("user/applicationform/teh_by_district")?>',
 		{
 		  '<?php echo $this->security->get_csrf_token_name(); ?>' : '<?php echo $this->security->get_csrf_hash(); ?>',
-		  district_id : this.value
+		  school_district_id : this.value
 		},
 		function(data){
 		  arr = $.parseJSON(data);     
@@ -161,8 +166,8 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
                                 <td>${index + 1}</td>
                                 <td>${school.username}</td>
                                 <td>${school.school_name}</td>
-                                <td>${school.school_district_id}</td>
-                                <td>${school.school_tehsil_id}</td>
+                                <td>${school.district_name_en}</td>
+                                <td>${school.tehsil_name_en}</td>
                                 <td>${school.school_gender}</td>
                                 <td>${school.school_level}</td>
                                 <td>${school.school_total_teachers ?? '-'}</td>

@@ -140,7 +140,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
             
             <div class="row mb-3">
               <div class="col-md-4">
-                <label for="ind_email" class="form-label">Email</label>
+                <label for="ind_email" class="form-label">Email *</label>
                 <input type="text" class="form-control" name="ind_email" id="ind_email" required placeholder="Enter Email" />
               </div>
             </div>
@@ -182,8 +182,16 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
                       <select class="form-select form-control qi_deg_name" name="qi_deg_name[]">
                         <option value="Matric">Matric</option>
                         <option value="Intermediate">Intermediate</option>
-                        <option value="BSc">Bachelor of Science</option>
-                        <option value="MSc">Master of Science</option>
+                        <option value="B.A/B.SC(2 YEARS)">B.A/B.SC(2 YEARS)</option>
+                        <option value="BS (4 YEARS)">BS (4 YEARS)</option>
+                        <option value="B.ED">B.ED</option>
+                        <option value="M.A">M.A</option>
+                        <option value="Law Degree">Law Degree</option>
+                        <option value="M.A Education">M.A Education</option>
+                        <option value="M.SC">M.SC</option>
+                        <option value="M.ED">M.ED</option>
+                        <option value="M.PHIL/MS">M.PHIL/MS</option>
+                        <option value="PHD">PHD</option>
                       </select>
                     </td>
                     <td>
@@ -191,13 +199,18 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
                     </td>
                     <td>
                       <select class="form-select form-control qi_deg_type" name="qi_deg_type[]">
-                        <option value="Regular">Regular</option>
-                        <option value="Private">Private</option>
-                        <option value="Distance">Distance</option>
+                        <option value="regular">Regular</option>
+                        <option value="private">Private</option>
+                        <option value="distance">Distance</option>
                       </select>
                     </td>
                     <td>
-                      <input type="number" class="form-control qi_percentage" name="qi_percentage[]" />
+                      <select class="form-select form-control" name="qi_percentage[]">
+                        <option value="">Select</option>
+                        <option value="&ge; 60% Marks">&ge; 60% Marks</option>
+                        <option value="&ge;45%-<60%">&ge;45%-<60%</option>
+                        <option value="&ge;33%-<45">&ge;33%-<45</option>
+                      </select>
                     </td>
                     <td>
                       <input type="date" class="form-control qi_from" name="qi_from[]" />
@@ -279,123 +292,43 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
             </div>
           </div>
         </div>
-        
-        <?php /*?><div class="bg-white p-3 mb-4 rounded shadow">
-        	<button
-            class="btn btn-primary w-100 d-flex justify-content-between align-items-center"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#schoolDetails"
-            aria-expanded="false"
-            aria-controls="schoolDetails"
-          >
-            <span>Schools</span>
-            <svg
-              id="schoolIcon"
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              fill="currentColor"
-              class="bi bi-chevron-down transition-transform"
-              viewBox="0 0 16 16"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
-              />
+        <div class="bg-white p-3 mb-4 rounded shadow">
+          <button class="btn btn-primary w-100 d-flex justify-content-between align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#schoolDetails" aria-expanded="false" aria-controls="schoolDetails">
+            <span>Select School</span>
+            <svg id="declarationIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-chevron-down transition-transform" viewBox="0 0 16 16" >
+              <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
             </svg>
           </button>
-            
-            <div id="schoolDetails" class="collapse mt-3 border rounded p-3 bg-light">
-                <div class="table-responsive">
-                    <table id="schoolTable" class="table table-bordered table-hover">
-                        <thead class="table-light">
-                            <tr>
-                                <th>Sr#</th>
-                                <th>EMISCODE</th>
-                                <th>School Name</th>
-                                <th>Priority</th>
-                                <th>District</th>
-                                <th>Tehsil</th>
-                                <th>Gender</th>
-                                <th>School Level</th>
-                                <th>Total Teachers</th>
-                                <th>Total Students</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr id="inputRowSchool">
-                                <td></td>
-                                <td>
-                                    <select id="emiscode" class="form-select">
-                                        <option value="EMIS1">EMIS 1</option>
-                                        <option value="EMIS2">EMIS 2</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select id="schoolName" class="form-select">
-                                        <option value="School1">School 1</option>
-                                        <option value="School2">School 2</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select id="priority" class="form-select">
-                                        <option value="High">High</option>
-                                        <option value="Medium">Medium</option>
-                                        <option value="Low">Low</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select id="district" class="form-select">
-                                        <option value="District1">District 1</option>
-                                        <option value="District2">District 2</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select id="tehsil" class="form-select">
-                                        <option value="Tehsil1">Tehsil 1</option>
-                                        <option value="Tehsil2">Tehsil 2</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select id="gender" class="form-select">
-                                        <option value="Boys">Boys</option>
-                                        <option value="Girls">Girls</option>
-                                        <option value="Co-ed">Co-ed</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select id="schoolLevel" class="form-select">
-                                        <option value="Primary">Primary</option>
-                                        <option value="Secondary">Secondary</option>
-                                        <option value="High">High</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select id="totalTeachers" class="form-select">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <select id="totalStudents" class="form-select">
-                                        <option value="50">50</option>
-                                        <option value="100">100</option>
-                                    </select>
-                                </td>
-                                <td>
-                                    <button onclick="addSchool()" class="btn btn-success">
-                                        Add
-                                    </button>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+          <div class="collapse mt-3 p-3 border rounded bg-light" id="schoolDetails">
+            <div class="row mb-3">
+                <div class="col-md-6 mb-3">
+                    <label for="school_district_id" class="form-label">District</label>
+                    <select class="form-select form-control" id="school_district_id" name="school_district_id">
+                        <option value="">Select District</option>
+                        <?php foreach($districts as $district): ?>
+                        <option value="<?= $district->district_id ?>"><?= $district->district_name_en ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+
+                <div class="col-md-6 mb-3">
+                    <label for="school_tehsil_id" class="form-label">Tehsil</label>
+                    <select class="form-select form-control" id="school_tehsil_id" name="school_tehsil_id">
+                        <option value="">Select Tehsil</option>
+                    </select>
                 </div>
             </div>
-        </div><?php */?>
-
+            
+            <div class="row mb-3">
+                <div class="col-md-12 mb-12">
+                    <label for="ind_school_1" class="form-label">School</label>
+                    <select class="form-select form-control" id="ind_school_1" name="ind_school_1">
+                        <option value="">Select School</option>
+                    </select>
+                </div>
+            </div>            
+        	</div>
+        </div>
 
 		<div class="bg-white p-3 mb-4 rounded shadow">
           <button
@@ -745,4 +678,48 @@ $(document).ready(function() {
     });
 
 });
+</script>
+
+<script type="text/javascript">
+	$('#school_district_id').on('change', function() {
+		$.post('<?=base_url("user/applicationform/teh_by_district")?>',
+		{
+		  '<?php echo $this->security->get_csrf_token_name(); ?>' : '<?php echo $this->security->get_csrf_hash(); ?>',
+		  school_district_id : this.value
+		},
+		function(data){
+		  arr = $.parseJSON(data);     
+		  //console.log(arr);     
+		  $('#school_tehsil_id option:not(:first)').remove();
+		  $('#ind_school_1 option:not(:first)').remove();
+		  $.each(arr, function(key, value) {           
+		  $('#school_tehsil_id')
+			 .append($("<option></option>")
+						.attr("value", value.tehsil_id)
+						.text(value.tehsil_name_en)
+					  ); 
+			});   
+		});
+	});
+	
+	$('#school_tehsil_id').on('change', function() {
+        let tehsil_id = this.value;
+
+        if (tehsil_id) {
+            $.post('<?= base_url("user/applicationform/school_by_tehsil") ?>', {
+                '<?php echo $this->security->get_csrf_token_name(); ?>': '<?php echo $this->security->get_csrf_hash(); ?>',
+                tehsil_id: tehsil_id
+            }, function(data) {
+					arr = $.parseJSON(data); 
+					$('#ind_school_1 option:not(:first)').remove();
+					$.each(arr, function(key, value) {           
+						$('#ind_school_1')
+							.append($("<option></option>")
+							.attr("value", value.school_id)
+							.text(value.username+" - "+value.school_name+" - "+value.district_name_en+" - "+value.tehsil_name_en)
+						); 
+					}); 
+            });
+        }
+    });
 </script>

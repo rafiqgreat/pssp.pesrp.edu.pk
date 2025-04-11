@@ -19,7 +19,7 @@ defined('BASEPATH') or exit('No direct script access allowed');  ?>
   <header class="w-full bg-gray-300 text-dark px-3 py-2">
     <div class="container mx-auto flex justify-between items-center">
       <div class="flex items-center space-x-4">
-        <img src="<?= base_url('assets/images/Logo_1.png'); ?>" alt="PEIMA Logo" class="h-20" />
+        <a href="<?= base_url(); ?>"><img src="<?= base_url('assets/images/Logo_1.png'); ?>" alt="PEIMA Logo" class="h-20" /></a>
         <div class="flex flex-col">
           <h3 class="text-xl font-bold text-dark">Punjab Education Initiatives Management Authority</h3>
           <h4 class="text-lg text-dark">Public Schools Support Program Spell-11</h4>
@@ -64,8 +64,8 @@ defined('BASEPATH') or exit('No direct script access allowed');  ?>
         <div class="text-center mb-4">
           <h1 class="text-red-600 font-bold urdufont-right">درخواست جمع کرانے سے پہلے اس کی شرائط و ضوابط کو پڑھنا لازمی ہے۔</h1>
           <div class="flex flex-wrap justify-center mt-2">
-            <h1 class="urdu text-blue-500 font-bold mr-4 urdufont-right"><a href="#">ہدایات برائے &nbsp;&nbsp; Application Portal </a></h1>
-            | &nbsp;&nbsp;<h1 class="urdu text-blue-500 font-bold urdufont-right"><a href="#">ہدایات برائے درخواست دھندگان</a></h1>
+            <h1 class="urdu text-blue-500 font-bold mr-4 urdufont-right"><a href="<?= base_url('assets/docs/user_manual_sample_pssp.pdf'); ?>" target="_blank">ہدایات برائے &nbsp;&nbsp; Application Portal </a></h1>
+            | &nbsp;&nbsp;<h1 class="urdu text-blue-500 font-bold urdufont-right"><a href="<?= base_url('assets/docs/TORs_PSRP_SPELL_11.pdf'); ?>" target="_blank">  ہدایات برائے درخواست دھندگان (TORs)</a></h1>
           </div>
         </div>
 
