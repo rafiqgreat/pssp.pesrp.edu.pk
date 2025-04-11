@@ -106,7 +106,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
     <?php }?>
   <?php //if (hasPermissions('school_management')): ?>
     <li class="nav-item">
-      <a href="#" class="nav-link <?php echo ($page->menu == 'schoolchain') ? 'active' : '' ?>">
+      <a href="<?php echo url('user/profile') ?>" class="nav-link <?php echo ($page->menu == 'schoolchain') ? 'active' : '' ?>">
         <i class="nav-icon fas fa-user"></i>
         <p>
           <?php echo 'Change Password' ?>

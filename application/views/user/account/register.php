@@ -70,7 +70,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
                     </div>
                     <br /><hr />
                     <div class="m-2 section" id="2" style="font-size:14px">
-                    1)	A group of (03) three persons (friends/family), irrespective of gender (one of them to be the lead applicant) may apply for one school by giving preferred choice of 07 suitable schools from the advertised list of schools;<br />
+                    1)	A group of (03) three persons (friends/family), irrespective of gender (one of them to be the lead applicant) may apply for one school;<br />
 					2)	Lead applicant must possess at least 03 years post qualification experience. Certificate should be as per given format in this document at Appendix-B;<br />
 					3)	One person can apply in a single young entrepreneurs’ group only;<br />
 					4)	Lead applicant must be an MA/MSc/BS degree holder (16 years of Education), while other two applicants must be at least BA/BSc degree holders (14 years of Education);<br />
@@ -82,7 +82,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
                     10)	Licensee of PSRP Phase-I are NOT ELIGIBLE to apply under PSRP Phase-II, (including lead or support partners);<br />
                     11)	Licensees who had been allocated school in PSRP Phase-I but they had refused to take over / functionalize school are NOT ELIGIBLE.</div>  
                     <div class="m-2 section" id="3" style="font-size:14px">
-                    1)	Individual having 16 year of education can apply for one school by giving choice of 07 preferred schools from the advertised list of schools;<br />
+                    1)	Individual having 16 year of education can apply for one school from the advertised list of schools;<br />
                         2)	Applicant must possess at least 07 years of post-qualification experience. The experience certificate must be submitted as per given format at Appendix-B;<br />
                         3)	The maximum age limit for applicant(s) is 65 years. The last date for submission of online application shall be taken as the cut-off date for calculation of the age; <br />
                         4)	Application of blacklisted / convicted individual having criminal record shall be rejected;<br />
@@ -142,7 +142,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
                         <div class="row col-12">
                         	<div class="col-4">
                                 <label class="block text-gray-700 text-sm font-bold mb-2" for="username">CNIC (without dashes):</label>
-                            	<input type="text" class="input-field form-control" id="username" name="username" placeholder="CNIC" required>
+                            	<input type="tel" class="input-field form-control" id="username" name="username" placeholder="CNIC" required pattern="[0-9]*" inputmode="numeric">
                             </div>
                         	<div class="col-4">
                                 <label class="block text-gray-700 text-sm font-bold mb-2" for="fullName">Full Name (As Per CNIC):</label>
@@ -185,10 +185,20 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 
 <?php /*?><?php include 'includes/header.php' ?><?php */?>
 <script>
+
+document.getElementById('fullName').addEventListener('input', function () {
+    this.value = this.value.replace(/[^a-zA-Z\s]/g, '');
+});
+
+	document.getElementById('mobileNumber').addEventListener('input', function () {
+    this.value = this.value.replace(/[^0-9\-]/g, '');
+});
+	
     document.addEventListener("DOMContentLoaded", function () {
         const sections = document.querySelectorAll(".section"); // Get all divs
         const radioButtons = document.querySelectorAll("input[name='role']"); // Get all radio buttons
 
+		
         function showSection(selectedValue) {
             sections.forEach(section => {
                 section.style.display = "none"; // Hide all sections

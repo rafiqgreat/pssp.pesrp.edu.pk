@@ -73,7 +73,7 @@ defined('BASEPATH') or exit('No direct script access allowed');  ?>
 
         <!-- Username Field -->
         <div class="pl-10 pr-10">
-          <label for="username" class="block font-bold text-gray-700 mb-2">Username</label>
+          <label for="username" class="block font-bold text-gray-700 mb-2">Username / CNIC</label>
           <input type="text" name="username" id="username" class="form-control w-full p-2 border border-gray-300 rounded focus:ring-blue-500 focus:border-blue-500" placeholder="<?php echo 'username' ?>" value="<?php echo post('username') ?>" autofocus required>
           <?php echo form_error('username', '<span style="display:block" class="error invalid-feedback">', '</span>'); ?>
         </div>
