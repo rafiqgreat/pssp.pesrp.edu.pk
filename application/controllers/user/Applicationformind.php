@@ -14,6 +14,21 @@ class Applicationformind extends MY_Controller
 	
 	public function index()
 	{
+		$deadlineStr = $this->settings_model->getValueByKey('deadline'); // e.g. '2025-04-30T17:00'
+					
+		if (!empty($deadlineStr)) {
+			 try {
+				  $deadline = new DateTime($deadlineStr);
+				  $now = new DateTime();
+		
+				  if ($now > $deadline): 
+						$this->session->set_flashdata('alert-type', 'danger');
+						$this->session->set_flashdata('alert', 'Deadline passed, You are not allowed to submit application.');
+						redirect('user/dashboard');
+				  endif;
+			 } catch (Exception $e) {
+			 }
+		}
 		 $userid = $this->session->logged['id'];	
 		 $indvidual = $this->user_applicationformind_model->get_app_preview_userid($userid);
 		 if(!empty($indvidual))
@@ -41,16 +56,16 @@ class Applicationformind extends MY_Controller
 	{
 		$data = array(
 			'ind_userid'		 => $this->session->userdata['logged']['id'],
-			'ind_fname'        => $this->input->post('ind_fname'),
+			'ind_fname'        => $this->session->logged['name'],
 			'ind_fhusband'     => $this->input->post('ind_fhusband'),
 			'ind_address'   	 => $this->input->post('ind_address'),
 			'ind_districtid'   => $this->input->post('ind_districtid'),
 			'ind_tehsilid'     => $this->input->post('ind_tehsilid'),
 			'ind_dom_disid'    => $this->input->post('ind_dom_disid'),
-			'ind_cnic'         => $this->input->post('ind_cnic'),
+			'ind_cnic'         => $this->session->logged['cnic'],
 			'ind_dob'          => $this->input->post('ind_dob'),
 			'ind_gender'       => $this->input->post('ind_gender'),
-			'ind_maritalstatus'=> $this->input->post('ind_maritalstatus'),
+			//'ind_maritalstatus'=> $this->input->post('ind_maritalstatus'),
 			'ind_wmobile'      => $this->input->post('ind_wmobile'),
 			'ind_mobile'       => $this->input->post('ind_mobile'),
 			'ind_email'        => $this->input->post('ind_email'),
@@ -144,21 +159,36 @@ class Applicationformind extends MY_Controller
 	
 	public function edit()
 	{
+		$deadlineStr = $this->settings_model->getValueByKey('deadline'); // e.g. '2025-04-30T17:00'
+					
+		if (!empty($deadlineStr)) {
+			 try {
+				  $deadline = new DateTime($deadlineStr);
+				  $now = new DateTime();
+		
+				  if ($now > $deadline): 
+						$this->session->set_flashdata('alert-type', 'danger');
+						$this->session->set_flashdata('alert', 'Deadline passed, You are not allowed to edit application.');
+						redirect('user/dashboard');
+				  endif;
+			 } catch (Exception $e) {
+			 }
+		}
 		$userid	= $this->session->userdata['logged']['id'];
 		$ind_id = $this->input->post('ind_id');
 		if($this->input->post('submit'))
 		{ 
 			$data = array(
-				'ind_fname'        => $this->input->post('ind_fname'),
+				//'ind_fname'        => $this->input->post('ind_fname'),
 				'ind_fhusband'     => $this->input->post('ind_fhusband'),
 				'ind_address'   	 => $this->input->post('ind_address'),
 				'ind_districtid'   => $this->input->post('ind_districtid'),
 				'ind_tehsilid'     => $this->input->post('ind_tehsilid'),
 				'ind_dom_disid'    => $this->input->post('ind_dom_disid'),
-				'ind_cnic'         => $this->input->post('ind_cnic'),
+				//'ind_cnic'         => $this->input->post('ind_cnic'),
 				'ind_dob'          => $this->input->post('ind_dob'),
 				'ind_gender'       => $this->input->post('ind_gender'),
-				'ind_maritalstatus'=> $this->input->post('ind_maritalstatus'),
+				//'ind_maritalstatus'=> $this->input->post('ind_maritalstatus'),
 				'ind_wmobile'      => $this->input->post('ind_wmobile'),
 				'ind_mobile'       => $this->input->post('ind_mobile'),
 				'ind_email'        => $this->input->post('ind_email'),
@@ -339,7 +369,7 @@ class Applicationformind extends MY_Controller
 		]);
 		//$mpdf->showImageErrors = true;
 		//$mpdf->SetHTMLHeader('<div style="text-align: center;">Subject Report - Header</div><hr>');
-		$mpdf->SetHTMLFooter('<div style="color:red; width:530px; margin:0 auto;">Depositor must present the "computerized" deposit slip of BOP Easy Pay Cash Management System to PEF authority as proof of deposit. Sign and stamp on the downloaded challan form or manual deposit is not acceptable to PEF authority <br><br><strong>Print Date and Time:</strong> '.date('n/j/Y g:i:s A').' </div>');
+		$mpdf->SetHTMLFooter('<div style="color:red; width:530px; margin:0 auto;">Depositor must present the "computerized" deposit slip of BOP Easy Pay Cash Management System to PEIMA as proof of deposit. Sign and stamp on the downloaded challan form or manual deposit is not acceptable to PEIMA <br><br><strong>Print Date and Time:</strong> '.date('n/j/Y g:i:s A').' </div>');
 		
 		$mpdf->SetAuthor("DWS IT TEAM");
 		$mpdf->SetTitle("Challan Form");

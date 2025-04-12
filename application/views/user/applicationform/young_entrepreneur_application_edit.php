@@ -54,8 +54,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
               <div class="col-md-6">
               <?php //print '<pre>';print_r($data_young_ent);?>
                 <label for="ye_lead_fname" class="form-label">Full Name (as per CNIC) *</label>
-                <input type="text" class="form-control" name="ye_lead_fname" id="ye_lead_fname" value="<?php print $data_young_ent['ye_lead_fname'];?>" required placeholder="Enter Applicant Full Name" 
-                />
+                <input type="text" class="form-control" name="ye_lead_fname" id="ye_lead_fname" value="<?php print $data_young_ent['ye_lead_fname'];?>" required placeholder="Enter Applicant Full Name" readonly="readonly"/>
               </div>
               <div class="col-md-6">
                 <label for="ye_lead_fhusband" class="form-label">Father / Husband Name *</label>
@@ -120,7 +119,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
             <div class="row mb-3">
               <div class="col-md-4">
                 <label for="ye_lead_cnic" class="form-label">CNIC *</label>
-                <input type="number" class="form-control" name="ye_lead_cnic" id="ye_lead_cnic" value="<?php print $data_young_ent['ye_lead_cnic'];?>" required placeholder="Enter CNIC" />
+                <input type="number" class="form-control" name="ye_lead_cnic" id="ye_lead_cnic" value="<?php print $data_young_ent['ye_lead_cnic'];?>" required placeholder="Enter CNIC" readonly="readonly"/>
               </div>
               <div class="col-md-4">
                 <label for="ye_lead_dob" class="form-label">Date of Birth *</label>
@@ -131,17 +130,15 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
                 <select class="form-select form-control" name="ye_lead_gender" id="ye_lead_gender" required>
                   <option value="Male" <?php if($data_young_ent['ye_lead_gender'] == 'Male'){?>selected="selected"<?php }?>>Male</option>
                   <option value="Female" <?php if($data_young_ent['ye_lead_gender'] == 'Female'){?>selected="selected"<?php }?>>Female</option>
+                  <option value="Other" <?php if($data_young_ent['ye_lead_gender'] == 'Other'){?>selected="selected"<?php }?>>Other</option>
                 </select>
               </div>
             </div>
         
             <div class="row mb-3">
               <div class="col-md-4">
-                <label for="ye_lead_maritalstatus" class="form-label">Applicant Marital Status *</label>
-                <select class="form-select form-control" name="ye_lead_maritalstatus" id="ye_lead_maritalstatus" required>
-                  <option value="Single" <?php if($data_young_ent['ye_lead_maritalstatus'] == 'Male'){?>selected="selected"<?php }?>>Single</option>
-                  <option value="Married" <?php if($data_young_ent['ye_lead_maritalstatus'] == 'Married'){?>selected="selected"<?php }?>>Married</option>
-                </select>
+                <label for="ye_lead_email" class="form-label">Email *</label>
+                <input type="text" class="form-control" name="ye_lead_email" id="ye_lead_email" value="<?php print $data_young_ent['ye_lead_email'];?>" required placeholder="Enter Email" />
               </div>
               <div class="col-md-4">
                 <label for="ye_lead_wmobile" class="form-label">Mobile (WhatsApp) *</label>
@@ -152,11 +149,9 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
                 <input type="number" class="form-control" name="ye_lead_mobile" id="ye_lead_mobile" value="<?php print $data_young_ent['ye_lead_mobile'];?>" required />
               </div>
             </div>
-            
             <div class="row mb-3">
-              <div class="col-md-4">
-                <label for="ye_lead_email" class="form-label">Email *</label>
-                <input type="text" class="form-control" name="ye_lead_email" id="ye_lead_email" value="<?php print $data_young_ent['ye_lead_email'];?>" required placeholder="Enter Email" />
+              <div class="col-md-12" style="text-align:right">
+              	<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#s1Applicant" aria-expanded="false" aria-controls="s1Applicant"><span>Next</span></button>
               </div>
             </div>
           </div>
@@ -241,7 +236,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
             <div class="row mb-3">
               <div class="col-md-4">
                 <label for="ye_s1_cnic" class="form-label">CNIC</label>
-                <input type="number" class="form-control" name="ye_s1_cnic" id="ye_s1_cnic" value="<?php print $data_young_ent['ye_s1_cnic'];?>" required placeholder="Enter CNIC" />
+                <input type="number" class="form-control" name="ye_s1_cnic" id="ye_s1_cnic" value="<?php print $data_young_ent['ye_s1_cnic'];?>" required placeholder="Enter CNIC" maxlength="13" pattern="\d{13}" title="Enter 13-digit CNIC only" oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,13)"/>
               </div>
               <div class="col-md-4">
                 <label for="ye_s1_dob" class="form-label">Date of Birth</label>
@@ -252,17 +247,15 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
                 <select class="form-select form-control" name="ye_s1_gender" id="ye_s1_gender" required>
                   <option value="Male" <?php if($data_young_ent['ye_s1_gender'] == 'Male'){?>selected="selected"<?php }?>>Male</option>
                   <option value="Female" <?php if($data_young_ent['ye_s1_gender'] == 'Female'){?>selected="selected"<?php }?>>Female</option>
+                  <option value="Other" <?php if($data_young_ent['ye_lead_gender'] == 'Other'){?>selected="selected"<?php }?>>Other</option>
                 </select>
               </div>
             </div>
         
             <div class="row mb-3">
               <div class="col-md-4">
-                <label for="ye_s1_maritalstatus" class="form-label">Applicant Marital Status</label>
-                <select class="form-select form-control" name="ye_s1_maritalstatus" id="ye_s1_maritalstatus" required>
-                  <option value="Single" <?php if($data_young_ent['ye_s1_maritalstatus'] == 'Male'){?>selected="selected"<?php }?>>Single</option>
-                  <option value="Married" <?php if($data_young_ent['ye_s1_maritalstatus'] == 'Married'){?>selected="selected"<?php }?>>Married</option>
-                </select>
+                <label for="ye_s1_email" class="form-label">Email</label>
+                <input type="text" class="form-control" name="ye_s1_email" id="ye_s1_email" value="<?php print $data_young_ent['ye_s1_email'];?>" required placeholder="Enter Email" />
               </div>
               <div class="col-md-4">
                 <label for="ye_s1_wmobile" class="form-label">Mobile (WhatsApp)</label>
@@ -273,11 +266,9 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
                 <input type="number" class="form-control" name="ye_s1_mobile" id="ye_s1_mobile" value="<?php print $data_young_ent['ye_s1_mobile'];?>" required />
               </div>
             </div>
-            
             <div class="row mb-3">
-              <div class="col-md-4">
-                <label for="ye_s1_email" class="form-label">Email</label>
-                <input type="text" class="form-control" name="ye_s1_email" id="ye_s1_email" value="<?php print $data_young_ent['ye_s1_email'];?>" required placeholder="Enter Email" />
+              <div class="col-md-12" style="text-align:right">
+              	<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#s2Applicant" aria-expanded="false" aria-controls="s2Applicant"><span>Next</span></button>
               </div>
             </div>
           </div>
@@ -361,7 +352,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
             <div class="row mb-3">
               <div class="col-md-4">
                 <label for="ye_s2_cnic" class="form-label">CNIC</label>
-                <input type="number" class="form-control" name="ye_s2_cnic" id="ye_s2_cnic" value="<?php print $data_young_ent['ye_s2_cnic'];?>" required placeholder="Enter CNIC" />
+                <input type="number" class="form-control" name="ye_s2_cnic" id="ye_s2_cnic" value="<?php print $data_young_ent['ye_s2_cnic'];?>" required placeholder="Enter CNIC" maxlength="13" pattern="\d{13}" title="Enter 13-digit CNIC only" oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,13)"/>
               </div>
               <div class="col-md-4">
                 <label for="ye_s2_dob" class="form-label">Date of Birth</label>
@@ -372,17 +363,15 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
                 <select class="form-select form-control" name="ye_s2_gender" id="ye_s2_gender" value="<?php print $data_young_ent['ye_s2_gender'];?>" required>
                   <option value="Male" <?php if($data_young_ent['ye_s2_gender'] == 'Male'){?>selected="selected"<?php }?>>Male</option>
                   <option value="Female" <?php if($data_young_ent['ye_s2_gender'] == 'Female'){?>selected="selected"<?php }?>>Female</option>
+                  <option value="Other" <?php if($data_young_ent['ye_lead_gender'] == 'Other'){?>selected="selected"<?php }?>>Other</option>
                 </select>
               </div>
             </div>
         
             <div class="row mb-3">
-              <div class="col-md-4">
-                <label for="ye_s2_maritalstatus" class="form-label">Applicant Marital Status</label>
-                <select class="form-select form-control" name="ye_s2_maritalstatus" id="ye_s2_maritalstatus" required>
-                  <option value="Single" <?php if($data_young_ent['ye_s2_maritalstatus'] == 'Male'){?>selected="selected"<?php }?>>Single</option>
-                  <option value="Married" <?php if($data_young_ent['ye_s2_maritalstatus'] == 'Married'){?>selected="selected"<?php }?>>Married</option>
-                </select>
+            	<div class="col-md-4">
+                <label for="ye_s2_email" class="form-label">Email</label>
+                <input type="text" class="form-control" name="ye_s2_email" id="ye_s2_email" value="<?php print $data_young_ent['ye_s2_email'];?>" required placeholder="Enter Email" />
               </div>
               <div class="col-md-4">
                 <label for="ye_s2_wmobile" class="form-label">Mobile (WhatsApp)</label>
@@ -395,12 +384,10 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
             </div>
             
             <div class="row mb-3">
-              <div class="col-md-4">
-                <label for="ye_s2_email" class="form-label">Email</label>
-                <input type="text" class="form-control" name="ye_s2_email" id="ye_s2_email" value="<?php print $data_young_ent['ye_s2_email'];?>" required placeholder="Enter Email" />
+              <div class="col-md-12" style="text-align:right">
+              	<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#qualificationDetails" aria-expanded="false" aria-controls="qualificationDetails"><span>Next</span></button>
               </div>
             </div>
-            
           </div>
         </div>
     
@@ -438,9 +425,9 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
                         	<td>
                             <select class="form-select form-control" name="qual_user_type[]">
                               <option value="">Select</option>
-                              <option value="lead"<?php if($qulaification['qual_user_type'] == 'lead'){?>selected="selected"<?php }?>>Lead</option>
-                              <option value="s1"<?php if($qulaification['qual_user_type'] == 's1'){?>selected="selected"<?php }?>>SA1</option>
-                              <option value="s2"<?php if($qulaification['qual_user_type'] == 's2'){?>selected="selected"<?php }?>>SA2</option>
+                              <option value="lead"<?php if($qulaification['qual_user_type'] == 'lead'){?>selected="selected"<?php }?>>Lead <?php if($data_young_ent['ye_lead_fname'] != ''){ print $data_young_ent['ye_lead_fname'];}?></option>
+                              <option value="s1"<?php if($qulaification['qual_user_type'] == 's1'){?>selected="selected"<?php }?>>SA1 <?php if($data_young_ent['ye_s1_fname'] != ''){ print $data_young_ent['ye_s1_fname'];}?></option>
+                              <option value="s2"<?php if($qulaification['qual_user_type'] == 's2'){?>selected="selected"<?php }?>>SA2 <?php if($data_young_ent['ye_s2_fname'] != ''){ print $data_young_ent['ye_s2_fname'];}?></option>
                             </select>
                           </td>
                           <td>
@@ -551,32 +538,19 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
                  </tfoot>
               </table>
             </div>
+            <div class="row mb-3">
+              <div class="col-md-12" style="text-align:right">
+              	<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#experienceDetails" aria-expanded="false" aria-controls="experienceDetails"><span>Next</span></button>
+              </div>
+            </div>
           </div>
         </div>
         
         <div class="bg-white p-3 mb-4 rounded shadow">
-          <button
-            class="btn btn-primary w-100 d-flex justify-content-between align-items-center"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#experienceDetails"
-            aria-expanded="false"
-            aria-controls="experienceDetails"
-          >
+          <button class="btn btn-primary w-100 d-flex justify-content-between align-items-center" type="button" data-bs-toggle="collapse" data-bs-target="#experienceDetails" aria-expanded="false" aria-controls="experienceDetails" >
             <span>Experience</span>
-            <svg
-              id="experienceIcon"
-              xmlns="http://www.w3.org/2000/svg"
-              width="20"
-              height="20"
-              fill="currentColor"
-              class="bi bi-chevron-down transition-transform"
-              viewBox="0 0 16 16"
-            >
-              <path
-                fill-rule="evenodd"
-                d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z"
-              />
+            <svg id="experienceIcon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-chevron-down transition-transform" viewBox="0 0 16 16" >
+              <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708z" />
             </svg>
           </button>
         
@@ -607,9 +581,9 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
                          	<td>
                             <select class="form-select form-control" name="exp_type[]">
                               <option value="">Select</option>
-                              <option value="lead"<?php if($experience['exp_type'] == 'lead'){?>selected="selected"<?php }?>>Lead</option>
-                              <option value="s1"<?php if($experience['exp_type'] == 's1'){?>selected="selected"<?php }?>>SA1</option>
-                              <option value="s2"<?php if($experience['exp_type'] == 's2'){?>selected="selected"<?php }?>>SA2</option>
+                              <option value="lead"<?php if($experience['exp_type'] == 'lead'){?>selected="selected"<?php }?>>Lead <?php if($data_young_ent['ye_lead_fname'] != ''){ print $data_young_ent['ye_lead_fname'];}?></option>
+                              <option value="s1"<?php if($experience['exp_type'] == 's1'){?>selected="selected"<?php }?>>SA1 <?php if($data_young_ent['ye_s1_fname'] != ''){ print $data_young_ent['ye_s1_fname'];}?></option>
+                              <option value="s2"<?php if($experience['exp_type'] == 's2'){?>selected="selected"<?php }?>>SA2 <?php if($data_young_ent['ye_s2_fname'] != ''){ print $data_young_ent['ye_s2_fname'];}?></option>
                             </select>
                           </td>
                           <td>
@@ -625,7 +599,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
                             <input type="date" class="form-control exp_to" name="exp_to[]" value="<?php print $experience['exp_to'];?>"/>
                           </td>
                           <td>
-                            <input type="number" class="form-control exp_year" name="exp_year[]" value="<?php print $experience['exp_year'];?>"/>
+                            <input type="number" class="form-control exp_year" name="exp_year[]" value="<?php print $experience['exp_year'];?>" readonly="readonly"/>
                           </td>
                           <td><button type="button" class="btn btn-danger remove-row_experience" <?php if($i == 1){?>disabled="disabled"<?php }?>>Remove</button></td>
                         </tr>
@@ -652,7 +626,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
                          <input type="date" class="form-control" name="exp_to[]" />
                        </td>
                        <td>
-                         <input type="number" class="form-control" name="exp_year[]" />
+                         <input type="number" class="form-control" name="exp_year[]" readonly="readonly" />
                        </td>
                        <td><button type="button" class="btn btn-danger remove-row_experience" disabled="disabled">Remove</button></td>
                      </tr>
@@ -666,6 +640,11 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
                      </tr>
                  </tfoot>
               </table>
+            </div>
+            <div class="row mb-3">
+              <div class="col-md-12" style="text-align:right">
+              	<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#schoolDetails" aria-expanded="false" aria-controls="schoolDetails"><span>Next</span></button>
+              </div>
             </div>
           </div>
         </div>
@@ -728,7 +707,12 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 								?>
                     </select>
                 </div>
-            </div>            
+            </div> 
+            <div class="row mb-3">
+              <div class="col-md-12" style="text-align:right">
+              	<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#declarationDetails" aria-expanded="false" aria-controls="declarationDetails"><span>Next</span></button>
+              </div>
+            </div>           
         	</div>
         </div>
 
@@ -743,18 +727,16 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
           <div class="collapse mt-3 border rounded p-3 bg-light" id="declarationDetails">
             <div class="mb-3">
               <p class="form-label">
-                At present, the private individual has not filed a litigation case
-                against Punjab Education Foundation in any court of law.
+                At present, I have filed a litigation case against PIEMA in any court of law.
               </p>
-        
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="litigation" id="litigationYes" value="yes" <?php if($data_young_ent['ye_declaration'] == 'yes'){?>checked="checked"<?php }?> />
-                <label class="form-check-label" for="litigationYes">Yes</label>
-              </div>
         
               <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="litigation" id="litigationNo" value="no" <?php if($data_young_ent['ye_declaration'] == 'no'){?>checked="checked"<?php }?> />
                 <label class="form-check-label" for="litigationNo">No</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="litigation" id="litigationYes" value="yes" <?php if($data_young_ent['ye_declaration'] == 'yes'){?>checked="checked"<?php }?> />
+                <label class="form-check-label" for="litigationYes">Yes</label>
               </div>
         
               <div id="caseAttachment" class="mt-3 <?php if($data_young_ent['ye_declaration'] == 'no'){?>d-none<?php }?>">
@@ -934,4 +916,68 @@ document.addEventListener("DOMContentLoaded", function () {
 		});
 	  });
 	});
+</script>
+
+<script>
+function calculateExperience(fromDate, toDate) {
+    const from = new Date(fromDate);
+    const to = new Date(toDate);
+    if (!isNaN(from) && !isNaN(to) && to >= from) {
+        const diffTime = to - from;
+        const diffYears = diffTime / (1000 * 60 * 60 * 24 * 365.25); // includes leap years
+        return Math.round(diffYears); // Rounded to nearest whole number
+
+    }
+    return '';
+}
+
+function bindExperienceEvents(row) {
+    const fromInput = row.find('.exp_from');
+    const toInput = row.find('.exp_to');
+    const yearInput = row.find('.exp_year');
+
+    function updateYears() {
+        const from = fromInput.val();
+        const to = toInput.val();
+        const years = calculateExperience(from, to);
+        yearInput.val(years);
+    }
+
+    fromInput.on('change', updateYears);
+    toInput.on('change', updateYears);
+}
+
+// Initial binding for existing rows
+$(document).ready(function () {
+    $('#experienceTable .experience-row').each(function () {
+        bindExperienceEvents($(this));
+    });
+
+    // Add Row
+    $('#addrow_experience').on('click', function () {
+        const lastRow = $('#experienceTable .experience-row:last');
+        const newRow = lastRow.clone();
+
+        // Clear input values
+        newRow.find('input, select').each(function () {
+            $(this).val('');
+        });
+
+        // Enable Remove button
+        newRow.find('.remove-row_experience').prop('disabled', false);
+
+        // Append to table
+        $('#experienceTable tbody').append(newRow);
+
+        // Bind experience calculation
+        bindExperienceEvents(newRow);
+    });
+
+    // Remove row
+    $(document).on('click', '.remove-row_experience', function () {
+        if ($('#experienceTable .experience-row').length > 1) {
+            $(this).closest('.experience-row').remove();
+        }
+    });
+});
 </script>

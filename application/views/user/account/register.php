@@ -194,6 +194,9 @@ document.getElementById('fullName').addEventListener('input', function () {
     this.value = this.value.replace(/[^0-9\-]/g, '');
 });
 	
+	document.getElementById('username').addEventListener('input', function () {
+    this.value = this.value.replace(/[^0-9]/g, '');
+});
     document.addEventListener("DOMContentLoaded", function () {
         const sections = document.querySelectorAll(".section"); // Get all divs
         const radioButtons = document.querySelectorAll("input[name='role']"); // Get all radio buttons

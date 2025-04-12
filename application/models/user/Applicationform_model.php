@@ -181,11 +181,12 @@ class Applicationform_model extends MY_Model {
 	
 	public function get_qualification_userid($id)
 	{
-		$this->db->select('*');
-		$this->db->from('tbl_qualification');	
-		$this->db->where('qual_userid', $id);
-		$query = $this->db->get();
-		return $query->result_array();
+		 $this->db->select('*');
+		 $this->db->from('tbl_qualification');
+		 $this->db->where('qual_userid', $id);
+		 $this->db->order_by("FIELD(qual_user_type, 'lead', 's1', 's2')", '', false); // Custom order
+		 $query = $this->db->get();
+		 return $query->result_array();
 	}
 	
 	public function get_experience_userid($id)
@@ -193,6 +194,7 @@ class Applicationform_model extends MY_Model {
 		$this->db->select('*');
 		$this->db->from('tbl_experience');	
 		$this->db->where('exp_userid', $id);
+		$this->db->order_by("FIELD(exp_type, 'lead', 's1', 's2')", '', false); // Custom order
 		$query = $this->db->get();
 		return $query->result_array();
 	}

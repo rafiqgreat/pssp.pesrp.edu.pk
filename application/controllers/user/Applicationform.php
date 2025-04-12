@@ -11,7 +11,22 @@ class Applicationform extends MY_Controller {
 		}
 	}
 	public function index()
-	{	
+	{
+		$deadlineStr = $this->settings_model->getValueByKey('deadline'); // e.g. '2025-04-30T17:00'
+					
+		if (!empty($deadlineStr)) {
+			 try {
+				  $deadline = new DateTime($deadlineStr);
+				  $now = new DateTime();
+		
+				  if ($now > $deadline): 
+						$this->session->set_flashdata('alert-type', 'danger');
+						$this->session->set_flashdata('alert', 'Deadline passed, You are not allowed to submit application');
+						redirect('user/dashboard');
+				  endif;
+			 } catch (Exception $e) {
+			 }
+		}	
 		$userid = $this->session->logged['id'];	
 		$indvidual = $this->user_applicationform_model->get_app_preview_userid($userid);
 		if(!empty($indvidual))
@@ -45,16 +60,16 @@ class Applicationform extends MY_Controller {
 	{
 		$data = array(
 			'ye_userid'			   	=> $this->session->userdata['logged']['id'],
-			'ye_lead_fname'        	=> $this->input->post('ye_lead_fname'),
+			'ye_lead_fname'        	=> $this->session->logged['name'],
 			'ye_lead_fhusband'     	=> $this->input->post('ye_lead_fhusband'),
 			'ye_lead_address'     	=> $this->input->post('ye_lead_address'),
 			'ye_lead_districtid'   	=> $this->input->post('ye_lead_districtid'),
 			'ye_lead_tehsilid'     	=> $this->input->post('ye_lead_tehsilid'),
 			'ye_lead_dom_disid'    	=> $this->input->post('ye_lead_dom_disid'),
-			'ye_lead_cnic'         	=> $this->input->post('ye_lead_cnic'),
+			'ye_lead_cnic'         	=> $this->session->logged['cnic'],
 			'ye_lead_dob'          	=> $this->input->post('ye_lead_dob'),
 			'ye_lead_gender'       	=> $this->input->post('ye_lead_gender'),
-			'ye_lead_maritalstatus'	=> $this->input->post('ye_lead_maritalstatus'),
+			//'ye_lead_maritalstatus'	=> $this->input->post('ye_lead_maritalstatus'),
 			'ye_lead_wmobile'      	=> $this->input->post('ye_lead_wmobile'),
 			'ye_lead_mobile'       	=> $this->input->post('ye_lead_mobile'),
 			'ye_lead_email'       	=> $this->input->post('ye_lead_email'),
@@ -69,7 +84,7 @@ class Applicationform extends MY_Controller {
 			'ye_s1_cnic' 			=> $this->input->post('ye_s1_cnic'),
 			'ye_s1_dob' 			=> $this->input->post('ye_s1_dob'),
 			'ye_s1_gender' 		=> $this->input->post('ye_s1_gender'),
-			'ye_s1_maritalstatus' => $this->input->post('ye_s1_maritalstatus'),
+			//'ye_s1_maritalstatus' => $this->input->post('ye_s1_maritalstatus'),
 			'ye_s1_wmobile' 		=> $this->input->post('ye_s1_wmobile'),
 			'ye_s1_mobile' 		=> $this->input->post('ye_s1_mobile'),
 			'ye_s1_email' 			=> $this->input->post('ye_s1_email'),
@@ -83,7 +98,7 @@ class Applicationform extends MY_Controller {
 			'ye_s2_cnic' 			=> $this->input->post('ye_s2_cnic'),
 			'ye_s2_dob' 			=> $this->input->post('ye_s2_dob'),
 			'ye_s2_gender'			=> $this->input->post('ye_s2_gender'),
-			'ye_s2_maritalstatus' => $this->input->post('ye_s2_maritalstatus'),
+			//'ye_s2_maritalstatus' => $this->input->post('ye_s2_maritalstatus'),
 			'ye_s2_wmobile' 		=> $this->input->post('ye_s2_wmobile'),
 			'ye_s2_mobile' 		=> $this->input->post('ye_s2_mobile'),
 			'ye_s2_email' 			=> $this->input->post('ye_s2_email'),
@@ -173,9 +188,8 @@ class Applicationform extends MY_Controller {
 			echo json_encode(['status' => 'success', 'insert_id' => $insert_id]);
 			redirect('user/applicationform/applicationpreview');
 		} else {
-			$this->session->set_flashdata('alert-type', 'error');
+			$this->session->set_flashdata('alert-type', 'danger');
 			$this->session->set_flashdata('alert', 'Failed to insert Application Form');
-			echo json_encode(['status' => 'error', 'message' => 'Failed to insert']);
 			redirect('user/applicationform');
 		}
 	
@@ -188,22 +202,36 @@ class Applicationform extends MY_Controller {
 	
 	public function edit()
 	{
+		$deadlineStr = $this->settings_model->getValueByKey('deadline'); // e.g. '2025-04-30T17:00'
+		if (!empty($deadlineStr)) {
+			 try {
+				  $deadline = new DateTime($deadlineStr);
+				  $now = new DateTime();
+		
+				  if ($now > $deadline): 
+						$this->session->set_flashdata('alert-type', 'danger');
+						$this->session->set_flashdata('alert', 'Deadline passed, You are not allowed to edit application.');
+						redirect('user/dashboard');
+				  endif;
+			 } catch (Exception $e) {
+			 }
+		}
 		$userid	= $this->session->userdata['logged']['id'];
 		
 		if($this->input->post('submit'))
 		{ 
 			$data = array(
-				'ye_userid'			   	=> $this->session->userdata['logged']['id'],
-				'ye_lead_fname'        	=> $this->input->post('ye_lead_fname'),
+				//'ye_userid'			   	=> $this->session->userdata['logged']['id'],
+				//'ye_lead_fname'        	=> $this->input->post('ye_lead_fname'),
 				'ye_lead_fhusband'     	=> $this->input->post('ye_lead_fhusband'),
 				'ye_lead_address'     	=> $this->input->post('ye_lead_address'),
 				'ye_lead_districtid'   	=> $this->input->post('ye_lead_districtid'),
 				'ye_lead_tehsilid'     	=> $this->input->post('ye_lead_tehsilid'),
 				'ye_lead_dom_disid'    	=> $this->input->post('ye_lead_dom_disid'),
-				'ye_lead_cnic'         	=> $this->input->post('ye_lead_cnic'),
+				//'ye_lead_cnic'         	=> $this->input->post('ye_lead_cnic'),
 				'ye_lead_dob'          	=> $this->input->post('ye_lead_dob'),
 				'ye_lead_gender'       	=> $this->input->post('ye_lead_gender'),
-				'ye_lead_maritalstatus'	=> $this->input->post('ye_lead_maritalstatus'),
+				//'ye_lead_maritalstatus'	=> $this->input->post('ye_lead_maritalstatus'),
 				'ye_lead_wmobile'      	=> $this->input->post('ye_lead_wmobile'),
 				'ye_lead_mobile'       	=> $this->input->post('ye_lead_mobile'),
 				'ye_lead_email'       	=> $this->input->post('ye_lead_email'),
@@ -218,7 +246,7 @@ class Applicationform extends MY_Controller {
 				'ye_s1_cnic' 			=> $this->input->post('ye_s1_cnic'),
 				'ye_s1_dob' 			=> $this->input->post('ye_s1_dob'),
 				'ye_s1_gender' 		=> $this->input->post('ye_s1_gender'),
-				'ye_s1_maritalstatus' => $this->input->post('ye_s1_maritalstatus'),
+				//'ye_s1_maritalstatus' => $this->input->post('ye_s1_maritalstatus'),
 				'ye_s1_wmobile' 		=> $this->input->post('ye_s1_wmobile'),
 				'ye_s1_mobile' 		=> $this->input->post('ye_s1_mobile'),
 				'ye_s1_email' 			=> $this->input->post('ye_s1_email'),
@@ -232,7 +260,7 @@ class Applicationform extends MY_Controller {
 				'ye_s2_cnic' 			=> $this->input->post('ye_s2_cnic'),
 				'ye_s2_dob' 			=> $this->input->post('ye_s2_dob'),
 				'ye_s2_gender'			=> $this->input->post('ye_s2_gender'),
-				'ye_s2_maritalstatus' => $this->input->post('ye_s2_maritalstatus'),
+				//'ye_s2_maritalstatus' => $this->input->post('ye_s2_maritalstatus'),
 				'ye_s2_wmobile' 		=> $this->input->post('ye_s2_wmobile'),
 				'ye_s2_mobile' 		=> $this->input->post('ye_s2_mobile'),
 				'ye_s2_email' 			=> $this->input->post('ye_s2_email'),
@@ -427,7 +455,7 @@ class Applicationform extends MY_Controller {
 		]);
 		//$mpdf->showImageErrors = true;
 		//$mpdf->SetHTMLHeader('<div style="text-align: center;">Subject Report - Header</div><hr>');
-		$mpdf->SetHTMLFooter('<div style="color:red; width:530px; margin:0 auto;">Depositor must present the "computerized" deposit slip of BOP Easy Pay Cash Management System to PEF authority as proof of deposit. Sign and stamp on the downloaded challan form or manual deposit is not acceptable to PEF authority <br><br><strong>Print Date and Time:</strong> '.date('n/j/Y g:i:s A').' </div>');
+		$mpdf->SetHTMLFooter('<div style="color:red; width:530px; margin:0 auto;">Depositor must present the "computerized" deposit slip of BOP Easy Pay Cash Management System to PEIMA as proof of deposit. Sign and stamp on the downloaded challan form or manual deposit is not acceptable to PEIMA <br><br><strong>Print Date and Time:</strong> '.date('n/j/Y g:i:s A').' </div>');
 		
 		$mpdf->SetAuthor("DWS IT TEAM");
 		$mpdf->SetTitle("Challan Form");
@@ -465,7 +493,7 @@ class Applicationform extends MY_Controller {
 		}
 		else
 		{
-			$this->session->set_flashdata('alert-type', 'error');
+			$this->session->set_flashdata('alert-type', 'danger');
 			$this->session->set_flashdata('alert', 'Application Final Submit not submitted!');
 			redirect('user/applicationform/applicationpreview');
 		}

@@ -55,7 +55,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
               <div class="col-md-6">
               	 <input type="hidden" name="ind_id" value="<?php print $indvidual['ind_id'];?>"/>
                 <label for="ind_fname" class="form-label">Full Name (as per CNIC) *</label>
-                <input type="text" class="form-control" name="ind_fname" id="ind_fname" value="<?php print $indvidual['ind_fname'];?>" required placeholder="Enter Applicant Full Name"/>
+                <input type="text" class="form-control" name="ind_fname" id="ind_fname" value="<?php print $indvidual['ind_fname'];?>" required placeholder="Enter Applicant Full Name" readonly="readonly"/>
               </div>
               <div class="col-md-6">
                 <label for="ind_fhusband" class="form-label">Father / Husband Name *</label>
@@ -121,7 +121,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
             <div class="row mb-3">
               <div class="col-md-4">
                 <label for="ind_cnic" class="form-label">CNIC (Without Dashes) *</label>
-                <input type="number" class="form-control" name="ind_cnic" id="ind_cnic"  value="<?php print $indvidual['ind_cnic'];?>" required placeholder="Enter CNIC"/>
+                <input type="number" class="form-control" name="ind_cnic" id="ind_cnic"  value="<?php print $indvidual['ind_cnic'];?>" required placeholder="Enter CNIC" readonly="readonly"/>
               </div>
               <div class="col-md-4">
                 <label for="ind_dob" class="form-label">Date of Birth *</label>
@@ -132,17 +132,15 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
                 <select class="form-select form-control" name="ind_gender" id="ind_gender" required>
                   <option value="Male" <?php if($indvidual['ind_gender'] == 'Male'){?>selected="selected"<?php }?>>Male</option>
                   <option value="Female" <?php if($indvidual['ind_gender'] == 'Female'){?>selected="selected"<?php }?>>Female</option>
+                  <option value="Other" <?php if($indvidual['ind_gender'] == 'Other'){?>selected="selected"<?php }?>>Other</option>
                 </select>
               </div>
             </div>
         
             <div class="row mb-3">
               <div class="col-md-4">
-                <label for="ind_maritalstatus" class="form-label">Applicant Marital Status *</label>
-                <select class="form-select form-control" name="ind_maritalstatus" id="ind_maritalstatus" required>
-                  <option value="Single" <?php if($indvidual['ind_maritalstatus'] == 'Single'){?>selected="selected"<?php }?>>Single</option>
-                  <option value="Married" <?php if($indvidual['ind_maritalstatus'] == 'Married'){?>selected="selected"<?php }?>>Married</option>
-                </select>
+                <label for="ind_email" class="form-label">Email</label>
+                <input type="text" class="form-control" name="ind_email" id="ind_email"  value="<?php print $indvidual['ind_email'];?>" required placeholder="Enter Email" />
               </div>
               <div class="col-md-4">
                 <label for="ind_wmobile" class="form-label">Mobile (WhatsApp)</label>
@@ -155,9 +153,8 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
             </div>
             
             <div class="row mb-3">
-              <div class="col-md-4">
-                <label for="ind_email" class="form-label">Email</label>
-                <input type="text" class="form-control" name="ind_email" id="ind_email"  value="<?php print $indvidual['ind_email'];?>" required placeholder="Enter Email" />
+              <div class="col-md-12" style="text-align:right">
+              	<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#qualificationDetails" aria-expanded="false" aria-controls="qualificationDetails"><span>Next</span></button>
               </div>
             </div>
           </div>
@@ -187,7 +184,6 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
                 </thead>
                 <tbody>
                 	<?php
-						print_r($qulaifications);
 						 $i = 0; 
 						 if(!empty($qulaifications))
 						 {
@@ -294,6 +290,12 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
                  </tfoot>
               </table>
             </div>
+            
+            <div class="row mb-3">
+              <div class="col-md-12" style="text-align:right">
+              	<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#experienceDetails" aria-expanded="false" aria-controls="experienceDetails"><span>Next</span></button>
+              </div>
+            </div>
           </div>
         </div>
         
@@ -376,6 +378,11 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
                  </tfoot>
               </table>
             </div>
+            <div class="row mb-3">
+              <div class="col-md-12" style="text-align:right">
+              	<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#schoolDetails" aria-expanded="false" aria-controls="schoolDetails"><span>Next</span></button>
+              </div>
+            </div>
           </div>
         </div>
         <div class="bg-white p-3 mb-4 rounded shadow">
@@ -436,6 +443,12 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 								?>
                     </select>
                 </div>
+            </div>
+            
+            <div class="row mb-3">
+              <div class="col-md-12" style="text-align:right">
+              	<button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#declarationDetails" aria-expanded="false" aria-controls="declarationDetails"><span>Next</span></button>
+              </div>
             </div>            
         	</div>
         </div>
@@ -450,18 +463,16 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
           <div class="collapse mt-3 border rounded p-3 bg-light" id="declarationDetails">
             <div class="mb-3">
               <p class="form-label">
-                At present, the private individual has not filed a litigation case
-                against Punjab Education Foundation in any court of law.
+                At present, I have filed a litigation case against PIEMA in any court of law.
               </p>
-        
-              <div class="form-check form-check-inline">
-                <input class="form-check-input" type="radio" name="litigation" id="litigationYes" value="yes" <?php if($indvidual['ind_declaration'] == 'yes'){?>checked="checked"<?php }?> />
-                <label class="form-check-label" for="litigationYes">Yes</label>
-              </div>
         
               <div class="form-check form-check-inline">
                 <input class="form-check-input" type="radio" name="litigation" id="litigationNo" value="no" <?php if($indvidual['ind_declaration'] == 'no'){?>checked="checked"<?php }?>/>
                 <label class="form-check-label" for="litigationNo">No</label>
+              </div>
+              <div class="form-check form-check-inline">
+                <input class="form-check-input" type="radio" name="litigation" id="litigationYes" value="yes" <?php if($indvidual['ind_declaration'] == 'yes'){?>checked="checked"<?php }?> />
+                <label class="form-check-label" for="litigationYes">Yes</label>
               </div>
         
               <div id="caseAttachment" class="mt-3 <?php if($indvidual['ind_declaration'] == 'no'){?>d-none<?php }?>">
@@ -507,7 +518,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 		},
 		function(data){
 		  arr = $.parseJSON(data);     
-		  console.log(arr);     
+		 // console.log(arr);     
 		  $('#ind_tehsilid option:not(:first)').remove();
 		  $.each(arr, function(key, value) {           
 		 $('#ind_tehsilid')
@@ -518,158 +529,6 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 			});   
 		});
 	});
-
-  let currentlyEditing = null;
-
-  function addQualification() {
-		const qual_user_type = document.getElementById("qual_user_type").value;
-		const qual_deg_name = document.getElementById("qual_deg_name").value;
-		const qual_institution = document.getElementById("qual_institution").value;
-		const qual_deg_type = document.getElementById("qual_deg_type").value;
-		const qual_percentage = document.getElementById("qual_percentage").value;
-		const qual_from = document.getElementById("qual_from").value;
-		const qual_to = document.getElementById("qual_to").value;
-	
-		const tableBody = document.querySelector("#qualificationTable tbody");
-		let newRow = document.createElement("tr");
-	
-		const rowHTML = `
-		  <td>${qual_user_type}</td>
-		  <td>${qual_deg_name}</td>
-		  <td>${qual_institution}</td>
-		  <td>${qual_deg_type}</td>
-		  <td>${qual_percentage}</td>
-		  <td>${qual_from}</td>
-		  <td>${qual_to}</td>
-		  <td>
-			<button onclick="editRow(this.closest('tr'))" class="btn btn-sm btn-warning me-1">Edit</button>
-			<button onclick="deleteRow(this)" class="btn btn-sm btn-danger">Delete</button>
-		  </td>
-		`;
-	
-		if (currentlyEditing) {
-		  currentlyEditing.innerHTML = rowHTML;
-		  currentlyEditing = null;
-		  document.querySelector("[onclick='addQualification()']").textContent = "Add";
-		} else {
-		  newRow.innerHTML = rowHTML;
-		  tableBody.insertBefore(newRow, document.getElementById("inputRow"));
-		}
-	
-		//resetForm();
-	  }
-
-  function deleteRow(button) {
-    const row = button.closest("tr");
-    if (currentlyEditing === row) {
-      document.querySelector("[onclick='addQualification()']").textContent = "Add";
-      currentlyEditing = null;
-    }
-    row.remove();
-  }
-
-  function editRow(row) {
-    currentlyEditing = row;
-    const cells = row.querySelectorAll("td");
-
-    document.getElementById("applicant").value = cells[0].textContent;
-    document.getElementById("degree").value = cells[1].textContent;
-    document.getElementById("institution").value = cells[2].textContent;
-    document.getElementById("type").value = cells[3].textContent;
-    document.getElementById("percentage").value = cells[4].textContent;
-    document.getElementById("from").value = cells[5].textContent;
-    document.getElementById("to").value = cells[6].textContent;
-
-    document.querySelector("[onclick='addQualification()']").textContent = "Update";
-  }
-
-  function resetForm() {
-    document.getElementById("applicant").value = "Applicant1";
-    document.getElementById("degree").value = "BSc";
-    document.getElementById("institution").value = "Inst1";
-    document.getElementById("type").value = "Regular";
-    document.getElementById("percentage").value = "50";
-    document.getElementById("from").value = "2020-01-01";
-    document.getElementById("to").value = "2022-01-01";
-  }
-
-  function saveQualifications() {
-    alert("Qualifications saved successfully!");
-  }
-  
-  let currentlyEditingExperience = null;
-
-	function addExperience() {
-	  const applicant = document.getElementById("applicantExperience").value;
-	  const employer = document.getElementById("employer").value;
-	  const designation = document.getElementById("designation").value;
-	  const from = document.getElementById("fromExperience").value;
-	  const to = document.getElementById("toExperience").value;
-	  const years = document.getElementById("expYears").value;
-	
-	  const tableBody = document.querySelector("#experienceTable tbody");
-	  let newRow = document.createElement("tr");
-	
-	  const rowHTML = `
-		<td>${applicant}</td>
-		<td>${employer}</td>
-		<td>${designation}</td>
-		<td>${from}</td>
-		<td>${to}</td>
-		<td>${years}</td>
-		<td>
-		  <button onclick="editExperience(this.closest('tr'))" class="btn btn-sm btn-warning me-1">Edit</button>
-		  <button onclick="deleteExperience(this)" class="btn btn-sm btn-danger">Delete</button>
-		</td>
-	  `;
-	
-	  if (currentlyEditingExperience) {
-		currentlyEditingExperience.innerHTML = rowHTML;
-		currentlyEditingExperience = null;
-		document.querySelector("[onclick='addExperience()']").textContent = "Add";
-	  } else {
-		newRow.innerHTML = rowHTML;
-		tableBody.insertBefore(newRow, document.getElementById("inputRowExperience"));
-	  }
-	
-	  resetExperienceForm();
-	}
-	
-	function deleteExperience(button) {
-	  const row = button.closest("tr");
-	  if (currentlyEditingExperience === row) {
-		document.querySelector("[onclick='addExperience()']").textContent = "Add";
-		currentlyEditingExperience = null;
-	  }
-	  row.remove();
-	}
-	
-	function editExperience(row) {
-	  currentlyEditingExperience = row;
-	  const cells = row.querySelectorAll("td");
-	
-	  document.getElementById("applicantExperience").value = cells[0].textContent;
-	  document.getElementById("employer").value = cells[1].textContent;
-	  document.getElementById("designation").value = cells[2].textContent;
-	  document.getElementById("fromExperience").value = cells[3].textContent;
-	  document.getElementById("toExperience").value = cells[4].textContent;
-	  document.getElementById("expYears").value = cells[5].textContent;
-	
-	  document.querySelector("[onclick='addExperience()']").textContent = "Update";
-	}
-	
-	function resetExperienceForm() {
-	  document.getElementById("applicantExperience").value = "Applicant1";
-	  document.getElementById("employer").value = "Employer1";
-	  document.getElementById("designation").value = "Manager";
-	  document.getElementById("fromExperience").value = "2020-01-01";
-	  document.getElementById("toExperience").value = "2022-01-01";
-	  document.getElementById("expYears").value = "1";
-	}
-	
-	function saveExperience() {
-	  alert("Experience data saved successfully!");
-	}
 	
 	document.addEventListener("DOMContentLoaded", function () {
 	  const litigationRadios = document.querySelectorAll('input[name="litigation"]');
@@ -686,63 +545,6 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 	  });
 	});
 
-	let schoolCounter = 1;
-
-	function addSchool() {
-		const emiscode = document.getElementById('emiscode').value;
-		const schoolName = document.getElementById('schoolName').value;
-		const priority = document.getElementById('priority').value;
-		const district = document.getElementById('district').value;
-		const tehsil = document.getElementById('tehsil').value;
-		const gender = document.getElementById('gender').value;
-		const schoolLevel = document.getElementById('schoolLevel').value;
-		const totalTeachers = document.getElementById('totalTeachers').value;
-		const totalStudents = document.getElementById('totalStudents').value;
-	
-		const tableBody = document.querySelector('#schoolTable tbody');
-		const newRow = document.createElement('tr');
-		newRow.innerHTML = `
-			<td>${schoolCounter++}</td>
-			<td>${emiscode}</td>
-			<td>${schoolName}</td>
-			<td>${priority}</td>
-			<td>${district}</td>
-			<td>${tehsil}</td>
-			<td>${gender}</td>
-			<td>${schoolLevel}</td>
-			<td>${totalTeachers}</td>
-			<td>${totalStudents}</td>
-			<td>
-				<button onclick="deleteRow(this)" class="btn btn-danger btn-sm">Delete</button>
-			</td>
-		`;
-		tableBody.insertBefore(newRow, document.getElementById('inputRowSchool'));
-	
-		// Clear form fields
-		document.getElementById('emiscode').value = '';
-		document.getElementById('schoolName').value = '';
-		document.getElementById('priority').value = 'High';
-		document.getElementById('district').value = '';
-		document.getElementById('tehsil').value = '';
-		document.getElementById('gender').value = 'Co-ed';
-		document.getElementById('schoolLevel').value = 'Primary';
-		document.getElementById('totalTeachers').value = '1';
-		document.getElementById('totalStudents').value = '50';
-	}
-	
-	// Delete Row Functionality
-	function deleteRow(button) {
-		const row = button.closest('tr');
-		row.remove();
-	}
-	
-	// Accordion Toggle Function
-	function toggleAccordion(id, iconId) {
-		const content = document.getElementById(id);
-		const icon = document.getElementById(iconId);
-		content.classList.toggle('d-none');
-		icon.classList.toggle('rotate-180');
-	}
 </script>
 <script>
 $(document).ready(function() {

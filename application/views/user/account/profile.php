@@ -34,6 +34,9 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
             <li class="list-group-item">
               <b><?php echo lang('user_username') ?></b> <a class="pull-right"><?php echo $user->username ?></a>
             </li>
+			  <li class="list-group-item">
+              <b>Email</b> <a class="pull-right"><?php echo $user->email ?></a>
+            </li>
             <li class="list-group-item">
               <b><?php echo lang('user_last_login') ?></b> <a class="pull-right"><?php echo date( setting('date_format'), strtotime($user->last_login)) ?></a>
             </li>

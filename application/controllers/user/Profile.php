@@ -32,7 +32,7 @@ class Profile extends MY_Controller {
 		$this->session->set_flashdata('alert-type', 'success');
 		$this->session->set_flashdata('alert', 'Profile has been Updated Successfully');
 		
-		redirect('admin/profile/index/edit');
+		redirect('user/profile/index/edit');
 	}
 	public function updatePassword()
 	{
@@ -87,7 +87,7 @@ class Profile extends MY_Controller {
 			$this->session->set_flashdata('alert-type', 'danger');
 			$this->session->set_flashdata('alert', 'Server Error Occured while Uploading Image !');
 		}
-		redirect('admin/profile/index/change_pic');
+		redirect('user/profile/index/change_pic');
 	}
 	public function change_language($code = '')
 	{

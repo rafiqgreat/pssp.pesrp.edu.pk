@@ -35,6 +35,11 @@ class Users_model extends MY_Model {
 				'logged' => [
 					'id' => $row->id,
 					'role' => $row->role,
+					'name' => $row->name,
+					'cnic' => $row->username,
+					'email' => $row->email,
+					'phone' => $row->phone,
+					'address' => $row->address,
 					'time' => $time,
 				]
 			];
@@ -42,6 +47,11 @@ class Users_model extends MY_Model {
 		}else{
 			$data = [
 				'id' => $row->id,
+				'name' => $row->name,
+				'cnic' => $row->username,
+				'email' => $row->email,
+				'phone' => $row->phone,
+				'address' => $row->address,
 				'time' => time(),
 			];
 			$expiry = strtotime('+7 days');

@@ -66,12 +66,8 @@
                       <td><?php print ($data_yep['ye_lead_cnic']);?></td>
                    </tr>
                    <tr>
-                      <td><strong>School Code:</strong></td>
-                      <td><?php print ($data_yep['school_1_username']);?></td>
-                   </tr>                  
-                   <tr>
-                      <td><strong>School Name:</strong></td>
-                      <td><?php print ($data_yep['school_1_name']);?></td>
+                      <td><strong>Mobile No:</strong></td>
+                      <td><?php print ($data_yep['ye_lead_mobile']);?></td>
                    </tr>
                    <tr>
                       <td><strong>District:</strong></td>
@@ -82,8 +78,12 @@
                       <td><?php print ($data_yep['tehsil_name']);?></td>
                    </tr>
                    <tr>
-                      <td><strong>Mobile No:</strong></td>
-                      <td><?php print ($data_yep['ye_lead_mobile']);?></td>
+                      <td><strong>School Code:</strong></td>
+                      <td><?php print ($data_yep['school_1_username']);?></td>
+                   </tr>                  
+                   <tr>
+                      <td><strong>School Name:</strong></td>
+                      <td><?php print ($data_yep['school_1_name']);?></td>
                    </tr>
                 </table></td>
           </tr>

@@ -62,11 +62,9 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
                 </tr>
                 <tr>
                    <td><strong>CNIC</strong></td>
-                   <td><?php print $indvidual['ind_cnic'];?></td>
+                   <td colspan="2"><?php print $indvidual['ind_cnic'];?></td>
                    <td><strong>Date of Birth</strong></td>
-                   <td><?php print date('d/m/Y', strtotime($indvidual['ind_dob']));?></td>
-                   <td><strong>Marital Status</strong></td>
-                   <td><?php print $indvidual['ind_maritalstatus'];?></td>
+                   <td colspan="2"><?php print date('d/m/Y', strtotime($indvidual['ind_dob']));?></td>
                 </tr>
                 <tr>
                    <td><strong>Email</strong></td>
@@ -157,11 +155,7 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
                   <td>EMISCODE</td>
                   <td>School Name</td>
                   <td>District</td>
-                  <td>Tehsil</td>
-                  <td>Gender</td> 
-                  <td>School Level</td>
-                  <td>Total Teachers</td>
-                  <td>Total Students</td>             
+                  <td>Tehsil</td>             
                 </tr>
                 <?php
                 $i = 0; 
@@ -187,16 +181,12 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
 									 <td><?php print $school['school_name'];?></td>
 									 <td><?php print $school['district_name_en'];?></td>
 									 <td><?php print $school['tehsil_name_en'];?></td>
-                            <td><?php print $school['school_gender'];?></td>
-                            <td><?php print $school['school_level'];?></td>
-                            <td><?php print $school['school_total_teachers'];?></td>
-                            <td><?php print $school['school_total_students'];?></td>
 								 </tr>
                 <?php }
 						 }
                 }else{?>
                    <tr>
-                      <td colspan="9">No schools record found.</td>
+                      <td colspan="5">No schools record found.</td>
                    </tr>
                 <?php }?>
              </table>
@@ -213,8 +203,8 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
                <br>
                <table width="100%">
                   <tr>
-                     <td><strong>Name of Applicant</strong></td>
-                     <td><strong>Signature/Stamp</strong></td>
+                     <td><strong>Name of Applicant</strong><br /><?php print $indvidual['ind_fname'];?></td>
+                     <td><strong>Signature</strong></td>
                      <td><strong>Date</strong></td>
                   </tr>
                </table>
@@ -227,13 +217,13 @@ defined('BASEPATH') OR exit('No direct script access allowed'); ?>
                   <li>Attested copies of CNICs of all applicants</li>
                   <li>Attested copies of academic credentials containing marks detail of all three applicants. (The document / degree without marks detail shall not be considered for awarding score)</li>
                   <li>Attested copies of post qualification signed and stamped experience certificate along with contact and address details of employers, having proper date and reference number. (Experience length from (DD-MM-YYYY) to (DD-MM-YYYY) shall categorically be menstioned in experience certificate). Formate of experience certificate placed at Appendix-B.</li>
-                  <li>Original affidavit(s) on stamp paper worth Rs.300/- according to given specimen at Appendix-D of TORs</li>
+                  <li>Police character certificate of the applicant (mere receipt/applicant form shall not be accepted).</li>
                </ol>
              </div>
              <?php if($indvidual['ind_final_submit'] != 1){?>
                 <div style="text-align:right; margin:10px 0">
-                  <a href="<?php echo url('user/applicationformind/edit') ?>" class="btn btn-sm btn-info" title="Edit"><i class="fa fa-edit"></i> Edit Application</a> &nbsp;&nbsp;
-                  <a href="<?php echo url('user/applicationformind/finalsubmission') ?>" class="btn btn-sm btn-success" title="Final Submission">Final Submit Application</a>
+                  <a href="<?php echo url('user/applicationformind/edit') ?>" class="btn btn-sm btn-info" title="Edit"><i class="fa fa-edit"></i> Edit Application</a><?php /*?> &nbsp;&nbsp;
+                  <a href="<?php echo url('user/applicationformind/finalsubmission') ?>" class="btn btn-sm btn-success" title="Final Submission">Final Submit Application</a><?php */?>
                 </div>
              <?php }?>
           <?php }else{?>
